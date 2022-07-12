@@ -1,0 +1,4 @@
+*.pdf
+.asciidoctor
+images/diag-*
+

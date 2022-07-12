@@ -1,0 +1,58 @@
+[#insns-xtheadcmo-dcache_iall,reftext=Invalidate all D-cache]
+==== th.dcache.iall
+
+Synopsis::
+Invalidate all D-cache
+
+Mnemonic::
+th.dcache.iall
+
+Encoding::
+[wavedrom, , svg]
+....
+{reg:[
+    { bits:  7, name: 0xb, attr: ['custom-0, 32 bit'] },
+    { bits:  5, name: 0x0 },
+    { bits:  3, name: 0x0, attr: ['CMO'] },
+    { bits:  5, name: 0x0 },
+    { bits:  5, name: 0x2, attr: ['dache.iall'] },
+    { bits:  7, name: 0x00 },
+]}
+....
+
+Description::
+This instruction invalidates all cache lines of the data cache on the local hart.
+Dirty cache lines will not be written back to the next-level storage.
+
+Operation::
+[source,sail]
+--
+// illegal instruction exceptions
+if (mxstatus.theadisaee != 1 ||
+    ((priv_mode != M) && (priv_mode != S))
+{
+  <raise illegal instruction exception>
+}
+// execute instruction
+<invalidate all data cache lines of the local hart>
+--
+
+Permission::
+This instruction can only be executed in `M` mode and `S` mode. Other modes will trigger an illegal instruction exception.
+
+Exceptions::
+This instruction does not trigger any exceptions.
+
+Availability::
+The instruction is only available if `mxstatus.theadisaee` is set to `1`. Otherwise this instruction will trigger an illegal instruction exception.
+
+Included in::
+[%header,cols="4,2"]
+|===
+|Extension
+|HW requirements
+
+|XTheadCmo (<<#xtheadcmo>>)
+|D-cache
+|===
+

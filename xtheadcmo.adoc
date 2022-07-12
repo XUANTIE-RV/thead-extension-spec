@@ -1,0 +1,76 @@
+[#xtheadcmo]
+== Cache Management Operations (XTheadCmo)
+
+The `XTheadCmo` ISA extension provides cache management operations.
+
+The table below gives an overview of the instructions:
+
+[cols="^3,^3,10,18,12",stripes=even,options="header"]
+|===
+| RV32 | RV64 | Mnemonic              | Instruction | HW requirements
+| Y    | Y    | th.dcache.call        | <<#insns-xtheadcmo-dcache_call>> | D-cache
+| Y    | Y    | th.dcache.ciall       | <<#insns-xtheadcmo-dcache_ciall>> | D-cache
+| Y    | Y    | th.dcache.iall        | <<#insns-xtheadcmo-dcache_call>> | D-cache
+| Y    | Y    | th.dcache.cpa _rs1_   | <<#insns-xtheadcmo-dcache_cpa>> | D-cache
+| Y    | Y    | th.dcache.cipa _rs1_  | Clean & invalidate PA D-cache | D-cache
+| Y    | Y    | th.dcache.ipa _rs1_   | Invalidate PA D-cache | D-cache
+| Y    | Y    | th.dcache.cva _rs1_   | Clean VA D-cache | D-cache, MMU
+| Y    | Y    | th.dcache.civa _rs1_  | Clean & invalidate VA D-cache | D-cache, MMU
+| Y    | Y    | th.dcache.iva _rs1_   | Invalidate VA D-cache | D-cache, MMU
+| Y    | Y    | th.dcache.csw _rs1_   | Clean set/way D-cache | D-cache
+| Y    | Y    | th.dcache.cisw _rs1_  | Clean & invalidate set/way D-cache | D-cache
+| Y    | Y    | th.dcache.isw _rs1_   | Invalidate set/way D-cache | D-cache
+| Y    | Y    | th.dcache.cpal1 _rs1_ | Clean PA L1 D-cache | D-cache, 2nd level cache
+| Y    | Y    | th.dcache.cval1 _rs1_ | Clean VA L1 D-cache | D-cache, 2nd level cache, MMU
+| Y    | Y    | th.icache.iall        | Invalidate all I-cache | I-cache
+| Y    | Y    | th.icache.ialls       | Invalidate all I-cache on all harts | I-cache, multicore
+| Y    | Y    | th.icache.ipa _rs1_   | Invalidate PA I-cache | I-cache
+| Y    | Y    | th.icache.iva _rs1_   | Invalidate VA I-cache | I-cache, MMU
+| Y    | Y    | th.l2cache.call       | Clean all L2-cache    | D/I-cache, 2nd level cache
+| Y    | Y    | th.l2cache.ciall      | Clean & invalidate all L2-cache    | D/I-cache + 2nd level cache
+| Y    | Y    | th.l2cache.iall       | Invalidate all L2-cache    | D/I-cache, 2nd level cache
+|===
+
+[#insns,reftext="Instructions"]
+=== Instructions
+include::xtheadcmo/dcache_call.adoc[]
+<<<
+include::xtheadcmo/dcache_ciall.adoc[]
+<<<
+include::xtheadcmo/dcache_iall.adoc[]
+<<<
+include::xtheadcmo/dcache_cpa.adoc[]
+<<<
+//include::xtheadcmo/dcache_cipa.adoc[]
+<<<
+//include::xtheadcmo/dcache_ipa.adoc[]
+<<<
+//include::xtheadcmo/dcache_cva.adoc[]
+<<<
+//include::xtheadcmo/dcache_civa.adoc[]
+<<<
+//include::xtheadcmo/dcache_iva.adoc[]
+<<<
+//include::xtheadcmo/dcache_csw.adoc[]
+<<<
+//include::xtheadcmo/dcache_cisw.adoc[]
+<<<
+//include::xtheadcmo/dcache_isw.adoc[]
+<<<
+//include::xtheadcmo/dcache_cpal1.adoc[]
+<<<
+//include::xtheadcmo/dcache_cval1.adoc[]
+<<<
+//include::xtheadcmo/icache_iall.adoc[]
+<<<
+//include::xtheadcmo/icache_ialls.adoc[]
+<<<
+//include::xtheadcmo/icache_ipa.adoc[]
+<<<
+//include::xtheadcmo/icache_iva.adoc[]
+<<<
+//include::xtheadcmo/l2cache_call.adoc[]
+<<<
+//include::xtheadcmo/l2cache_ciall.adoc[]
+<<<
+//include::xtheadcmo/l2cache_ciall.adoc[]
