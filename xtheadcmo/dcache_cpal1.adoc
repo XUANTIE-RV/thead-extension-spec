@@ -1,11 +1,11 @@
-[#insns-xtheadcmo-dcache_cpa,reftext=Clean D-cache at PA]
-==== th.dcache.cpa
+[#insns-xtheadcmo-dcache_cpal1,reftext=Clean L1 D-cache at PA]
+==== th.dcache.cpal1
 
 Synopsis::
-Clean D-cache at PA
+Clean L1 D-cache at PA
 
 Mnemonic::
-th.dcache.cpa _rs1_
+th.dcache.cpal1 _rs1_
 
 Encoding::
 [wavedrom, , svg]
@@ -15,13 +15,13 @@ Encoding::
     { bits:  5, name: 0x0 },
     { bits:  3, name: 0x0, attr: ['CMO'] },
     { bits:  5, name: 'rs1' },
-    { bits:  5, name: 0x9, attr: ['dcache.cpa'] },
+    { bits:  5, name: 0x8, attr: ['dcache.cpal1'] },
     { bits:  7, name: 0x01 },
 ]}
 ....
 
 Description::
-This instruction cleans the cache lines that match the specified physical address in the D-cache.
+This instruction cleans the cache lines that match the specified physical address in the L1 D-cache.
 If a cache line is dirty it will be written back to the next-level storage.
 
 Operation::
@@ -34,7 +34,7 @@ if (mxstatus.theadisaee != 1 ||
   <raise illegal instruction exception>
 }
 // execute instruction
-<write back all dirty data cache lines matching the PA>
+<write back all dirty L1 data cache lines matching the PA>
 --
 
 Permission::
@@ -53,6 +53,6 @@ Included in::
 |HW requirements
 
 |XTheadCmo (<<#xtheadcmo>>)
-|D-cache
+|D-cache, 2nd level cache
 |===
 

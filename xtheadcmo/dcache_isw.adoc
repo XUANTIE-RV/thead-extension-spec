@@ -1,0 +1,89 @@
+[#insns-xtheadcmo-dcache_isw,reftext=Invalidate D-cache by set/way]
+==== th.dcache.isw
+
+Synopsis::
+Invalidate D-cache by set/way
+
+Mnemonic::
+th.dcache.isw _rs1_
+
+Encoding::
+[wavedrom, , svg]
+....
+{reg:[
+    { bits:  7, name: 0xb, attr: ['custom-0, 32 bit'] },
+    { bits:  5, name: 0x0 },
+    { bits:  3, name: 0x0, attr: ['CMO'] },
+    { bits:  5, name: 'rs1' },
+    { bits:  5, name: 0x2, attr: ['dcache.isw'] },
+    { bits:  7, name: 0x01 },
+]}
+....
+
+The register content of `rs1` defines the set/way and has the following bit assignment:
+
+* rs1[64:31]...reserved (write `0`)
+* rs1[31:32-w]...number of the way to operate on
+* rs1[w-1:l+s]...reserved (write `0`)
+* rs1[l+s-1:l]...number of the set to operate on
+* rs1[l-1:4]...reserved (write `0`)
+* rs1[3:1]...cache level to operate on (`0` for L1 cache, `1` for L2 cache, etc.)
+* rs1[0]...reserved (write `0`)
+
+The bit positions to specify the set and the way to operate on depend on the actual cache implementation.
+There are three cache properties that need to be considered:
+
+* `nways` (number of ways)
+* `nsets` (number of sets)
+* `linesize` (size of a cache line in bytes)
+
+Derived from these numbers the following constants are defined:
+
+* `w := log2(nways)`
+* `s := log2(nsets)`
+* `l := log2(linesize)`
+
+E.g. a 64 KiB, 2-way set-associative cache (`w = 1`) with a cacheline size of 64 bytes (`l = 6`)
+has 512 sets (`s = 9`) and needs to use the following bits to set the set and the way to operate on:
+
+* [31]...number of the way (`0` or `1`)
+* [14:6] number of the set (`0`..`512`)
+
+//-
+
+Description::
+This instruction invalidates the cache line that matches the specified set/way in the D-cache.
+Dirty cache lines will not be written back to the next-level storage.
+
+Operation::
+[source,sail]
+--
+// illegal instruction exceptions
+if (mxstatus.theadisaee != 1 ||
+    ((priv_mode != M) && (priv_mode != S))
+{
+  <raise illegal instruction exception>
+}
+// execute instruction
+<invalidate data cache line matching the set/way>
+--
+
+Permission::
+This instruction can only be executed in `M` mode and `S` mode. Other modes will trigger an illegal instruction exception.
+
+Exceptions::
+This instruction does not trigger any exceptions.
+
+Availability::
+The instruction is only available if `mxstatus.theadisaee` is set to `1`. Otherwise this instruction will trigger an illegal instruction exception.
+
+Included in::
+[%header,cols="4,2"]
+|===
+|Extension
+|HW requirements
+
+|XTheadCmo (<<#xtheadcmo>>)
+|D-cache
+|===
+

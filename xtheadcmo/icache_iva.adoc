@@ -1,11 +1,11 @@
-[#insns-xtheadcmo-dcache_cpa,reftext=Clean D-cache at PA]
-==== th.dcache.cpa
+[#insns-xtheadcmo-icache_iva,reftext=Invalidate I-cache at VA]
+==== th.icache.iva
 
 Synopsis::
-Clean D-cache at PA
+Invalidate I-cache at VA
 
 Mnemonic::
-th.dcache.cpa _rs1_
+th.icache.iva _rs1_
 
 Encoding::
 [wavedrom, , svg]
@@ -15,14 +15,14 @@ Encoding::
     { bits:  5, name: 0x0 },
     { bits:  3, name: 0x0, attr: ['CMO'] },
     { bits:  5, name: 'rs1' },
-    { bits:  5, name: 0x9, attr: ['dcache.cpa'] },
+    { bits:  5, name: 0x10, attr: ['icache.iva'] },
     { bits:  7, name: 0x01 },
 ]}
 ....
 
 Description::
-This instruction cleans the cache lines that match the specified physical address in the D-cache.
-If a cache line is dirty it will be written back to the next-level storage.
+This instruction invalidates the cache lines that match the specified virtual address in the I-cache.
+Dirty cache lines will not be written back to the next-level storage.
 
 Operation::
 [source,sail]
@@ -34,7 +34,7 @@ if (mxstatus.theadisaee != 1 ||
   <raise illegal instruction exception>
 }
 // execute instruction
-<write back all dirty data cache lines matching the PA>
+<invalidate all instruction cache lines matching the VA>
 --
 
 Permission::
@@ -53,6 +53,6 @@ Included in::
 |HW requirements
 
 |XTheadCmo (<<#xtheadcmo>>)
-|D-cache
+|I-cache, MMU
 |===
 
