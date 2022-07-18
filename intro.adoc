@@ -24,8 +24,3 @@ The collection consists of the following ISA extensions:
 
 All T-Head extensions are defined for RV32 and RV64.
 
-[NOTE]
-====
-The name RISC-V indexterm:[RISC-V] was chosen to represent the fifth major RISC ISA design from UC Berkeley (RISC-I cite:[riscI-isca1981], RISC-II cite:[Katevenis:1983], SOAR cite:[Ungar:1984], and SPUR cite:[spur-jsscc1989] were the first four). We also pun on the use of the Roman numeral "V" to signify "variations" and "vectors", as support for a range of architecture research, including various data-parallel accelerators, is an explicit goal of the ISA design.
-====
-
