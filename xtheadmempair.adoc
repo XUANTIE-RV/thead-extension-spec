@@ -1,0 +1,28 @@
+[#xtheadmempair]
+== Two-GPR memory operations (XTheadMemPair)
+
+The `XTheadMemPair` ISA extension provides two-GPR memory operations.
+
+The table below gives an overview of the instructions:
+
+[cols="^3,^3,12,18",stripes=even,options="header"]
+|===
+| RV32 | RV64 | Mnemonic              | Instruction
+| N    | Y    | th.ldd  _rd1_, _rd2_, (_rs1_), _imm2_, 4 | <<#xtheadmempair-insns-ldd>>
+| Y    | Y    | th.lwd  _rd1_, _rd2_, (_rs1_), _imm2_, 3 | <<#xtheadmempair-insns-lwd>>
+| Y    | Y    | th.lwud _rd1_, _rd2_, (_rs1_), _imm2_, 3 | <<#xtheadmempair-insns-lwud>>
+| N    | Y    | th.sdd  _rd1_, _rd2_, (_rs1_), _imm2_, 4 | <<#xtheadmempair-insns-sdd>>
+| Y    | Y    | th.swd  _rd1_, _rd2_, (_rs1_), _imm2_, 3 | <<#xtheadmempair-insns-swd>>
+|===
+
+[#xtheadmempair-insns,reftext="Instructions"]
+=== Instructions
+include::xtheadmempair/ldd.adoc[]
+<<<
+include::xtheadmempair/lwd.adoc[]
+<<<
+include::xtheadmempair/lwud.adoc[]
+<<<
+include::xtheadmempair/sdd.adoc[]
+<<<
+include::xtheadmempair/swd.adoc[]
