@@ -31,6 +31,13 @@ The table below gives an overview of the instructions:
 | Y    | Y    | th.l2cache.iall       | <<#insns-xtheadcmo-l2cache_iall>> | D/I-cache, 2nd level cache
 |===
 
+The last column of the table above names the HW requirements of the instructions.
+E.g. to clean the data cache using `dcache.call`, a D-cache is required.
+Instructions that are executed without the required HW requirements available
+(e.g. `l2cache.call` on a system without a L2 cache) do not chance any architecturally
+visible state, except for advancing the program counter and incrementing any applicable
+performance counters (i.e. it behaves like executing a `NOP` instruction).
+
 [#insns,reftext="Instructions"]
 === Instructions
 include::xtheadcmo/dcache_call.adoc[]
