@@ -1,0 +1,38 @@
+[#xtheadfmemidx]
+== Indexed memory operations for floating-point registers (XTheadFMemIdx)
+
+The `XTheadFMemIdx` ISA extension provides indexed memory operations
+for floating-point registers.
+
+The table below gives an overview of the instructions:
+
+[cols="^3,^3,12,18",stripes=even,options="header"]
+|===
+| RV32 | RV64 | Mnemonic              | Instruction
+| Y    | Y    | th.flrd  _rd_, _rs1_, _rs2_, _imm2_ | <<#xtheadfmemidx-insns-flrd>>
+| Y    | Y    | th.flrw  _rd_, _rs1_, _rs2_, _imm2_ | <<#xtheadfmemidx-insns-flrw>>
+| N    | Y    | th.flurd _rd_, _rs1_, _rs2_, _imm2_ | <<#xtheadfmemidx-insns-flurd>>
+| N    | Y    | th.flurw _rd_, _rs1_, _rs2_, _imm2_ | <<#xtheadfmemidx-insns-flurw>>
+| Y    | Y    | th.fsrd  _rd_, _rs1_, _rs2_, _imm2_ | <<#xtheadfmemidx-insns-fsrd>>
+| Y    | Y    | th.fsrw  _rd_, _rs1_, _rs2_, _imm2_ | <<#xtheadfmemidx-insns-flrw>>
+| N    | Y    | th.fsurd _rd_, _rs1_, _rs2_, _imm2_ | <<#xtheadfmemidx-insns-fsurd>>
+| N    | Y    | th.fsurw _rd_, _rs1_, _rs2_, _imm2_ | <<#xtheadfmemidx-insns-flurw>>
+|===
+
+[#xtheadfmemidx-insns,reftext="Instructions"]
+=== Instructions
+include::xtheadfmemidx/flrd.adoc[]
+<<<
+include::xtheadfmemidx/flrw.adoc[]
+<<<
+include::xtheadfmemidx/flurd.adoc[]
+<<<
+include::xtheadfmemidx/flurw.adoc[]
+<<<
+include::xtheadfmemidx/fsrd.adoc[]
+<<<
+include::xtheadfmemidx/fsrw.adoc[]
+<<<
+include::xtheadfmemidx/fsurd.adoc[]
+<<<
+include::xtheadfmemidx/fsurw.adoc[]
