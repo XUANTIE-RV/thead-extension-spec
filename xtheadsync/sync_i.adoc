@@ -1,0 +1,54 @@
+[#xtheadsync-insns-sync_i,reftext=Synchronization barrier and pipeline flush]
+==== th.sync.i
+
+Synopsis::
+Ensures that all preceding instructions retire earlier than this instruction and all subsequent instructions retire later than this instruction and clears the pipeline when this instruction retires.
+
+Mnemonic::
+th.sync.i
+
+Encoding::
+[wavedrom, , svg]
+....
+{reg:[
+    { bits:  7, name: 0xb, attr: ['custom-0, 32 bit'] },
+    { bits:  5, name: 0x0 },
+    { bits:  3, name: 0x0, attr: ['CMO'] },
+    { bits:  5, name: 0x0 },
+    { bits:  5, name: 0x1A, attr: ['SYNC.I'] },
+    { bits:  7, name: 0x00 },
+]}
+....
+
+Description::
+This instruction ensures that all preceding instructions retire earlier than this instruction and all subsequent instructions retire later than this instruction. When this instruction retires the hart's pipeline will be cleared.
+
+Operation::
+[source,sail]
+--
+// illegal instruction exceptions
+if (mxstatus.theadisaee != 1)
+{
+  <raise illegal instruction exception>
+}
+// execute instruction
+out_of_order_barrier()
+pipeline_flush()
+--
+
+Permission::
+This instruction can execute in `M` mode, `S` mode, and `U` mode.
+
+Exceptions::
+This instruction does not trigger any exceptions.
+
+Availability::
+The instruction is only available if `mxstatus.theadisaee` is set to `1`. Otherwise this instruction will trigger an illegal instruction exception.
+
+Included in::
+[%header]
+|===
+|Extension
+
+|XTheadSync (<<#xtheasync>>)
+|
