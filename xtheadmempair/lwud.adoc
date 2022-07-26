@@ -25,6 +25,8 @@ Description::
 This instruction loads two unsigned 32-bit values into the two GP registers _rd1_ and _rd2_
 from the address _rs1_ + (zero_extend(_imm2_) << 3).
 
+The values of _rd1_, _rd2_ and _rs1_ must not be the same.
+
 Operation::
 [source,sail]
 --
