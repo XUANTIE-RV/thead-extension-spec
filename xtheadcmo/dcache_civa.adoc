@@ -28,8 +28,7 @@ Operation::
 [source,sail]
 --
 // illegal instruction exceptions
-if (mxstatus.theadisaee != 1 ||
-    ((priv_mode != M) && (priv_mode != S))
+if (mxstatus.theadisaee != 1)
 {
   <raise illegal instruction exception>
 }
@@ -39,7 +38,7 @@ if (mxstatus.theadisaee != 1 ||
 --
 
 Permission::
-This instruction can only be executed in `M` mode and `S` mode. Other modes will trigger an illegal instruction exception.
+This instruction can execute in `M` mode, `S` mode, and `U` mode.
 
 Exceptions::
 This instruction does not trigger any exceptions.
