@@ -1,0 +1,57 @@
+[#xtheadmac-insns-mulah,reftext=Multiply-add half-words]
+==== th.mulah
+
+Synopsis::
+Compute multiply-add result of half-word operands.
+
+Mnemonic::
+th.mulah _rd_, _rs1_, _rs2_
+
+Encoding::
+[wavedrom, , svg]
+....
+{reg:[
+    { bits:  7, name: 0xb, attr: ['custom-0, 32 bit'] },
+    { bits:  5, name: 'rd' },
+    { bits:  3, name: 0x1, attr: ['Arithmetic'] },
+    { bits:  5, name: 'rs1' },
+    { bits:  5, name: 'rs2' },
+    { bits:  2, name: 0x0 },
+    { bits:  5, name: 0x05 },
+]}
+....
+
+Description::
+This instruction computes the multiply-add result of the provided half-word operands.
+
+Operation::
+[source,sail]
+--
+// illegal instruction exceptions
+if (mxstatus.theadisaee != 1)
+{
+  <raise illegal instruction exception>
+}
+
+// execute instruction
+M := zext.h(reg[rs1]) * zext.h(reg[rs2])
+reg[rd] := sext.w(zext.w(reg[rd] + M))
+--
+
+Permission::
+This instruction is available in `M` mode, `S` mode, and `U` mode.
+
+Exceptions::
+This instruction does not trigger any exceptions.
+
+Availability::
+The instruction is only available if `mxstatus.theadisaee` is set to `1`.
+Otherwise this instruction will trigger an illegal instruction exception.
+
+Included in::
+[%header]
+|===
+|Extension
+
+|XTheadMac (<<#xtheadmac>>)
+|===
