@@ -1,0 +1,62 @@
+[#xtheadbb-insns-tstnbz,reftext=Test for NUL bytes
+==== th.tstnbz
+
+Synopsis::
+Test for NUL bytes.
+
+Mnemonic::
+th.tstnbz _rd_, _rs1_
+
+Encoding::
+[wavedrom, , svg]
+....
+{reg:[
+    { bits:  7, name: 0xb, attr: ['custom-0, 32 bit'] },
+    { bits:  5, name: 'rd' },
+    { bits:  3, name: 0x1 },
+    { bits:  5, name: 'rs1' },
+    { bits:  5, name: 0x0 },
+    { bits:  2, name: 0x0 },
+    { bits:  5, name: 0x10 },
+]}
+....
+
+Description::
+Tests each byte in register _rs1_ for equality with 0.
+If a byte is 0, then the corresponding byte in register _rd_ will be set to 0xff.
+Otherwise, the corresponding byte in register _rd_ will be set to 0.
+
+Operation::
+[source,sail]
+--
+// illegal instruction exceptions
+if (mxstatus.theadisaee != 1)
+{
+  <raise illegal instruction exception>
+}
+
+// execute instruction
+for i=0..(xlen/8-1):
+  if reg[rs1][i] == 0:
+    reg[rd][i] := 0xff
+  else
+    reg[rd][i] := 0
+--
+
+Permission::
+This instruction is available in `M` mode, `S` mode, and `U` mode.
+
+Exceptions::
+This instruction does not trigger any exceptions.
+
+Availability::
+The instruction is only available if `mxstatus.theadisaee` is set to `1`.
+Otherwise this instruction will trigger an illegal instruction exception.
+
+Included in::
+[%header]
+|===
+|Extension
+
+|XTheadBb (<<#xtheadbb>>)
+|===

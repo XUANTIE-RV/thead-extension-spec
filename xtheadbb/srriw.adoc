@@ -1,0 +1,56 @@
+[#xtheadbb-insns-srriw,reftext=Cyclic right shift on word operand]
+==== th.srriw
+
+Synopsis::
+Perform a cyclic right shift on word operand.
+
+Mnemonic::
+th.srriw _rd_, _rs1_, _imm5_
+
+Encoding::
+[wavedrom, , svg]
+....
+{reg:[
+    { bits:  7, name: 0xb, attr: ['custom-0, 32 bit'] },
+    { bits:  5, name: 'rd' },
+    { bits:  3, name: 0x1, attr: ['Arithmetic'] },
+    { bits:  5, name: 'rs1' },
+    { bits:  5, name: 'imm5' },
+    { bits:  7, name: 0x0a },
+]}
+....
+
+Description::
+This operation rotates the contents of the 32-bit value in _rs1_ by _imm5_ bits and stores the result in _rd_.
+
+Operation::
+[source,sail]
+--
+// illegal instruction exceptions
+if (mxstatus.theadisaee != 1)
+{
+  <raise illegal instruction exception>
+}
+
+// execute instruction
+data := zext.w(reg[rs1])
+reg[rd] := (data >> imm5) | (data << (32 - imm5))
+--
+
+Permission::
+This instruction is available in `M` mode, `S` mode, and `U` mode.
+
+Exceptions::
+This instruction does not trigger any exceptions.
+
+Availability::
+The instruction is only available if `mxstatus.theadisaee` is set to `1`.
+Otherwise this instruction will trigger an illegal instruction exception.
+
+Included in::
+[%header]
+|===
+|Extension
+
+|XTheadBb (<<#xtheadbb>>)
+|===
