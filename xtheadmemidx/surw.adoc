@@ -1,0 +1,60 @@
+[#xtheadmemidx-insns-surw,reftext=Store unsigned indexed word]
+==== th.surw
+
+Synopsis::
+Store unsigned indexed word.
+
+Mnemonic::
+th.surw _rd_, (_rs1_), _rs2_, _imm2_
+
+Encoding::
+[wavedrom, , svg]
+....
+{reg:[
+    { bits:  7, name: 0xb, attr: ['custom-0, 32 bit'] },
+    { bits:  5, name: 'rd' },
+    { bits:  3, name: 0x5, attr: ['Mem-Store'] },
+    { bits:  5, name: 'rs1' },
+    { bits:  5, name: 'rs2' },
+    { bits:  2, name: 'imm2' },
+    { bits:  5, name: 0x0a },
+]}
+....
+
+Description::
+This instruction stores a 32-bit value from the GP register _rd_ to the address _rs1_ + (zero_extend(_rs2_) << _imm2_).
+
+Note, that this instruction is equivalent to a `zext.w _rs2_, _rs2_` followed by a `th.srw` with the same arguments.
+
+Operation::
+[source,sail]
+--
+// illegal instruction exceptions
+if (mxstatus.theadisaee != 1)
+{
+  <raise illegal instruction exception>
+}
+
+// execute instruction
+addr := rs1 + (zero_extend(rs2) << imm2)
+mem[addr+3:addr] := rd
+--
+
+Permission::
+This instruction is available in `M` mode, `S` mode, and `U` mode.
+
+Exceptions::
+This instruction triggers the same exceptions that a corresponding `SW` instruction would trigger.
+
+Availability::
+The instruction is only available if `mxstatus.theadisaee` is set to `1`.
+Otherwise this instruction will trigger an illegal instruction exception.
+
+Included in::
+[%header]
+|===
+|Extension
+
+|XTheadMemIdx (<<#xtheadmemidx>>)
+|===
+

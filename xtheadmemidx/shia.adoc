@@ -1,0 +1,59 @@
+[#xtheadmemidx-insns-shia,reftext=Store indexed half-word, increment-after]
+==== th.shia
+
+Synopsis::
+Store indexed half-word, increment address after loading.
+
+Mnemonic::
+th.shia _rd_, (_rs1_), _imm5_, _imm2_
+
+Encoding::
+[wavedrom, , svg]
+....
+{reg:[
+    { bits:  7, name: 0xb, attr: ['custom-0, 32 bit'] },
+    { bits:  5, name: 'rd' },
+    { bits:  3, name: 0x5, attr: ['Mem-Store'] },
+    { bits:  5, name: 'rs1' },
+    { bits:  5, name: 'imm5' },
+    { bits:  2, name: 'imm2' },
+    { bits:  5, name: 0x07 },
+]}
+....
+
+Description::
+This instruction stores an 16-bit value from the GP register _rd_ to the address _rs1_.
+After the store, this instruction increments the value in _rs1_ by (sign_extend(_imm5_) << _imm2_) and writes the result back to _rs1_.
+
+Operation::
+[source,sail]
+--
+// illegal instruction exceptions
+if (mxstatus.theadisaee != 1)
+{
+  <raise illegal instruction exception>
+}
+
+// execute instruction
+mem[rs1+1:rs1] := rd
+rs1 := rs1 + (sign_extend(imm5) << imm2)
+--
+
+Permission::
+This instruction is available in `M` mode, `S` mode, and `U` mode.
+
+Exceptions::
+This instruction triggers the same exceptions that a corresponding `SH` instruction would trigger.
+
+Availability::
+The instruction is only available if `mxstatus.theadisaee` is set to `1`.
+Otherwise this instruction will trigger an illegal instruction exception.
+
+Included in::
+[%header]
+|===
+|Extension
+
+|XTheadMemIdx (<<#xtheadmemidx>>)
+|===
+

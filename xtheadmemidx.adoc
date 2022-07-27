@@ -1,0 +1,146 @@
+[#xtheadmemidx]
+== Indexed memory operations (XTheadMemIdx)
+
+The `XTheadMemIdx` ISA extension provides indexed memory operations.
+for GP registers.
+
+The table below gives an overview of the instructions:
+
+[cols="^3,^3,12,18",stripes=even,options="header"]
+|===
+| RV32 | RV64 | Mnemonic              | Instruction
+| Y    | Y    | th.lbia   _rd_, (_rs1_), _imm5_, _imm2_ | <<#xtheadmemidx-insns-lbia>>
+| Y    | Y    | th.lbib   _rd_, (_rs1_), _imm5_, _imm2_ | <<#xtheadmemidx-insns-lbib>>
+| Y    | Y    | th.lbuia  _rd_, (_rs1_), _imm5_, _imm2_ | <<#xtheadmemidx-insns-lbuia>>
+| Y    | Y    | th.lbuib  _rd_, (_rs1_), _imm5_, _imm2_ | <<#xtheadmemidx-insns-lbuib>>
+| Y    | Y    | th.lhia   _rd_, (_rs1_), _imm5_, _imm2_ | <<#xtheadmemidx-insns-lhia>>
+| Y    | Y    | th.lhib   _rd_, (_rs1_), _imm5_, _imm2_ | <<#xtheadmemidx-insns-lhib>>
+| Y    | Y    | th.lhuia  _rd_, (_rs1_), _imm5_, _imm2_ | <<#xtheadmemidx-insns-lhuia>>
+| Y    | Y    | th.lhuib  _rd_, (_rs1_), _imm5_, _imm2_ | <<#xtheadmemidx-insns-lhuib>>
+| Y    | Y    | th.lwia   _rd_, (_rs1_), _imm5_, _imm2_ | <<#xtheadmemidx-insns-lwia>>
+| Y    | Y    | th.lwib   _rd_, (_rs1_), _imm5_, _imm2_ | <<#xtheadmemidx-insns-lwib>>
+| N    | Y    | th.lwuia  _rd_, (_rs1_), _imm5_, _imm2_ | <<#xtheadmemidx-insns-lwuia>>
+| N    | Y    | th.lwuib  _rd_, (_rs1_), _imm5_, _imm2_ | <<#xtheadmemidx-insns-lwuib>>
+| N    | Y    | th.ldia   _rd_, (_rs1_), _imm5_, _imm2_ | <<#xtheadmemidx-insns-ldia>>
+| N    | Y    | th.ldib   _rd_, (_rs1_), _imm5_, _imm2_ | <<#xtheadmemidx-insns-ldib>>
+| Y    | Y    | th.sbia   _rd_, (_rs1_), _imm5_, _imm2_ | <<#xtheadmemidx-insns-sbia>>
+| Y    | Y    | th.sbib   _rd_, (_rs1_), _imm5_, _imm2_ | <<#xtheadmemidx-insns-sbib>>
+| Y    | Y    | th.shia   _rd_, (_rs1_), _imm5_, _imm2_ | <<#xtheadmemidx-insns-shia>>
+| Y    | Y    | th.shib   _rd_, (_rs1_), _imm5_, _imm2_ | <<#xtheadmemidx-insns-shib>>
+| Y    | Y    | th.swia   _rd_, (_rs1_), _imm5_, _imm2_ | <<#xtheadmemidx-insns-swia>>
+| Y    | Y    | th.swib   _rd_, (_rs1_), _imm5_, _imm2_ | <<#xtheadmemidx-insns-swib>>
+| N    | Y    | th.sdia   _rd_, (_rs1_), _imm5_, _imm2_ | <<#xtheadmemidx-insns-sdia>>
+| N    | Y    | th.sdib   _rd_, (_rs1_), _imm5_, _imm2_ | <<#xtheadmemidx-insns-sdib>>
+| Y    | Y    | th.lrb    _rd_, _rs1_, _rs2_, _imm2_    | <<#xtheadmemidx-insns-lrb>>
+| Y    | Y    | th.lrbu   _rd_, _rs1_, _rs2_, _imm2_    | <<#xtheadmemidx-insns-lrbu>>
+| Y    | Y    | th.lrh    _rd_, _rs1_, _rs2_, _imm2_    | <<#xtheadmemidx-insns-lrh>>
+| Y    | Y    | th.lrhu   _rd_, _rs1_, _rs2_, _imm2_    | <<#xtheadmemidx-insns-lrhu>>
+| Y    | Y    | th.lrw    _rd_, _rs1_, _rs2_, _imm2_    | <<#xtheadmemidx-insns-lrw>>
+| N    | Y    | th.lrwu   _rd_, _rs1_, _rs2_, _imm2_    | <<#xtheadmemidx-insns-lrwu>>
+| N    | Y    | th.lrd    _rd_, _rs1_, _rs2_, _imm2_    | <<#xtheadmemidx-insns-lrd>>
+| Y    | Y    | th.srb    _rd_, _rs1_, _rs2_, _imm2_    | <<#xtheadmemidx-insns-srb>>
+| Y    | Y    | th.srh    _rd_, _rs1_, _rs2_, _imm2_    | <<#xtheadmemidx-insns-srh>>
+| Y    | Y    | th.srw    _rd_, _rs1_, _rs2_, _imm2_    | <<#xtheadmemidx-insns-srw>>
+| N    | Y    | th.srd    _rd_, _rs1_, _rs2_, _imm2_    | <<#xtheadmemidx-insns-srd>>
+| Y    | Y    | th.lurb   _rd_, _rs1_, _rs2_, _imm2_    | <<#xtheadmemidx-insns-lurb>>
+| Y    | Y    | th.lurbu  _rd_, _rs1_, _rs2_, _imm2_    | <<#xtheadmemidx-insns-lurbu>>
+| Y    | Y    | th.lurh   _rd_, _rs1_, _rs2_, _imm2_    | <<#xtheadmemidx-insns-lurh>>
+| Y    | Y    | th.lurhu  _rd_, _rs1_, _rs2_, _imm2_    | <<#xtheadmemidx-insns-lurhu>>
+| Y    | Y    | th.lurw   _rd_, _rs1_, _rs2_, _imm2_    | <<#xtheadmemidx-insns-lurw>>
+| N    | Y    | th.lurwu  _rd_, _rs1_, _rs2_, _imm2_    | <<#xtheadmemidx-insns-lurwu>>
+| N    | Y    | th.lurd   _rd_, _rs1_, _rs2_, _imm2_    | <<#xtheadmemidx-insns-lurd>>
+| Y    | Y    | th.surb   _rd_, _rs1_, _rs2_, _imm2_    | <<#xtheadmemidx-insns-surb>>
+| Y    | Y    | th.surh   _rd_, _rs1_, _rs2_, _imm2_    | <<#xtheadmemidx-insns-surh>>
+| Y    | Y    | th.surw   _rd_, _rs1_, _rs2_, _imm2_    | <<#xtheadmemidx-insns-surw>>
+| N    | Y    | th.surd   _rd_, _rs1_, _rs2_, _imm2_    | <<#xtheadmemidx-insns-surd>>
+|===
+
+[#xtheadmemidx-insns,reftext="Instructions"]
+=== Instructions
+include::xtheadmemidx/lbia.adoc[]
+<<<
+include::xtheadmemidx/lbib.adoc[]
+<<<
+include::xtheadmemidx/lbuia.adoc[]
+<<<
+include::xtheadmemidx/lbuib.adoc[]
+<<<
+include::xtheadmemidx/lhia.adoc[]
+<<<
+include::xtheadmemidx/lhib.adoc[]
+<<<
+include::xtheadmemidx/lhuia.adoc[]
+<<<
+include::xtheadmemidx/lhuib.adoc[]
+<<<
+include::xtheadmemidx/lwia.adoc[]
+<<<
+include::xtheadmemidx/lwib.adoc[]
+<<<
+include::xtheadmemidx/lwuia.adoc[]
+<<<
+include::xtheadmemidx/lwuib.adoc[]
+<<<
+include::xtheadmemidx/ldia.adoc[]
+<<<
+include::xtheadmemidx/ldib.adoc[]
+<<<
+include::xtheadmemidx/sbia.adoc[]
+<<<
+include::xtheadmemidx/sbib.adoc[]
+<<<
+include::xtheadmemidx/shia.adoc[]
+<<<
+include::xtheadmemidx/shib.adoc[]
+<<<
+include::xtheadmemidx/swia.adoc[]
+<<<
+include::xtheadmemidx/swib.adoc[]
+<<<
+include::xtheadmemidx/sdia.adoc[]
+<<<
+include::xtheadmemidx/sdib.adoc[]
+<<<
+include::xtheadmemidx/lrb.adoc[]
+<<<
+include::xtheadmemidx/lrbu.adoc[]
+<<<
+include::xtheadmemidx/lrh.adoc[]
+<<<
+include::xtheadmemidx/lrhu.adoc[]
+<<<
+include::xtheadmemidx/lrw.adoc[]
+<<<
+include::xtheadmemidx/lrwu.adoc[]
+<<<
+include::xtheadmemidx/lrd.adoc[]
+<<<
+include::xtheadmemidx/srb.adoc[]
+<<<
+include::xtheadmemidx/srh.adoc[]
+<<<
+include::xtheadmemidx/srw.adoc[]
+<<<
+include::xtheadmemidx/srd.adoc[]
+<<<
+include::xtheadmemidx/lurb.adoc[]
+<<<
+include::xtheadmemidx/lurbu.adoc[]
+<<<
+include::xtheadmemidx/lurh.adoc[]
+<<<
+include::xtheadmemidx/lurhu.adoc[]
+<<<
+include::xtheadmemidx/lurw.adoc[]
+<<<
+include::xtheadmemidx/lurwu.adoc[]
+<<<
+include::xtheadmemidx/lurd.adoc[]
+<<<
+include::xtheadmemidx/surb.adoc[]
+<<<
+include::xtheadmemidx/surh.adoc[]
+<<<
+include::xtheadmemidx/surw.adoc[]
+<<<
+include::xtheadmemidx/surd.adoc[]
