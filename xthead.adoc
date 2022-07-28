@@ -60,6 +60,7 @@ Copyright 2022 by VRULL
 include::contributors.adoc[]
 
 include::intro.adoc[]
+include::xtheadee.adoc[]
 include::xtheadcmo.adoc[]
 include::xtheadsync.adoc[]
 include::xtheadba.adoc[]
