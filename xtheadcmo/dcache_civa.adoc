@@ -44,7 +44,9 @@ Exceptions::
 This instruction does not trigger any exceptions.
 
 Availability::
-The instruction is only available if `mxstatus.theadisaee` is set to `1`. Otherwise this instruction will trigger an illegal instruction exception.
+The instruction is only available if `mxstatus.theadisaee` is set to `1` and
+`mxstatus.ucme` is set to `1`.
+Otherwise this instruction will trigger an illegal instruction exception.
 
 Included in::
 [%header,cols="4,2"]
