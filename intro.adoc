@@ -1,4 +1,3 @@
-[[intro]]
 == Introduction
 
 The T-Head extension collection was created to augment
@@ -68,12 +67,16 @@ that is required to be set to `1` in order to execute cache management
 instructions in `U` mode (if the instruction is documented that this
 is permitted).
 
-== Changelog
+=== Lifecycle
 
-* 2022-07-12: Initial draft with four CMO instructions
-* 2022-07-16: Adding complete XTheadCmo extension
-* 2022-07-20: Adding XTheadMemPair extension, adding HW requirements for XTheadCmo
-* 2022-07-26: Adding XTheadCmo U mode permission, Adding XTHeadSync, XTheadFMemIdx
-* 2022-07-27: Adding XTheadMemPair, XTheadMemIdx, XTheadMac, XThadCondMov, XTheadB[a,b,s]
-* 2022-07-29: Adding XTheadEE (mxstatus.theadisaee) and mxstatus.ucme (as part of XTheadCmo)
-* 2022-08-01: Remove XTheadEE and rework availability/permission documentation, adding doc versioning and changelog
+The lifecycle of the extensions included in this document is
+defined on a per-extension base.
+
+Possible states are:
+
+* `Draft`: No guarantees (everything may change).
+* `Stable`: No feature additions/removals/changes. Only clarifications.
+
+A `draft` specification is expected to become `stable` in the future
+(with exepcted changes until then). A `stable` extension remains in that
+state for ever.

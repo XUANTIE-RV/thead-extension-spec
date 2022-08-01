@@ -1,6 +1,9 @@
 [#xtheadcondmov]
 == Conditional move (XTheadCondMov)
 
+[NOTE,caption=Frozen]
+The `XTheadCondMov` extension is `stable`.
+
 The `XTheadCondMov` ISA extension provides conditional move instructions.
 
 The table below gives an overview of the instructions:

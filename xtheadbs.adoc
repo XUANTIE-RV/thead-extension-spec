@@ -1,6 +1,9 @@
 [#xtheadbs]
 == Single-bit instructions (XTheadBs)
 
+[NOTE,caption=Frozen]
+The `XTheadBs` extension is `stable`.
+
 The `XTheadBs` ISA extension provides instructions to access a single bit in a register.
 
 The table below gives an overview of the instructions:

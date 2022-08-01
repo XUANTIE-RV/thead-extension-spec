@@ -1,0 +1,30 @@
+== Document information
+
+=== Copyright and license information
+This specification is licensed under the Creative Commons
+Attribution 4.0 International License (CC-BY 4.0). The full
+license text is available at
+https://creativecommons.org/licenses/by/4.0/.
+
+Copyright 2022 by T-head Semiconductor
+
+Copyright 2022 by VRULL
+
+=== Contributors
+
+The list below includes all contributors to this document in alphabetical order:
+
+[%hardbreaks]
+* Christoph Müllner <christoph.muellner@vrull.eu>
+* Philipp Tomsich <philipp.tomsich@vrull.eu>
+
+=== Changelog
+
+* 2022-07-12: Initial draft with four CMO instructions
+* 2022-07-16: Adding complete XTheadCmo extension
+* 2022-07-20: Adding XTheadMemPair extension, adding HW requirements for XTheadCmo
+* 2022-07-26: Adding XTheadCmo U mode permission, Adding XTHeadSync, XTheadFMemIdx
+* 2022-07-27: Adding XTheadMemPair, XTheadMemIdx, XTheadMac, XThadCondMov, XTheadB[a,b,s]
+* 2022-07-29: Adding XTheadEE (mxstatus.theadisaee) and mxstatus.ucme (as part of XTheadCmo)
+* 2022-08-01: Remove XTheadEE and rework availability/permission documentation, adding lifecycle-states,
+              adding doc versioning and changelog

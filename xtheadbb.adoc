@@ -1,6 +1,9 @@
 [#xtheadbb]
 == Basic bit-manipulation (XTheadBb)
 
+[NOTE,caption=Frozen]
+The `XTheadBb` extension is `stable`.
+
 The `XTheadBb` ISA extension provides conditional basic bit-manipulation instructions.
 
 The table below gives an overview of the instructions:

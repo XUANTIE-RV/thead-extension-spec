@@ -1,6 +1,9 @@
 [#xtheadmempair]
 == Two-GPR memory operations (XTheadMemPair)
 
+[NOTE,caption=Frozen]
+The `XTheadMemPair` extension is `stable`.
+
 The `XTheadMemPair` ISA extension provides two-GPR memory operations.
 
 The table below gives an overview of the instructions:

@@ -1,6 +1,9 @@
 [#xtheadfmemidx]
 == Indexed memory operations for floating-point registers (XTheadFMemIdx)
 
+[NOTE,caption=Frozen]
+The `XTheadFMemIdx` extension is `stable`.
+
 The `XTheadFMemIdx` ISA extension provides indexed memory operations
 for floating-point registers.
 

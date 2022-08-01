@@ -1,7 +1,0 @@
-== Contributors
-
-The list below includes all contributors to this document in alphabetical order:
-
-[%hardbreaks]
-* Christoph Müllner <christoph.muellner@vrull.eu>
-* Philipp Tomsich <philipp.tomsich@vrull.eu>

@@ -1,21 +1,16 @@
 [[header]]
 :description: T-Head ISA extensions (Xthead*)
 :company: T-Head Semiconductor Co., Ltd
-:revdate: 1/2022
-:revnumber: 0.1
-:revremark: This document is in development. Assume everything can change.
+include::revision.adoc-snippet[]
 :url-thead: https://www.t-head.cn
 :doctype: book
 :preface-title: Preamble
 :colophon:
 :appendix-caption: Appendix
 :imagesdir: images
-//:title-logo-image: image:t-head.png[pdfwidth=3.25in,align=center]
 // Settings:
 :experimental:
 :reproducible:
-// needs to be changed? bug discussion started
-//:WaveDromEditorApp: app/wavedrom-editor.app
 :imagesoutdir: images
 :icons: font
 :lang: en
@@ -36,30 +31,10 @@ endif::[]
 = T-Head ISA extension specification (Xthead*)
 Christoph Müllner <christoph.muellner@vrull.eu>; Philipp Tomsich <philipp.tomsich@vrull.eu>; VRULL GmbH
 
-// Preamble
-[WARNING]
-.This document is in the development state
-====
-Assume everything can change. This draft specification will change before
-being accepted as standard, so implementations made to this draft
-specification will likely not conform to the future standard.
-====
-
-[preface]
-== Copyright and license information
-This specification is licensed under the Creative Commons
-Attribution 4.0 International License (CC-BY 4.0). The full
-license text is available at
-https://creativecommons.org/licenses/by/4.0/.
-
-Copyright 2022 by T-head Semiconductor
-
-Copyright 2022 by VRULL
-
-[preface]
-include::contributors.adoc[]
+include::docinfo.adoc[]
 
 include::intro.adoc[]
+
 include::xtheadcmo.adoc[]
 include::xtheadsync.adoc[]
 include::xtheadba.adoc[]

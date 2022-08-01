@@ -1,6 +1,9 @@
 [#xtheadmac]
 == Multiply-accumulate instructions (XTheadMac)
 
+[NOTE,caption=Frozen]
+The `XTheadMac` extension is `stable`.
+
 The `XTheadMac` ISA extension provides multiply-accumulate instructions.
 
 The table below gives an overview of the instructions:

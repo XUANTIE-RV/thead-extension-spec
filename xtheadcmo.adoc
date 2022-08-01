@@ -1,6 +1,9 @@
 [#xtheadcmo]
 == Cache Management Operations (XTheadCmo)
 
+[NOTE,caption=Frozen]
+The `XTheadCmo` extension is `stable`.
+
 The `XTheadCmo` ISA extension provides cache management operations.
 
 The table below gives an overview of the instructions:

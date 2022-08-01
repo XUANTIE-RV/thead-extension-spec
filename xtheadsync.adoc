@@ -1,6 +1,9 @@
 [#xtheadsync]
 == Multi-core synchronization instructions (XTheadSync)
 
+[NOTE,caption=Frozen]
+The `XTheadSync` extension is `stable`.
+
 The `XTheadSync` ISA extension provides multi-core synchronization instructions.
 
 The table below gives an overview of the instructions:
