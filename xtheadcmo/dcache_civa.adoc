@@ -27,26 +27,15 @@ If a cache line is dirty it will be written back to the next-level storage.
 Operation::
 [source,sail]
 --
-// illegal instruction exceptions
-if (mxstatus.theadisaee != 1)
-{
-  <raise illegal instruction exception>
-}
-// execute instruction
 <write back all dirty data cache lines matching the VA>
 <invalidate all data cache lines matching the VA>
 --
 
 Permission::
-This instruction can execute in `M` mode, `S` mode, and `U` mode.
+This instruction can be executed in all privilege levels.
 
 Exceptions::
 This instruction does not trigger any exceptions.
-
-Availability::
-The instruction is only available if `mxstatus.theadisaee` is set to `1` and
-`mxstatus.ucme` is set to `1`.
-Otherwise this instruction will trigger an illegal instruction exception.
 
 Included in::
 [%header,cols="4,2"]

@@ -29,13 +29,6 @@ If all the bits in _rs1_ are '1', the result '64' is returned.
 Operation::
 [source,sail]
 --
-// illegal instruction exceptions
-if (mxstatus.theadisaee != 1)
-{
-  <raise illegal instruction exception>
-}
-
-// execute instruction
 for i=xlen..0:
   if reg[rs1][i] == 1:
     break;
@@ -43,14 +36,10 @@ reg[rd] = i
 --
 
 Permission::
-This instruction is available in `M` mode, `S` mode, and `U` mode.
+This instruction can be executed in all privilege levels.
 
 Exceptions::
 This instruction does not trigger any exceptions.
-
-Availability::
-The instruction is only available if `mxstatus.theadisaee` is set to `1`.
-Otherwise this instruction will trigger an illegal instruction exception.
 
 Included in::
 [%header]

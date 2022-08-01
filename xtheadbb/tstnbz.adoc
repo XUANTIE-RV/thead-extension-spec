@@ -29,13 +29,6 @@ Otherwise, the corresponding byte in register _rd_ will be set to 0.
 Operation::
 [source,sail]
 --
-// illegal instruction exceptions
-if (mxstatus.theadisaee != 1)
-{
-  <raise illegal instruction exception>
-}
-
-// execute instruction
 for i=0..(xlen/8-1):
   if reg[rs1][i] == 0:
     reg[rd][i] := 0xff
@@ -44,14 +37,10 @@ for i=0..(xlen/8-1):
 --
 
 Permission::
-This instruction is available in `M` mode, `S` mode, and `U` mode.
+This instruction can be executed in all privilege levels.
 
 Exceptions::
 This instruction does not trigger any exceptions.
-
-Availability::
-The instruction is only available if `mxstatus.theadisaee` is set to `1`.
-Otherwise this instruction will trigger an illegal instruction exception.
 
 Included in::
 [%header]

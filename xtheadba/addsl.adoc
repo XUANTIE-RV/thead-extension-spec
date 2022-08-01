@@ -27,25 +27,14 @@ This operation adds the shifted operand (_rs2_ << _imm2_) with _rs1_.
 Operation::
 [source,sail]
 --
-// illegal instruction exceptions
-if (mxstatus.theadisaee != 1)
-{
-  <raise illegal instruction exception>
-}
-
-// execute instruction
 reg[rd] := reg[rs1] + (reg[rs2] << imm2)
 --
 
 Permission::
-This instruction is available in `M` mode, `S` mode, and `U` mode.
+This instruction can be executed in all privilege levels.
 
 Exceptions::
 This instruction does not trigger any exceptions.
-
-Availability::
-The instruction is only available if `mxstatus.theadisaee` is set to `1`.
-Otherwise this instruction will trigger an illegal instruction exception.
 
 Included in::
 [%header]

@@ -30,26 +30,15 @@ The values of _rd_ and _rs1_ must not be the same.
 Operation::
 [source,sail]
 --
-// illegal instruction exceptions
-if (mxstatus.theadisaee != 1)
-{
-  <raise illegal instruction exception>
-}
-
-// execute instruction
 rd := zero_extend(mem[rs1+3:rs1])
 rs1 := rs1 + (sign_extend(imm5) << imm2)
 --
 
 Permission::
-This instruction is available in `M` mode, `S` mode, and `U` mode.
+This instruction can be executed in all privilege levels.
 
 Exceptions::
 This instruction triggers the same exceptions that a corresponding `LWU` instruction would trigger.
-
-Availability::
-The instruction is only available if `mxstatus.theadisaee` is set to `1`.
-Otherwise this instruction will trigger an illegal instruction exception.
 
 Included in::
 [%header]

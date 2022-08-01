@@ -29,28 +29,15 @@ Note, that this instruction is equivalent to a `zext.w _rs2_, _rs2_` followed by
 Operation::
 [source,sail]
 --
-// illegal instruction exceptions
-if (mxstatus.theadisaee != 1 ||
-    have_extension("F"))
-{
-  <raise illegal instruction exception>
-}
-
-// execute instruction
 addr := rs1 + (zero_extend(rs2) << imm2)
 fmem[addr+3:addr] := rd
 --
 
 Permission::
-This instruction is available in `M` mode, `S` mode, and `U` mode.
+This instruction can be executed in all privilege levels.
 
 Exceptions::
 This instruction triggers the same exceptions that a corresponding `FLW` instructions would trigger.
-
-Availability::
-The instruction is only available if `mxstatus.theadisaee` is set to `1`.
-and if the `F` extension is implemented.
-Otherwise this instruction will trigger an illegal instruction exception.
 
 Included in::
 [%header]

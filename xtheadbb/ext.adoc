@@ -26,25 +26,14 @@ This operation extract the bits _imm1_.._imm2_ from register _rs1_, sign-extends
 Operation::
 [source,sail]
 --
-// illegal instruction exceptions
-if (mxstatus.theadisaee != 1)
-{
-  <raise illegal instruction exception>
-}
-
-// execute instruction
 reg[rd] := sign_extend(reg[rs1][imm1:imm2])
 --
 
 Permission::
-This instruction is available in `M` mode, `S` mode, and `U` mode.
+This instruction can be executed in all privilege levels.
 
 Exceptions::
 This instruction does not trigger any exceptions.
-
-Availability::
-The instruction is only available if `mxstatus.theadisaee` is set to `1`.
-Otherwise this instruction will trigger an illegal instruction exception.
 
 Included in::
 [%header]

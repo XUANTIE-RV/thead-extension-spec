@@ -26,13 +26,6 @@ This operation rotates the contents of _rs1_ by _imm6_ bits and stores the resul
 Operation::
 [source,sail]
 --
-// illegal instruction exceptions
-if (mxstatus.theadisaee != 1)
-{
-  <raise illegal instruction exception>
-}
-
-// execute instruction
 if (xlen == 32)
   imm6 &= 0x1f
 
@@ -40,14 +33,10 @@ reg[rd] := (reg[rs1] >> imm6) | (reg[rs1] << (xlen - imm6))
 --
 
 Permission::
-This instruction is available in `M` mode, `S` mode, and `U` mode.
+This instruction can be executed in all privilege levels.
 
 Exceptions::
 This instruction does not trigger any exceptions.
-
-Availability::
-The instruction is only available if `mxstatus.theadisaee` is set to `1`.
-Otherwise this instruction will trigger an illegal instruction exception.
 
 Included in::
 [%header]

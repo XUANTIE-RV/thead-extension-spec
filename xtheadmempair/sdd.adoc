@@ -28,27 +28,16 @@ to the address _rs1_ + (zero_extend(_imm2_) << 4).
 Operation::
 [source,sail]
 --
-// illegal instruction exceptions
-if (mxstatus.theadisaee != 1)
-{
-  <raise illegal instruction exception>
-}
-
-// execute instruction
 addr := rs1 + (zero_extend(imm2) << 4)
 mem[addr+7:addr] := reg[rd1]
 mem[addr+15:addr+8] := reg[rd2]
 --
 
 Permission::
-This instruction is available in `M` mode, `S` mode, and `U` mode.
+This instruction can be executed in all privilege levels.
 
 Exceptions::
 This instruction triggers the same exceptions that two corresponding `SD` instructions would trigger.
-
-Availability::
-The instruction is only available if `mxstatus.theadisaee` is set to `1`.
-Otherwise this instruction will trigger an illegal instruction exception.
 
 Included in::
 [%header]

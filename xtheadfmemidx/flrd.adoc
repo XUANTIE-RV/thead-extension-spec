@@ -27,28 +27,15 @@ This instruction loads a double-precision floating point value into FP register 
 Operation::
 [source,sail]
 --
-// illegal instruction exceptions
-if (mxstatus.theadisaee != 1 ||
-    have_extension("D"))
-{
-  <raise illegal instruction exception>
-}
-
-// execute instruction
 addr := rs1 + (rs2 << imm2)
 rd := fmem[addr+7:addr]
 --
 
 Permission::
-This instruction is available in `M` mode, `S` mode, and `U` mode.
+This instruction can be executed in all privilege levels.
 
 Exceptions::
 This instruction triggers the same exceptions that two corresponding `FLD` instructions would trigger.
-
-Availability::
-The instruction is only available if `mxstatus.theadisaee` is set to `1`
-and if the `D` extension is implemented.
-Otherwise this instruction will trigger an illegal instruction exception.
 
 Included in::
 [%header]

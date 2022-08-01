@@ -27,13 +27,6 @@ This operation reverses the byte order of the 32-bit value in _rs1_ and stores t
 Operation::
 [source,sail]
 --
-// illegal instruction exceptions
-if (mxstatus.theadisaee != 1)
-{
-  <raise illegal instruction exception>
-}
-
-// execute instruction
 for i=0..3:
   j := 3 - i
   tmp[i] := reg[rs1][j]
@@ -41,14 +34,10 @@ reg[rd] := tmp
 --
 
 Permission::
-This instruction is available in `M` mode, `S` mode, and `U` mode.
+This instruction can be executed in all privilege levels.
 
 Exceptions::
 This instruction does not trigger any exceptions.
-
-Availability::
-The instruction is only available if `mxstatus.theadisaee` is set to `1`.
-Otherwise this instruction will trigger an illegal instruction exception.
 
 Included in::
 [%header]

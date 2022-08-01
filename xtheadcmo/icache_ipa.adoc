@@ -27,24 +27,20 @@ Dirty cache lines will not be written back to the next-level storage.
 Operation::
 [source,sail]
 --
-// illegal instruction exceptions
-if (mxstatus.theadisaee != 1 ||
-    ((priv_mode != M) && (priv_mode != S))
+if (priv_level == U)
 {
   <raise illegal instruction exception>
 }
-// execute instruction
+
 <invalidate all instruction cache lines matching the PA>
 --
 
 Permission::
-This instruction can only be executed in `M` mode and `S` mode. Other modes will trigger an illegal instruction exception.
+This instruction can be executed in all privilege levels higher than `U` mode.
+Attempts to execute this instruction in `U` mode raise an illegal instruction exception.
 
 Exceptions::
 This instruction does not trigger any exceptions.
-
-Availability::
-The instruction is only available if `mxstatus.theadisaee` is set to `1`. Otherwise this instruction will trigger an illegal instruction exception.
 
 Included in::
 [%header,cols="4,2"]
