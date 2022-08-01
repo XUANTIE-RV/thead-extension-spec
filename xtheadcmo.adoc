@@ -38,22 +38,6 @@ Instructions that are executed without the required HW requirements available
 visible state, except for advancing the program counter and incrementing any applicable
 performance counters (i.e. it behaves like executing a `NOP` instruction).
 
-Besides the instructions above, the `XTheadCmo` extension defines the following fields
-of the `th.mxstatus` CSR of the `XTheadEE` ISA extension (see <<#xtheadee>>):
-
-* `ucme` (bit 16): allow execution of certain CMO instructions in `U` mode
-
-When `mxstatus.ucme` is set to `1`, then certain CMO instruction can be executed in U-mode.
-Otherwise, all CMO instruction will trigger an illegal instruction exception, when executed in `U` mode.
-
-=== Availability
-
-The instructions of this extension are only available, if the field `mxstatus.theadisaee` is set to `1`.
-Otherwise these instruction will trigger an illegal instruction exception.
-
-Some of the instruction in this extension are executable in U-mode (see corresponding documentation).
-Execution in U-mode is only possible, if the field `mxstatus.ucme` is set to `1`.
-
 [#insns,reftext="Instructions"]
 === Instructions
 include::xtheadcmo/dcache_call.adoc[]
