@@ -1,4 +1,4 @@
-[#xtheadbb-insns-tstnbz,reftext=Test for NUL bytes
+[#xtheadbb-insns-tstnbz,reftext=Test for NUL bytes]
 ==== th.tstnbz
 
 Synopsis::

@@ -1,5 +1,5 @@
-[#xtheadsync-insns-sync_s,reftext=Synchronization barrier on all harts]
-==== th.sync
+[#xtheadsync-insns-sync-s,reftext=Synchronization barrier on all harts]
+==== th.sync.s
 
 Synopsis::
 Broadcasts an instruction, that ensures that all preceding instructions retire earlier than this instruction and all subsequent instructions retire later than this instruction on all harts.
@@ -42,4 +42,4 @@ Included in::
 |Extension
 
 |XTheadSync (<<#xtheasync>>)
-|
+|===

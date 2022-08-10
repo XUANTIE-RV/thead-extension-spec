@@ -28,3 +28,4 @@ The list below includes all contributors to this document in alphabetical order:
 * 2022-07-29: Adding XTheadEE (mxstatus.theadisaee) and mxstatus.ucme (as part of XTheadCmo)
 * 2022-08-01: Remove XTheadEE and rework availability/permission documentation, adding lifecycle-states,
               adding doc versioning and changelog
+* 2022-08-10: *.adoc: Fix several formatting issues

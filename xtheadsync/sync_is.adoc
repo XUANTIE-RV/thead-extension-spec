@@ -1,4 +1,4 @@
-[#xtheadsync-insns-sync_is,reftext=Synchronization barrier and pipeline flush on all harts]
+[#xtheadsync-insns-sync-is,reftext=Synchronization barrier and pipeline flush on all harts]
 ==== th.sync.is
 
 Synopsis::
@@ -43,4 +43,4 @@ Included in::
 |Extension
 
 |XTheadSync (<<#xtheasync>>)
-|
+|===

@@ -1,4 +1,4 @@
-[#xtheadbb-insns-ff0,reftext=Find first '0'-bit
+[#xtheadbb-insns-ff0,reftext=Find first '0'-bit]
 ==== th.ff0
 
 Synopsis::

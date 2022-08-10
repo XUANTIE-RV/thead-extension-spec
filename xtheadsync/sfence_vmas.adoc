@@ -1,4 +1,4 @@
-[#xtheadsync-insns-sfence_vmas,reftext=Invalidate TLB on all harts]
+[#xtheadsync-insns-sfence-vmas,reftext=Invalidate TLB on all harts]
 ==== th.sfence.vmas
 
 Synopsis::
