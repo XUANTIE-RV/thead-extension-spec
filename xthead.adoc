@@ -29,7 +29,6 @@ endif::[]
 :xrefstyle: short
 
 = T-Head ISA extension specification (Xthead*)
-Christoph Müllner <christoph.muellner@vrull.eu>; Philipp Tomsich <philipp.tomsich@vrull.eu>; VRULL GmbH
 
 include::docinfo.adoc[]
 
