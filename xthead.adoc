@@ -1,0 +1,46 @@
+[[header]]
+:description: T-Head ISA extensions (Xthead*)
+:company: T-Head Semiconductor Co., Ltd
+include::revision.adoc-snippet[]
+:url-thead: https://www.t-head.cn
+:doctype: book
+:preface-title: Preamble
+:colophon:
+:appendix-caption: Appendix
+:imagesdir: images
+// Settings:
+:experimental:
+:reproducible:
+:imagesoutdir: images
+:icons: font
+:lang: en
+:listing-caption: Listing
+:sectnums:
+:toc: left
+:toclevels: 4
+:source-highlighter: pygments
+ifdef::backend-pdf[]
+:source-highlighter: coderay
+endif::[]
+:data-uri:
+:hide-uri-scheme:
+:stem: latexmath
+:footnote:
+:xrefstyle: short
+
+= T-Head ISA extension specification (Xthead*)
+
+include::docinfo.adoc[]
+
+include::intro.adoc[]
+
+include::xtheadcmo.adoc[]
+include::xtheadsync.adoc[]
+include::xtheadba.adoc[]
+include::xtheadbb.adoc[]
+include::xtheadbs.adoc[]
+include::xtheadcondmov.adoc[]
+include::xtheadmemidx.adoc[]
+include::xtheadmempair.adoc[]
+include::xtheadfmemidx.adoc[]
+include::xtheadmac.adoc[]

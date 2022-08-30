@@ -1,0 +1,48 @@
+[#insns-xtheadcmo-dcache_cval1,reftext=Clean L1 D-cache at VA]
+==== th.dcache.cval1
+
+Synopsis::
+Clean L1 D-cache at VA
+
+Mnemonic::
+th.dcache.cval1 _rs1_
+
+Encoding::
+[wavedrom, , svg]
+....
+{reg:[
+    { bits:  7, name: 0xb, attr: ['custom-0, 32 bit'] },
+    { bits:  5, name: 0x0 },
+    { bits:  3, name: 0x0, attr: ['CMO'] },
+    { bits:  5, name: 'rs1' },
+    { bits:  5, name: 0x4, attr: ['dcache.cval1'] },
+    { bits:  7, name: 0x01 },
+]}
+....
+
+Description::
+This instruction cleans the cache lines that match the specified virtual address in the L1 D-cache.
+If a cache line is dirty it will be written back to the next-level storage.
+
+Operation::
+[source,sail]
+--
+<write back all dirty L1 data cache lines matching the VA>
+--
+
+Permission::
+This instruction can be executed in all privilege levels.
+
+Exceptions::
+This instruction does not trigger any exceptions.
+
+Included in::
+[%header,cols="4,2"]
+|===
+|Extension
+|HW requirements
+
+|XTheadCmo (<<#xtheadcmo>>)
+|D-cache, 2nd level cache, MMU
+|===
+

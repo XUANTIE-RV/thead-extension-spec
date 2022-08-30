@@ -1,0 +1,49 @@
+[#xtheadmempair-insns-sdd,reftext=Store two 64-bit values]
+==== th.sdd
+
+Synopsis::
+Store two 64-bit values to memory from two GPRs.
+
+Mnemonic::
+th.sdd _rd1_, _rd2_, (_rs1_), _imm2_, 4
+
+Encoding::
+[wavedrom, , svg]
+....
+{reg:[
+    { bits:  7, name: 0xb, attr: ['custom-0, 32 bit'] },
+    { bits:  5, name: 'rd1' },
+    { bits:  3, name: 0x5, attr: ['Mem-Store'] },
+    { bits:  5, name: 'rs1' },
+    { bits:  5, name: 'rd2' },
+    { bits:  2, name: 'imm2' },
+    { bits:  5, name: 0x1f },
+]}
+....
+
+Description::
+This instruction stores two 64-bit values from the two GP registers _rd1_ and _rd2_
+to the address _rs1_ + (zero_extend(_imm2_) << 4).
+
+Operation::
+[source,sail]
+--
+addr := rs1 + (zero_extend(imm2) << 4)
+mem[addr+7:addr] := reg[rd1]
+mem[addr+15:addr+8] := reg[rd2]
+--
+
+Permission::
+This instruction can be executed in all privilege levels.
+
+Exceptions::
+This instruction triggers the same exceptions that two corresponding `SD` instructions would trigger.
+
+Included in::
+[%header]
+|===
+|Extension
+
+|XTheadMemPair (<<#xtheadmempair>>)
+|===
+

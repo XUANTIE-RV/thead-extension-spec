@@ -1,0 +1,86 @@
+[#xtheadcmo]
+== Cache Management Operations (XTheadCmo)
+
+[NOTE,caption=Frozen]
+The `XTheadCmo` extension is `stable`.
+
+The `XTheadCmo` ISA extension provides cache management operations.
+
+The table below gives an overview of the instructions:
+
+[cols="^3,^3,10,18,12",stripes=even,options="header"]
+|===
+| RV32 | RV64 | Mnemonic              | Instruction | HW requirements
+| Y    | Y    | th.dcache.call        | <<#insns-xtheadcmo-dcache_call>> | D-cache
+| Y    | Y    | th.dcache.ciall       | <<#insns-xtheadcmo-dcache_ciall>> | D-cache
+| Y    | Y    | th.dcache.iall        | <<#insns-xtheadcmo-dcache_call>> | D-cache
+| Y    | Y    | th.dcache.cpa _rs1_   | <<#insns-xtheadcmo-dcache_cpa>> | D-cache
+| Y    | Y    | th.dcache.cipa _rs1_  | <<#insns-xtheadcmo-dcache_cipa>> | D-cache
+| Y    | Y    | th.dcache.ipa _rs1_   | <<#insns-xtheadcmo-dcache_ipa>> | D-cache
+| Y    | Y    | th.dcache.cva _rs1_   | <<#insns-xtheadcmo-dcache_cva>> | D-cache, MMU
+| Y    | Y    | th.dcache.civa _rs1_  | <<#insns-xtheadcmo-dcache_civa>> | D-cache, MMU
+| Y    | Y    | th.dcache.iva _rs1_   | <<#insns-xtheadcmo-dcache_iva>> | D-cache, MMU
+| Y    | Y    | th.dcache.csw _rs1_   | <<#insns-xtheadcmo-dcache_csw>> | D-cache
+| Y    | Y    | th.dcache.cisw _rs1_  | <<#insns-xtheadcmo-dcache_cisw>> | D-cache
+| Y    | Y    | th.dcache.isw _rs1_   | <<#insns-xtheadcmo-dcache_isw>> | D-cache
+| Y    | Y    | th.dcache.cpal1 _rs1_ | <<#insns-xtheadcmo-dcache_cpal1>> | D-cache, 2nd level cache
+| Y    | Y    | th.dcache.cval1 _rs1_ | <<#insns-xtheadcmo-dcache_cval1>> | D-cache, 2nd level cache, MMU
+| Y    | Y    | th.icache.iall        | <<#insns-xtheadcmo-icache_iall>> | I-cache
+| Y    | Y    | th.icache.ialls       | <<#insns-xtheadcmo-icache_ialls>> | I-cache, multicore
+| Y    | Y    | th.icache.ipa _rs1_   | <<#insns-xtheadcmo-icache_ipa>> | I-cache
+| Y    | Y    | th.icache.iva _rs1_   | <<#insns-xtheadcmo-icache_iva>> | I-cache, MMU
+| Y    | Y    | th.l2cache.call       | <<#insns-xtheadcmo-l2cache_call>> | D/I-cache, 2nd level cache
+| Y    | Y    | th.l2cache.ciall      | <<#insns-xtheadcmo-l2cache_ciall>> | D/I-cache, 2nd level cache
+| Y    | Y    | th.l2cache.iall       | <<#insns-xtheadcmo-l2cache_iall>> | D/I-cache, 2nd level cache
+|===
+
+The last column of the table above names the HW requirements of the instructions.
+E.g. to clean the data cache using `dcache.call`, a D-cache is required.
+Instructions that are executed without the required HW requirements available
+(e.g. `l2cache.call` on a system without a L2 cache) do not chance any architecturally
+visible state, except for advancing the program counter and incrementing any applicable
+performance counters (i.e. it behaves like executing a `NOP` instruction).
+
+[#insns,reftext="Instructions"]
+=== Instructions
+include::xtheadcmo/dcache_call.adoc[]
+<<<
+include::xtheadcmo/dcache_ciall.adoc[]
+<<<
+include::xtheadcmo/dcache_iall.adoc[]
+<<<
+include::xtheadcmo/dcache_cpa.adoc[]
+<<<
+include::xtheadcmo/dcache_cipa.adoc[]
+<<<
+include::xtheadcmo/dcache_ipa.adoc[]
+<<<
+include::xtheadcmo/dcache_cva.adoc[]
+<<<
+include::xtheadcmo/dcache_civa.adoc[]
+<<<
+include::xtheadcmo/dcache_iva.adoc[]
+<<<
+include::xtheadcmo/dcache_csw.adoc[]
+<<<
+include::xtheadcmo/dcache_cisw.adoc[]
+<<<
+include::xtheadcmo/dcache_isw.adoc[]
+<<<
+include::xtheadcmo/dcache_cpal1.adoc[]
+<<<
+include::xtheadcmo/dcache_cval1.adoc[]
+<<<
+include::xtheadcmo/icache_iall.adoc[]
+<<<
+include::xtheadcmo/icache_ialls.adoc[]
+<<<
+include::xtheadcmo/icache_ipa.adoc[]
+<<<
+include::xtheadcmo/icache_iva.adoc[]
+<<<
+include::xtheadcmo/l2cache_call.adoc[]
+<<<
+include::xtheadcmo/l2cache_ciall.adoc[]
+<<<
+include::xtheadcmo/l2cache_iall.adoc[]

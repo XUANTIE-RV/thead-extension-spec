@@ -1,0 +1,43 @@
+[#xtheadbb]
+== Basic bit-manipulation (XTheadBb)
+
+[NOTE,caption=Frozen]
+The `XTheadBb` extension is `stable`.
+
+The `XTheadBb` ISA extension provides conditional basic bit-manipulation instructions.
+
+The table below gives an overview of the instructions:
+
+[cols="^3,^3,12,18",stripes=even,options="header"]
+|===
+| RV32 | RV64 | Mnemonic              | Instruction
+| Y    | Y    | th.srri   _rd_, _rs1_, _imm6_ | <<#xtheadbb-insns-srri>>
+| N    | Y    | th.srriw  _rd_, _rs1_, _imm5_ | <<#xtheadbb-insns-srriw>>
+| Y    | Y    | th.ext    _rd_, _rs1_, _imm1_, _imm2_ | <<#xtheadbb-insns-ext>>
+| Y    | Y    | th.extu   _rd_, _rs1_, _imm1_, _imm2_ | <<#xtheadbb-insns-extu>>
+| Y    | Y    | th.ff0    _rd_, _rs1_ | <<#xtheadbb-insns-ff0>>
+| Y    | Y    | th.ff1    _rd_, _rs1_ | <<#xtheadbb-insns-ff1>>
+| Y    | Y    | th.rev    _rd_, _rs1_ | <<#xtheadbb-insns-rev>>
+| N    | Y    | th.revw   _rd_, _rs1_ | <<#xtheadbb-insns-revw>>
+| Y    | Y    | th.tstnbz _rd_, _rs1_ | <<#xtheadbb-insns-tstnbz>>
+|===
+
+[#xtheadbb-insns,reftext="Instructions"]
+=== Instructions
+include::xtheadbb/srri.adoc[]
+<<<
+include::xtheadbb/srriw.adoc[]
+<<<
+include::xtheadbb/ext.adoc[]
+<<<
+include::xtheadbb/extu.adoc[]
+<<<
+include::xtheadbb/ff0.adoc[]
+<<<
+include::xtheadbb/ff1.adoc[]
+<<<
+include::xtheadbb/rev.adoc[]
+<<<
+include::xtheadbb/revw.adoc[]
+<<<
+include::xtheadbb/tstnbz.adoc[]

@@ -1,0 +1,49 @@
+[#xtheadfmemidx-insns-flurd,reftext=Load unsigned indexed double]
+==== th.flurd
+
+Synopsis::
+Load unsigned indexed double-precision floating point value.
+
+Mnemonic::
+th.flurd _rd_, _rs1_, _rs2_, _imm2_
+
+Encoding::
+[wavedrom, , svg]
+....
+{reg:[
+    { bits:  7, name: 0xb, attr: ['custom-0, 32 bit'] },
+    { bits:  5, name: 'rd' },
+    { bits:  3, name: 0x6, attr: ['FMem-Load'] },
+    { bits:  5, name: 'rs1' },
+    { bits:  5, name: 'rs2' },
+    { bits:  2, name: 'imm2' },
+    { bits:  5, name: 0x0e },
+]}
+....
+
+Description::
+This instruction loads a double-precision floating point value into FP register _rd_ from the address _rs1_ + (zero_extend(_rs2_) << _imm2_).
+
+Note, that this instruction is equivalent to a `zext.w _rs2_, _rs2_` followed by a `th.flrd` with the same arguments.
+
+Operation::
+[source,sail]
+--
+addr := rs1 + (zero_extend(rs2) << imm2)
+rd := fmem[addr+7:addr]
+--
+
+Permission::
+This instruction can be executed in all privilege levels.
+
+Exceptions::
+This instruction triggers the same exceptions that two corresponding `FLD` instructions would trigger.
+
+Included in::
+[%header]
+|===
+|Extension
+
+|XTheadFMemIdx (<<#xtheadfmemidx>>)
+|===
+

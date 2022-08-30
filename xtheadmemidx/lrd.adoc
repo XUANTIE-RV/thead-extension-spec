@@ -1,0 +1,46 @@
+[#xtheadmemidx-insns-lrd,reftext=Load indexed double-word]
+==== th.lrd
+
+Synopsis::
+Load indexed word.
+
+Mnemonic::
+th.lrd _rd_, (_rs1_), _rs2_, _imm2_
+
+Encoding::
+[wavedrom, , svg]
+....
+{reg:[
+    { bits:  7, name: 0xb, attr: ['custom-0, 32 bit'] },
+    { bits:  5, name: 'rd' },
+    { bits:  3, name: 0x4, attr: ['Mem-Load'] },
+    { bits:  5, name: 'rs1' },
+    { bits:  5, name: 'rs2' },
+    { bits:  2, name: 'imm2' },
+    { bits:  5, name: 0x0c },
+]}
+....
+
+Description::
+This instruction loads a sign extended 64-bit value into the GP register _rd_ from the address _rs1_ + (_rs2_ << _imm2_).
+
+Operation::
+[source,sail]
+--
+addr := rs1 + (rs2 << imm2)
+rd := sign_extend(mem[addr+7:addr])
+--
+
+Permission::
+This instruction can be executed in all privilege levels.
+
+Exceptions::
+This instruction triggers the same exceptions that a corresponding `LD` instruction would trigger.
+
+Included in::
+[%header]
+|===
+|Extension
+
+|XTheadMemIdx (<<#xtheadmemidx>>)
+|===

@@ -1,0 +1,34 @@
+[#xtheadmac]
+== Multiply-accumulate instructions (XTheadMac)
+
+[NOTE,caption=Frozen]
+The `XTheadMac` extension is `stable`.
+
+The `XTheadMac` ISA extension provides multiply-accumulate instructions.
+
+The table below gives an overview of the instructions:
+
+[cols="^3,^3,12,18",stripes=even,options="header"]
+|===
+| RV32 | RV64 | Mnemonic              | Instruction
+| Y    | Y    | th.mula  _rd_, _rs1_, _rs2_ | <<#xtheadmac-insns-mula>>
+| Y    | Y    | th.mulah _rd_, _rs1_, _rs2_ | <<#xtheadmac-insns-mulah>>
+| N    | Y    | th.mulaw _rd_, _rs1_, _rs2_ | <<#xtheadmac-insns-mulaw>>
+| Y    | Y    | th.muls  _rd_, _rs1_, _rs2_ | <<#xtheadmac-insns-muls>>
+| Y    | Y    | th.mulsh _rd_, _rs1_, _rs2_ | <<#xtheadmac-insns-mulsh>>
+| Y    | Y    | th.mulsw _rd_, _rs1_, _rs2_ | <<#xtheadmac-insns-mulsw>>
+|===
+
+[#xtheadmac-insns,reftext="Instructions"]
+=== Instructions
+include::xtheadmac/mula.adoc[]
+<<<
+include::xtheadmac/mulah.adoc[]
+<<<
+include::xtheadmac/mulaw.adoc[]
+<<<
+include::xtheadmac/muls.adoc[]
+<<<
+include::xtheadmac/mulsh.adoc[]
+<<<
+include::xtheadmac/mulsw.adoc[]

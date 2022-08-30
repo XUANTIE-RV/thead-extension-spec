@@ -1,0 +1,49 @@
+[#xtheadmempair-insns-swd,reftext=Store two 32-bit values]
+==== th.swd
+
+Synopsis::
+Store two 32-bit values to memory from two GPRs.
+
+Mnemonic::
+th.swd _rd1_, _rd2_, (_rs1_), _imm2_, 3
+
+Encoding::
+[wavedrom, , svg]
+....
+{reg:[
+    { bits:  7, name: 0xb, attr: ['custom-0, 32 bit'] },
+    { bits:  5, name: 'rd1' },
+    { bits:  3, name: 0x5, attr: ['Mem-Store'] },
+    { bits:  5, name: 'rs1' },
+    { bits:  5, name: 'rd2' },
+    { bits:  2, name: 'imm2' },
+    { bits:  5, name: 0x1c },
+]}
+....
+
+Description::
+This instruction loads two 32-bit values into the two GP registers _rd1_ and _rd2_
+from the address _rs1_ + (zero_extend(_imm2_) << 3).
+
+Operation::
+[source,sail]
+--
+addr := rs1 + (zero_extend(imm2) << 3)
+mem[addr+3:addr] := reg[rd1][31:0]
+mem[addr+7:addr+3] := reg[rd2][31:0]
+--
+
+Permission::
+This instruction can be executed in all privilege levels.
+
+Exceptions::
+This instruction triggers the same exceptions that two corresponding `SW` instructions would trigger.
+
+Included in::
+[%header]
+|===
+|Extension
+
+|XTheadMemPair (<<#xtheadmempair>>)
+|===
+

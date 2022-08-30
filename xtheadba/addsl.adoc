@@ -1,0 +1,45 @@
+[#xtheadba-insns-addsl,reftext=Add shifted operand]
+==== th.addsl
+
+Synopsis::
+Add a shifted operand to a second operand.
+
+Mnemonic::
+th.addsl _rd_, _rs1_, _rs2_, _imm2_
+
+Encoding::
+[wavedrom, , svg]
+....
+{reg:[
+    { bits:  7, name: 0xb, attr: ['custom-0, 32 bit'] },
+    { bits:  5, name: 'rd' },
+    { bits:  3, name: 0x1, attr: ['Arithmetic'] },
+    { bits:  5, name: 'rs1' },
+    { bits:  5, name: 'rs2' },
+    { bits:  2, name: 'imm2' },
+    { bits:  5, name: 0x00 },
+]}
+....
+
+Description::
+This operation adds the shifted operand (_rs2_ << _imm2_) with _rs1_.
+
+Operation::
+[source,sail]
+--
+reg[rd] := reg[rs1] + (reg[rs2] << imm2)
+--
+
+Permission::
+This instruction can be executed in all privilege levels.
+
+Exceptions::
+This instruction does not trigger any exceptions.
+
+Included in::
+[%header]
+|===
+|Extension
+
+|XTheadBa (<<#xtheadba>>)
+|===

@@ -1,0 +1,82 @@
+== Introduction
+
+The T-Head extension collection was created to augment
+the RISC-V ISA by adding additional functionality
+to enable faster and more energy-efficient solutions.
+
+The RISC-V ISA and its standardized extensions provide a rich set of
+instructions suitable for a wide range of applications, starting from
+specialized microcontrollers to HPC systems.
+The suitability for such a range of systems comes from the fact that
+the RISC-V ISA is modularized with a base instruction set and a range
+of extensions that target specific target applications and functionality.
+
+The RISC-V ISA and its authors strongly advertise the ability
+to create vendor extensions. Dedicated encoding spaces ensure,
+that there are not conflicts with standard extensions.
+
+This document specifies the T-Head extension collection,
+a collection of vendor extensions that are implemented
+in many T-Head processors.
+
+=== Overview
+
+The T-Head extension collection follows the principles of the RISC-V ISA.
+The collection consists of the following ISA extensions:
+
+* `XTheadCmo` provides instructions for cache management.
+* `XTheadSync` provides instructions for multi-processor synchronization.
+* `XTheadBa` provides instructions for address calculations.
+* `XTheadBb` provides instructions for basic bit-manipulation.
+* `XTheadBs` provides single-bit instructions.
+* `XTheadCondMov` provides instructions for conditional moves.
+* `XTheadMemIdx` provides GPR memory operations.
+* `XTheadMemPair` provides two-GP-register memory operations.
+* `XTheadFMemIdx` provides floating-point memory operations.
+* `XTheadMac` provides multiply-accumulate instructions.
+
+=== Dependencies to standard extensions
+
+The T-Head extension collection is designed to be compatible
+with RISC-V's base integer instruction sets RV32I and RV64I.
+
+Some instructions are only available if the system's
+`XLEN` is 64 (i.e. integer registers and supported user
+address space is 64 bits).
+To highlight the availability, each extension documents
+this for each instruction.
+
+Instruction that operate on floating-point registers can
+be used in combination with `F` (32-bit floating-point register)
+or `D` (64-bit floating-point registers).
+Some instruction are only available if the system implements
+the `D` extension. To highlight the availability, each
+floating-point extension document this for each instruction.
+
+=== Enablement of extensions and instructions
+
+All extensions and instructions are expected to be enabled at all times.
+The instructions can be used at any time when executing in the documented
+privilege levels, that permit the execution of the instruction.
+
+However, there might be SoC-specific mechanisms to ensure this behaviour.
+E.g. the T-Head C906 requires the CSR field `mxstatus.theadisaee` to
+be set to `1` to enable the ISA extensions.
+Another example is the CSR field `mxstatus.ucme` of the T-Head C906,
+that is required to be set to `1` in order to execute cache management
+instructions in `U` mode (if the instruction is documented that this
+is permitted).
+
+=== Lifecycle
+
+The lifecycle of the extensions included in this document is
+defined on a per-extension base.
+
+Possible states are:
+
+* `Draft`: No guarantees (everything may change).
+* `Stable`: No feature additions/removals/changes. Only clarifications.
+
+A `draft` specification is expected to become `stable` in the future
+(with exepcted changes until then). A `stable` extension remains in that
+state for ever.

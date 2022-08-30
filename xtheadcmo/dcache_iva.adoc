@@ -1,0 +1,54 @@
+[#insns-xtheadcmo-dcache_iva,reftext=Invalidate D-cache at VA]
+==== th.dcache.iva
+
+Synopsis::
+Invalidate D-cache at VA
+
+Mnemonic::
+th.dcache.iva _rs1_
+
+Encoding::
+[wavedrom, , svg]
+....
+{reg:[
+    { bits:  7, name: 0xb, attr: ['custom-0, 32 bit'] },
+    { bits:  5, name: 0x0 },
+    { bits:  3, name: 0x0, attr: ['CMO'] },
+    { bits:  5, name: 'rs1' },
+    { bits:  5, name: 0x6, attr: ['dcache.iva'] },
+    { bits:  7, name: 0x01 },
+]}
+....
+
+Description::
+This instruction invalidates the cache lines that match the specified virtual address in the D-cache.
+Dirty cache lines will not be written back to the next-level storage.
+
+Operation::
+[source,sail]
+--
+if (priv_level == U)
+{
+  <raise illegal instruction exception>
+}
+
+<invalidate all data cache lines matching the VA>
+--
+
+Permission::
+This instruction can be executed in all privilege levels higher than `U` mode.
+Attempts to execute this instruction in `U` mode raise an illegal instruction exception.
+
+Exceptions::
+This instruction does not trigger any exceptions.
+
+Included in::
+[%header,cols="4,2"]
+|===
+|Extension
+|HW requirements
+
+|XTheadCmo (<<#xtheadcmo>>)
+|D-cache, MMU
+|===
+

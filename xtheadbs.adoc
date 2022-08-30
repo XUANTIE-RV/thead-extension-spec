@@ -1,0 +1,19 @@
+[#xtheadbs]
+== Single-bit instructions (XTheadBs)
+
+[NOTE,caption=Frozen]
+The `XTheadBs` extension is `stable`.
+
+The `XTheadBs` ISA extension provides instructions to access a single bit in a register.
+
+The table below gives an overview of the instructions:
+
+[cols="^3,^3,12,18",stripes=even,options="header"]
+|===
+| RV32 | RV64 | Mnemonic              | Instruction
+| Y    | Y    | th.tst _rd_, _rs1_, _imm6_ | <<#xtheadbs-insns-tst>>
+|===
+
+[#xtheadbs-insns,reftext="Instructions"]
+=== Instructions
+include::xtheadbs/tst.adoc[]

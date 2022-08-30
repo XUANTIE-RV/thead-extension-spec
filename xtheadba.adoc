@@ -1,0 +1,20 @@
+[#xtheadba]
+== Address calculation instructions (XTheadBa)
+
+[NOTE,caption=Frozen]
+The `XTheadBa` extension is `stable`.
+
+The `XTheadBa` ISA extension provides bitmanipulation instructions
+for address calculation.
+
+The table below gives an overview of the instructions:
+
+[cols="^3,^3,12,18",stripes=even,options="header"]
+|===
+| RV32 | RV64 | Mnemonic              | Instruction
+| Y    | Y    | th.addsl _rd_, _rs1_, _rs2_, _imm2_ | <<#xtheadba-insns-addsl>>
+|===
+
+[#xtheadba-insns,reftext="Instructions"]
+=== Instructions
+include::xtheadba/addsl.adoc[]

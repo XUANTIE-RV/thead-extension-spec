@@ -1,0 +1,31 @@
+[#xtheadsync]
+== Multi-core synchronization instructions (XTheadSync)
+
+[NOTE,caption=Frozen]
+The `XTheadSync` extension is `stable`.
+
+The `XTheadSync` ISA extension provides multi-core synchronization instructions.
+
+The table below gives an overview of the instructions:
+
+[cols="^3,^3,12,18",stripes=even,options="header"]
+|===
+| RV32 | RV64 | Mnemonic                    | Instruction
+| Y    | Y    | th.sfence.vmas _rs1_, _rs2_ | <<#xtheadsync-insns-sfence-vmas>>
+| Y    | Y    | th.sync                     | <<#xtheadsync-insns-sync>>
+| Y    | Y    | th.sync.s                   | <<#xtheadsync-insns-sync-s>>
+| Y    | Y    | th.sync.i                   | <<#xtheadsync-insns-sync-i>>
+| Y    | Y    | th.sync.is                  | <<#xtheadsync-insns-sync-is>>
+|===
+
+[#xtheadsync-insns,reftext="Instructions"]
+=== Instructions
+include::xtheadsync/sfence_vmas.adoc[]
+<<<
+include::xtheadsync/sync.adoc[]
+<<<
+include::xtheadsync/sync_s.adoc[]
+<<<
+include::xtheadsync/sync_i.adoc[]
+<<<
+include::xtheadsync/sync_is.adoc[]

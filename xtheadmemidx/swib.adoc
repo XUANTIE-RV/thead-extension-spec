@@ -1,0 +1,48 @@
+[#xtheadmemidx-insns-swib,reftext=Store indexed word, increment-before]
+==== th.swib
+
+Synopsis::
+Store indexed word, increment address before loading.
+
+Mnemonic::
+th.swib _rd_, (_rs1_), _imm5_, _imm2_
+
+Encoding::
+[wavedrom, , svg]
+....
+{reg:[
+    { bits:  7, name: 0xb, attr: ['custom-0, 32 bit'] },
+    { bits:  5, name: 'rd' },
+    { bits:  3, name: 0x5, attr: ['Mem-Store'] },
+    { bits:  5, name: 'rs1' },
+    { bits:  5, name: 'imm5' },
+    { bits:  2, name: 'imm2' },
+    { bits:  5, name: 0x09 },
+]}
+....
+
+Description::
+This instruction increments the value in _rs1_ by (sign_extend(_imm5_) << _imm2_) and writes the result back to _rs1_.
+After the increment of _rs1_, this instruction stores an 32-bit value from the GP register _rd_ to the (incremented) address _rs1_.
+
+Operation::
+[source,sail]
+--
+rs1 := rs1 + (sign_extend(imm5) << imm2)
+mem[rs1+3:rs1] := rd
+--
+
+Permission::
+This instruction can be executed in all privilege levels.
+
+Exceptions::
+This instruction triggers the same exceptions that a corresponding `SW` instruction would trigger.
+
+Included in::
+[%header]
+|===
+|Extension
+
+|XTheadMemIdx (<<#xtheadmemidx>>)
+|===
+

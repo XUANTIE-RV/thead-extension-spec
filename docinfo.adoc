@@ -1,0 +1,35 @@
+== Document information
+
+=== Copyright and license information
+This specification is licensed under the Apache License, Version 2.0
+(Apache-2.0). The full license text is available at
+https://www.apache.org/licenses/LICENSE-2.0.
+
+Copyright 2022 T-Head Semiconductor Co., Ltd.
+
+Copyright 2022 VRULL GmbH
+
+=== Contributors
+
+The list below includes all contributors to this document in alphabetical order:
+
+[%hardbreaks]
+* Christoph Müllner <christoph.muellner@vrull.eu>
+* Cooper Qu <cooper.qu@linux.alibaba.com>
+* Lifang Xia <lifang_xia@linux.alibaba.com>
+* Philipp Tomsich <philipp.tomsich@vrull.eu>
+* Yunhai Shang < yunhai@linux.alibaba.com>
+* Zhiwei Liu <zhiwei_liu@linux.alibaba.com>
+
+=== Changelog
+
+* 2022-07-12: Initial draft with four CMO instructions
+* 2022-07-16: Adding complete XTheadCmo extension
+* 2022-07-20: Adding XTheadMemPair extension, adding HW requirements for XTheadCmo
+* 2022-07-26: Adding XTheadCmo U mode permission, Adding XTHeadSync, XTheadFMemIdx
+* 2022-07-27: Adding XTheadMemPair, XTheadMemIdx, XTheadMac, XThadCondMov, XTheadB[a,b,s]
+* 2022-07-29: Adding XTheadEE (mxstatus.theadisaee) and mxstatus.ucme (as part of XTheadCmo)
+* 2022-08-01: Remove XTheadEE and rework availability/permission documentation, adding lifecycle-states,
+              adding doc versioning and changelog
+* 2022-08-10: *.adoc: Fix several formatting issues
+* 2022-08-25: Adjusting contributors list

@@ -1,0 +1,50 @@
+[#xtheadmemidx-insns-lhuib,reftext=Load indexed unsigned half-word, increment-before]
+==== th.lhuib
+
+Synopsis::
+Load indexed unsigned half-word, increment address before loading.
+
+Mnemonic::
+th.lhuib _rd_, (_rs1_), _imm5_, _imm2_
+
+Encoding::
+[wavedrom, , svg]
+....
+{reg:[
+    { bits:  7, name: 0xb, attr: ['custom-0, 32 bit'] },
+    { bits:  5, name: 'rd' },
+    { bits:  3, name: 0x4, attr: ['Mem-Load'] },
+    { bits:  5, name: 'rs1' },
+    { bits:  5, name: 'imm5' },
+    { bits:  2, name: 'imm2' },
+    { bits:  5, name: 0x15 },
+]}
+....
+
+Description::
+This instruction increments the value in _rs1_ by (sign_extend(_imm5_) << _imm2_) and writes the result back to _rs1_.
+After the increment of _rs1_, this instruction loads a zero extended 16-bit value into the GP register _rd_ from the (incremented) address _rs1_.
+
+The values of _rd_ and _rs1_ must not be the same.
+
+Operation::
+[source,sail]
+--
+rs1 := rs1 + (sign_extend(imm5) << imm2)
+rd := zero_extend(mem[rs1+1:rs1])
+--
+
+Permission::
+This instruction can be executed in all privilege levels.
+
+Exceptions::
+This instruction triggers the same exceptions that a corresponding `LHU` instruction would trigger.
+
+Included in::
+[%header]
+|===
+|Extension
+
+|XTheadMemIdx (<<#xtheadmemidx>>)
+|===
+
