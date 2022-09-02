@@ -27,8 +27,8 @@ This instruction computes the multiply-add result of the provided half-word oper
 Operation::
 [source,sail]
 --
-M := zext.h(reg[rs1]) * zext.h(reg[rs2])
-reg[rd] := sext.w(zext.w(reg[rd] + M))
+M := sext.w(reg[rs1][15:0]) * sext.w(reg[rs2][15:0])
+reg[rd] := sext.w(reg[rd] + M)
 --
 
 Permission::
