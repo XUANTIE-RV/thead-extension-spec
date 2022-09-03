@@ -22,7 +22,7 @@ Encoding::
 ....
 
 Description::
-This instruction loads a zero extended 16-bit value into GP register _rd_ from the address _rs1_ + (zero_extend(_rs2_) << _imm2_).
+This instruction loads a zero extended 32-bit value into GP register _rd_ from the address _rs1_ + (zero_extend(_rs2_) << _imm2_).
 
 Note, that this instruction is equivalent to a `zext.w _rs2_, _rs2_` followed by a `th.lrwu` with the same arguments.
 
