@@ -28,7 +28,7 @@ Operation::
 [source,sail]
 --
 M := reg[rs1] * reg[rs2]
-reg[rd] := zext.d(reg[rd] - M)
+reg[rd] := reg[rd] - M
 --
 
 Permission::

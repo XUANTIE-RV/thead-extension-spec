@@ -27,8 +27,8 @@ This instruction computes the multiply-subtract result of the provided word oper
 Operation::
 [source,sail]
 --
-M := zext.w(reg[rs1]) * zext.w(reg[rs2])
-reg[rd] := sext.w(zext.w(reg[rd] - M))
+M := sext.w(reg[rs1]) * sext.w(reg[rs2])
+reg[rd] := sext.w(reg[rd] - M)
 --
 
 Permission::
