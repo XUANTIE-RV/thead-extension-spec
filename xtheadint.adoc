@@ -1,0 +1,22 @@
+[#xtheadint]
+== Acceleration interruption instructions
+
+[NOTE,caption=Frozen]
+The `XTheadInt` extension is `stable`.
+
+The `XTheadInt` ISA extension provides instructions to reduce the code size of ISRs and/or the interrupt latencies that are caused by ISR entry/exit code.
+
+The table below gives an overview of the instructions:
+
+[cols="^3,^3,12,18",stripes=even,options="header"]
+|===
+| RV32 | RV64 | Mnemonic              | Instruction
+| Y    | Y    | th.ipush | <<#xtheadint-insns-ipush>>
+| Y    | Y    | th.ipop  | <<#xtheadint-insns-ipop>>
+|===
+
+[#xtheadint-insns,reftext="Instructions"]
+=== Instructions
+include::xtheadint/ipush.adoc[]
+<<<
+include::xtheadint/ipop.adoc[]

@@ -1,0 +1,24 @@
+[#xtheadfmv]
+== Double-precision floating-point high-bit data transmission instructions
+
+[NOTE,caption=Frozen]
+The `XTheadFmv` extension is `stable`.
+
+The `XTheadFmv` ISA extension provides double-precision floating-point high-bit data transmission intructions for RV32.
+
+This extension depends on the availability of the `D` (double-precision floating-point) ISA extension.
+
+The table below gives an overview of the instructions:
+
+[cols="^3,^3,12,18",stripes=even,options="header"]
+|===
+| RV32 | RV64 | Mnemonic              | Instruction
+| Y    | N    | th.fmv.x.hw  _rd_, _fs1_ | <<#xtheadfmv-insns-fmv_x_hw>>
+| Y    | N    | th.fmv.hw.x  _rd_, _fs1_ | <<#xtheadfmv-insns-fmv_hw_x>>
+|===
+
+[#xtheadfmv-insns,reftext="Instructions"]
+=== Instructions
+include::xtheadfmv/fmv_x_hw.adoc[]
+<<<
+include::xtheadfmv/fmv_hw_x.adoc[]

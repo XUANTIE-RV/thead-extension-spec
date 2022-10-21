@@ -1,0 +1,44 @@
+[#xtheadfmv-insns-fmv_x_hw,reftext=Read double-precision floating-point high-bit data]
+==== th.fmv.x.hw
+
+Synopsis::
+Read double-precision floating-point high-bit data
+
+Mnemonic::
+th.fmv.x.hw _rd_, _fs1_
+
+Encoding::
+[wavedrom, , svg]
+....
+{reg:[
+    { bits:  7, name: 0xb, attr: ['custom-0, 32 bit'] },
+    { bits:  5, name: 'rd' },
+    { bits:  3, name: 0x1 },
+    { bits:  5, name: 'rs1' },
+    { bits:  5, name: 0x0 },
+    { bits:  7, name: 0x50 },
+]}
+....
+
+Description::
+This instruction stores the upper 32-bit of the specified double-precision FP register _fs1_ in the specified 32-bit GP register _rd_.
+
+Operation::
+[source,sail]
+--
+rd := fs1[63:32]
+--
+
+Permission::
+This instruction can be executed in all privilege levels.
+
+Exceptions::
+This instruction does not trigger any exceptions.
+
+Included in::
+[%header]
+|===
+|Extension
+
+|XTheadFmv (<<#xtheadfmv>>)
+|===

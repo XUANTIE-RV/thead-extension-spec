@@ -1,0 +1,53 @@
+[#xtheadint-insns-ipush,reftext=Push register context on interrupt stack]
+==== th.ipush
+
+Synopsis::
+Pushes register context on the interrupt stack
+
+Mnemonic::
+ipush
+
+Encoding::
+[wavedrom, , svg]
+....
+{reg:[
+    { bits:  7, name: 0xb, attr: ['custom-0, 32 bit'] },
+    { bits:  5, name: 0x0 },
+    { bits:  3, name: 0x0 },
+    { bits:  5, name: 0x0 },
+    { bits:  5, name: 0x4 },
+    { bits:  7, name: 0x0 },
+]}
+....
+
+Description::
+This instruction stores the following information on the interrupt stack:
+
+* mcause
+* mepc
+* callee-saved registers (X1, X5-X7, X10-X17, and X28-X31)
+
+Additionally the interrupt stack pointer is advanced accordingly.
+
+Operation::
+[source,sail]
+--
+mem[int_sp-4:int_sp-72] := {mcause, mepc, X1, X5-X7, X10-X17, X28-X31}
+int_sp := int_sp - 72
+--
+
+Permission::
+This instruction can be executed in `M` mode only.
+Attempts to execute this instruction in other modes will raise an illegal instruction exception.
+
+Exceptions::
+This isntruction may trigger an unaligned access exception or
+an access error exception.
+
+Included in::
+[%header]
+|===
+|Extension
+
+|XTheadFmv (<<#xtheadint>>)
+|===
