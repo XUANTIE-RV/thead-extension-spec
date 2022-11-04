@@ -13,8 +13,8 @@ The table below gives an overview of the instructions:
 [cols="^3,^3,12,18",stripes=even,options="header"]
 |===
 | RV32 | RV64 | Mnemonic              | Instruction
-| Y    | N    | th.fmv.x.hw  _rd_, _fs1_ | <<#xtheadfmv-insns-fmv_x_hw>>
 | Y    | N    | th.fmv.hw.x  _rd_, _fs1_ | <<#xtheadfmv-insns-fmv_hw_x>>
+| Y    | N    | th.fmv.x.hw  _rd_, _fs1_ | <<#xtheadfmv-insns-fmv_x_hw>>
 |===
 
 [#xtheadfmv-insns,reftext="Instructions"]
