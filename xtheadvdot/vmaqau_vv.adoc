@@ -1,0 +1,49 @@
+[#xtheadvdot-insns-vmaqau-vv,reftext=Four unsigned 8-bit multiply with 32-bit add(vector-vector)]
+==== th.vmaqau.vv
+
+Synopsis::
+Four unsigned 8-bit multiply with 32-bit add.
+
+Mnemonic::
+th.vmaqau.vv _vd_, _vs1_, _vs2_
+
+Encoding::
+[wavedrom, , svg]
+....
+{reg:[
+    { bits:  7, name: 0xb, attr: ['custom-0, 32 bit'] },
+    { bits:  5, name: 'vd' },
+    { bits:  3, name: 0x6, attr: ['vmaqa'] },
+    { bits:  5, name: 'vs1' },
+    { bits:  5, name: 'vs2' },
+    { bits:  1, name: 'vm' },
+    { bits:  6, name: '0x22' },
+]}
+....
+
+Description::
+
+The four unsigned 8-bit elements of 32-bit of vs1 are multiplied with the four unsigned 8-bit elements of 32-bit of vs2 and then the four results are added together with the corresponding 32-bit element of Vd. This instruction is based on vector extension.The vector masking  operates at source operands with 8-bit element size. If vm=1, the instruction is unmasked and the instruction is vmaqau.vv vd, vs1, vs2. If vm=0, the instruction is masked and the instruction is vmaqau.vv vd, vs1, vs2, v0.t. When v0.mask[i] is 1, the multiplication result of vs1[(i+1)*8:i*8] and vs2[(i+1)*8:i*8] is added with vd.The vector length(vl)  operates at destination operands with 32-bit element size. 
+Operation::
+[source,sail]
+--
+vd[i] = vd[i] + vs1[i][7:0]   * vs2[i][7:0] 
+              + vs1[i][15:8]  * vs2[i][15:8] 
+              + vs1[i][23:16] * vs2[i][23:16] 
+              + vs1[i][31:24] * vs2[i][31:24]   
+--
+
+Permission::
+This instruction can be executed in all privilege levels.
+
+Exceptions::
+This instruction triggers the same exceptions that a `vmacc.vv` instructions would trigger except that the value of vsew[2:0] must be 3'b010.
+
+Included in::
+[%header]
+|===
+|Extension
+
+|XTheadvdot (<<#xtheadvdot>>)
+|===
+
