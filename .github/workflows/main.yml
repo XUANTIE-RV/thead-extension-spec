@@ -1,0 +1,59 @@
+name: Asciidoctor Build CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+  release:
+    types: [published]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Install Ubuntu packages
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y nodejs build-essential  npm ruby make ruby-dev git asciidoctor curl ghostscript libpango1.0-dev
+        sudo gem install asciidoctor
+        sudo gem install asciidoctor-pdf
+        sudo gem install asciidoctor-diagram
+        sudo gem install asciidoctor-bibtex
+        sudo gem install asciidoctor-mathematical
+        sudo gem install coderay
+        sudo npm i npm@latest -g
+        sudo npm install -g bytefield-svg
+        sudo npm install -g wavedrom-cli --unsafe
+        export PATH="$PATH:node_modules/.bin/"
+
+    - name: Build
+      run: make
+
+    - name: Upload PDF
+      uses: actions/upload-artifact@v3
+      with:
+        path: |
+          *.pdf
+        name: artifact
+
+  upload-release:
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.event_name == 'release'
+
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: artifact
+
+      - name: Upload release asset
+        uses: csexton/release-asset-action@v2
+        with:
+          pattern: "*"
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          release-url: ${{ github.event.release.upload_url }}
