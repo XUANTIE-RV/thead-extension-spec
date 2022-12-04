@@ -1,0 +1,39 @@
+[#xtheadvdot]
+== Vector four 8-bit multiply and add with 32-bit instructions
+
+[NOTE,caption=Frozen]
+The `XTheadVdot` extension is `stable`.
+
+The `XTheadVdot` ISA extension provides vector integer four 8-bit multiply and add with 32-bit element intructions.
+
+This extension depends on the availability of the `V` (vector) ISA extension.
+
+The table below gives an overview of the instructions:
+
+[cols="^3,^3,12,18",stripes=even,options="header"]
+|===
+| RV32 | RV64 | Mnemonic              | Instruction
+| Y    | Y    | th.vmaqa.vv    _vd_, _vs1_, _vs2_ | <<#xtheadvdot-insns-vmaqa-vv>>
+| Y    | Y    | th.vmaqa.vx    _vd_, _rs1_, _vs2_ | <<#xtheadvdot-insns-vmaqa-vx>>
+| Y    | Y    | th.vmaqau.vv   _vd_, _vs1_, _vs2_ | <<#xtheadvdot-insns-vmaqau-vv>>
+| Y    | Y    | th.vmaqau.vx   _vd_, _rs1_, _vs2_ | <<#xtheadvdot-insns-vmaqau-vx>>
+| Y    | Y    | th.vmaqasu.vv  _vd_, _vs1_, _vs2_ | <<#xtheadvdot-insns-vmaqasu-vv>>
+| Y    | Y    | th.vmaqasu.vx  _vd_, _rs1_, _vs2_ | <<#xtheadvdot-insns-vmaqasu-vx>>
+| Y    | Y    | th.vmaqaus.vx  _vd_, _rs1_, _vs2_ | <<#xtheadvdot-insns-vmaqaus-vx>>
+|===
+
+[#xtheadvdot-insns,reftext="Instructions"]
+=== Instructions
+include::xtheadvdot/vmaqa_vv.adoc[]
+<<<
+include::xtheadvdot/vmaqa_vx.adoc[]
+<<<
+include::xtheadvdot/vmaqau_vv.adoc[]
+<<<
+include::xtheadvdot/vmaqau_vx.adoc[]
+<<<
+include::xtheadvdot/vmaqasu_vv.adoc[]
+<<<
+include::xtheadvdot/vmaqasu_vx.adoc[]
+<<<
+include::xtheadvdot/vmaqaus_vx.adoc[]

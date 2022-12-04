@@ -1,0 +1,49 @@
+[#xtheadvdot-insns-vmaqaus-vx,reftext=Four unsigned-signed and 8-bit multiply with 32-bit add(vector-scalar)]
+==== th.vmaqaus.vx
+
+Synopsis::
+Four unsigned-signed 8-bit multiply with 32-bit add.
+
+Mnemonic::
+th.vmaqaus.vx _vd_, _rs1_, _vs2_
+
+Encoding::
+[wavedrom, , svg]
+....
+{reg:[
+    { bits:  7, name: 0xb, attr: ['custom-0, 32 bit'] },
+    { bits:  5, name: 'vd' },
+    { bits:  3, name: 0x6, attr: ['vmaqa'] },
+    { bits:  5, name: 'rs1' },
+    { bits:  5, name: 'vs2' },
+    { bits:  1, name: 'vm' },
+    { bits:  6, name: '0x27' },
+]}
+....
+
+Description::
+
+The four unsigned 8-bit elements of the lower 32-bit of rs1 are multiplied with the four signed 8-bit elements of each 32-bit of vs2 and then the four results are added together with the corresponding 32-bit element of Vd. This instruction is based on vector extension.The vector masking  operates at source operands with 8-bit element size. If vm=1, the instruction is unmasked and the instruction is vmaqaus.vx vd, rs1, vs2. If vm=0, the instruction is masked and the instruction is vmaqaus.vx vd, rs1, vs2, v0.t. When v0.mask[i] is 1, the multiplication result of rs1[(i+1)*8:i*8] and vs2[(i+1)*8:i*8] is added with vd.The vector length(vl)  operates at destination operands with 32-bit element size. 
+Operation::
+[source,sail]
+--
+vd[i] = vd[i] + rs1[7:0]   * vs2[i][7:0] 
+              + rs1[15:8]  * vs2[i][15:8] 
+              + rs1[23:16] * vs2[i][23:16] 
+              + rs1[31:24] * vs2[i][31:24]   
+--
+
+Permission::
+This instruction can be executed in all privilege levels.
+
+Exceptions::
+This instruction triggers the same exceptions that a `vmacc.vv` instructions would trigger except that the value of vsew[2:0] must be 3'b010.
+
+Included in::
+[%header]
+|===
+|Extension
+
+|XTheadvdot (<<#xtheadvdot>>)
+|===
+
