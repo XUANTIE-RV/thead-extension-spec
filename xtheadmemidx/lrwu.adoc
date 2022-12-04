@@ -5,7 +5,7 @@ Synopsis::
 Load indexed unsigned word.
 
 Mnemonic::
-th.lrwu _rd_, (_rs1_), _rs2_, _imm2_
+th.lrwu _rd_, _rs1_, _rs2_, _imm2_
 
 Encoding::
 [wavedrom, , svg]

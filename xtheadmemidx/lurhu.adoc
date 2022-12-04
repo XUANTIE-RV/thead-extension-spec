@@ -5,7 +5,7 @@ Synopsis::
 Load unsigned indexed unsigned half-word.
 
 Mnemonic::
-th.lurhu _rd_, (_rs1_), _rs2_, _imm2_
+th.lurhu _rd_, _rs1_, _rs2_, _imm2_
 
 Encoding::
 [wavedrom, , svg]

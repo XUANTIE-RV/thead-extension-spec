@@ -5,7 +5,7 @@ Synopsis::
 Store unsigned indexed double-word.
 
 Mnemonic::
-th.surd _rd_, (_rs1_), _rs2_, _imm2_
+th.surd _rd_, _rs1_, _rs2_, _imm2_
 
 Encoding::
 [wavedrom, , svg]

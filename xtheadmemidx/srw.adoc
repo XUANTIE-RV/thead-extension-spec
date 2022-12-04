@@ -5,7 +5,7 @@ Synopsis::
 Store indexed word.
 
 Mnemonic::
-th.srw _rd_, (_rs1_), _rs2_, _imm2_
+th.srw _rd_, _rs1_, _rs2_, _imm2_
 
 Encoding::
 [wavedrom, , svg]
