@@ -32,7 +32,7 @@ Operation::
 for i=xlen..0:
   if reg[rs1][i] == 1:
     break;
-reg[rd] = i
+reg[rd] = (xlen - 1) - i
 --
 
 Permission::
