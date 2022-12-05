@@ -15,7 +15,7 @@ Encoding::
     { bits:  5, name: 'rd' },
     { bits:  3, name: 0x1, attr: ['Arithmetic'] },
     { bits:  5, name: 'rs1' },
-    { bits:  6, name: 'rs2' },
+    { bits:  6, name: 'imm6' },
     { bits:  6, name: 0x22 },
 ]}
 ....
