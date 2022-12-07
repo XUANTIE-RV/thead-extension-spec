@@ -1,5 +1,5 @@
 [#insns-xtheadcmo-l2cache_iall,reftext=Invalidate all L2 cache]
-==== th.ll2cache.iall
+==== th.l2cache.iall
 
 Synopsis::
 Invalidate all L2 cache
