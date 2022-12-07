@@ -1,8 +1,8 @@
-[#xtheadsync-insns-sync-i,reftext=Synchronization barrier and pipeline flush]
+[#xtheadsync-insns-sync-i,reftext=Synchronization pipeline flush]
 ==== th.sync.i
 
 Synopsis::
-Ensures that all preceding instructions retire earlier than this instruction and all subsequent instructions retire later than this instruction and clears the pipeline when this instruction retires.
+Clear the pipeline when this instruction retires.
 
 Mnemonic::
 th.sync.i
@@ -21,7 +21,7 @@ Encoding::
 ....
 
 Description::
-This instruction ensures that all preceding instructions retire earlier than this instruction and all subsequent instructions retire later than this instruction. When this instruction retires the hart's pipeline will be cleared.
+This instruction doesn't have the meaning of RISC-V standard fence instruction. It only flushes the pipeline of current hart. A sequence of th.icache.iall and th.sync.i has the same function with the RISC-V standard fence.i instrcution. When this instruction retires, the hart's pipeline will be cleared.
 
 Operation::
 [source,sail]
