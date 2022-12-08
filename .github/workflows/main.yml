@@ -18,7 +18,7 @@ jobs:
     - name: Install Ubuntu packages
       run: |
         sudo apt-get update
-        sudo apt-get install -y nodejs build-essential  npm ruby make ruby-dev git asciidoctor curl ghostscript libpango1.0-dev
+        sudo apt-get install -y nodejs build-essential  npm ruby make ruby-dev git asciidoctor curl ghostscript libpango1.0-dev libwebp-dev
         sudo gem install asciidoctor
         sudo gem install asciidoctor-pdf
         sudo gem install asciidoctor-diagram
