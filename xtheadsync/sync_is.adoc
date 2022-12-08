@@ -2,7 +2,7 @@
 ==== th.sync.is
 
 Synopsis::
-Ensures that all preceding instructions retire earlier than this instruction and all subsequent instructions retire later than this instruction and clears the pipeline when this instruction retires on all harts.
+Ensures that all preceding instructions retire earlier than this instruction on other harts and clears the pipeline of current hart when this instruction retires.
 
 Mnemonic::
 th.sync.is
@@ -21,14 +21,14 @@ Encoding::
 ....
 
 Description::
-This instruction ensures that all preceding instructions retire earlier than this instruction and all subsequent instructions retire later than this instruction. When this instruction retires the hart's pipeline will be cleared. The instruction is executing on all harts via broadcasting.
+This instruction ensures that all preceding instructions retire earlier than this instruction on other harts. When this instruction retires the hart's pipeline will be cleared. The instruction is executing on all harts via broadcasting. It only ensures that previous ops will not be delayed on other harts.
 
 Operation::
 [source,sail]
 --
-msg := encode_out_of_order_barrier()
-msg += encode_pipeline_flush()
+msg := encode_out_of_order_preceding_barrier()
 broadcast_to_all_harts(msg)
+pipeline_flush()
 --
 
 Permission::
