@@ -1,8 +1,8 @@
-[#xtheadsync-insns-sync-is,reftext=Synchronization barrier and pipeline flush on all harts]
+[#xtheadsync-insns-sync-is,reftext=Synchronization barrier and pipeline flush]
 ==== th.sync.is
 
 Synopsis::
-Ensures that all preceding instructions retire earlier than this instruction and all subsequent instructions retire later than this instruction and clears the pipeline when this instruction retires on all harts.
+Ensures that all preceding instructions retire earlier than this instruction and all subsequent instructions retire later than this instruction and clears the pipeline when this instruction.
 
 Mnemonic::
 th.sync.is
@@ -21,14 +21,13 @@ Encoding::
 ....
 
 Description::
-This instruction ensures that all preceding instructions retire earlier than this instruction and all subsequent instructions retire later than this instruction. When this instruction retires the hart's pipeline will be cleared. The instruction is executing on all harts via broadcasting.
+This instruction has the same function with th.sync.i.
 
 Operation::
 [source,sail]
 --
-msg := encode_out_of_order_barrier()
-msg += encode_pipeline_flush()
-broadcast_to_all_harts(msg)
+out_of_order_barrier()
+pipeline_flush()
 --
 
 Permission::
