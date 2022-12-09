@@ -21,7 +21,7 @@ Encoding::
 ....
 
 Description::
-This instruction ensures that all preceding instructions retire earlier than this instruction and all subsequent instructions retire later than this instruction.
+This instruction ensures that all preceding instructions retire earlier than this instruction and all subsequent instructions retire later than this instruction. It is stricter than standard RISC-V fence instruction. Fence only influences the order of load/store instructions while th.sync influences all the instructions, including all explicit memory accesses and cache operations.
 
 Operation::
 [source,sail]
