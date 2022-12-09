@@ -2,7 +2,7 @@
 ==== th.sync.i
 
 Synopsis::
-Clear the pipeline when this instruction retires.
+Ensures that all preceding instructions retire earlier than this instruction and all subsequent instructions retire later than this instruction and clears the pipeline when this instruction retires.
 
 Mnemonic::
 th.sync.i
@@ -21,7 +21,7 @@ Encoding::
 ....
 
 Description::
-This instruction doesn't have the meaning of RISC-V standard fence instruction. It only flushes the pipeline of current hart. A sequence of th.icache.iall and th.sync.i has the same function with the RISC-V standard fence.i instrcution. When this instruction retires, the hart's pipeline will be cleared.
+Besides the synopsis of th.sync, this instruction flushes the pipeline of current hart which means all subsequent instructions should be re-fectched after this instruction retires. This instruction is the only mechanism to ensure that all explicit memory accesses or cache operations visible to a hart will also be visible to its instruction fetches.
 
 Operation::
 [source,sail]
