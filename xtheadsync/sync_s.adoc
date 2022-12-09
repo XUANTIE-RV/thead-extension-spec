@@ -1,8 +1,8 @@
-[#xtheadsync-insns-sync-s,reftext=Synchronization barrier on all harts]
+[#xtheadsync-insns-sync-s,reftext=Synchronization barrier]
 ==== th.sync.s
 
 Synopsis::
-Broadcasts an instruction, that ensures that all preceding instructions retire earlier than this instruction and all subsequent instructions retire later than this instruction on all harts.
+Ensures that all preceding instructions retire earlier than this instruction and all subsequent instructions retire later than this instruction.
 
 Mnemonic::
 th.sync.s
@@ -21,13 +21,12 @@ Encoding::
 ....
 
 Description::
-This instruction ensures that all preceding instructions retire earlier than this instruction and all subsequent instructions retire later than this instruction. The instruction is executing on all harts via broadcasting.
+This instruction has the same function with th.sync.
 
 Operation::
 [source,sail]
 --
-msg := encode_out_of_order_barrier()
-broadcast_to_all_harts(msg)
+out_of_order_barrier()
 --
 
 Permission::
