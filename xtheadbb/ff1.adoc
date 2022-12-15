@@ -24,7 +24,7 @@ Encoding::
 Description::
 Finds the first bit with the value of '1' from the highest bit of _rs1_ and writes the index back into register _rd_.
 If the highest bit of _rs1_ is '1', the result '0' is returned.
-If all the bits in _rs1_ are '1', the result '64' is returned.
+If all the bits in _rs1_ are '0', the result '64' is returned.
 
 Operation::
 [source,sail]
