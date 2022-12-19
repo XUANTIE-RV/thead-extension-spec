@@ -7,6 +7,8 @@ The `XTheadMemIdx` extension is `stable`.
 The `XTheadMemIdx` ISA extension provides indexed memory operations.
 for GP registers.
 
+Extension version: 1.0.
+
 The table below gives an overview of the instructions:
 
 [cols="^3,^3,12,18",stripes=even,options="header"]

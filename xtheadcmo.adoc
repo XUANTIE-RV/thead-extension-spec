@@ -6,6 +6,8 @@ The `XTheadCmo` extension is `stable`.
 
 The `XTheadCmo` ISA extension provides cache management operations.
 
+Extension version: 1.0.
+
 The table below gives an overview of the instructions:
 
 [cols="^3,^3,10,18,12",stripes=even,options="header"]

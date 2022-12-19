@@ -8,6 +8,8 @@ The `XTheadFmv` ISA extension provides double-precision floating-point high-bit 
 
 This extension depends on the availability of the `D` (double-precision floating-point) ISA extension.
 
+Extension version: 1.0.
+
 The table below gives an overview of the instructions:
 
 [cols="^3,^3,12,18",stripes=even,options="header"]

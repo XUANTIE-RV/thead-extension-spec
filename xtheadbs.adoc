@@ -6,6 +6,8 @@ The `XTheadBs` extension is `stable`.
 
 The `XTheadBs` ISA extension provides instructions to access a single bit in a register.
 
+Extension version: 1.0.
+
 The table below gives an overview of the instructions:
 
 [cols="^3,^3,12,18",stripes=even,options="header"]

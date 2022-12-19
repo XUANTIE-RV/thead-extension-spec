@@ -7,6 +7,8 @@ The `XTheadFMemIdx` extension is `stable`.
 The `XTheadFMemIdx` ISA extension provides indexed memory operations
 for floating-point registers.
 
+Extension version: 1.0.
+
 The table below gives an overview of the instructions:
 
 [cols="^3,^3,12,18",stripes=even,options="header"]
