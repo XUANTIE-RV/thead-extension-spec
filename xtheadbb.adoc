@@ -6,6 +6,8 @@ The `XTheadBb` extension is `stable`.
 
 The `XTheadBb` ISA extension provides conditional basic bit-manipulation instructions.
 
+Extension version: 1.0.
+
 The table below gives an overview of the instructions:
 
 [cols="^3,^3,12,18",stripes=even,options="header"]

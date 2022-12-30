@@ -6,6 +6,8 @@ The `XTheadMemPair` extension is `stable`.
 
 The `XTheadMemPair` ISA extension provides two-GPR memory operations.
 
+Extension version: 1.0.
+
 The table below gives an overview of the instructions:
 
 [cols="^3,^3,12,18",stripes=even,options="header"]

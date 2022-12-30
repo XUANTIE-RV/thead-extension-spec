@@ -7,6 +7,8 @@ The `XTheadBa` extension is `stable`.
 The `XTheadBa` ISA extension provides bitmanipulation instructions
 for address calculation.
 
+Extension version: 1.0.
+
 The table below gives an overview of the instructions:
 
 [cols="^3,^3,12,18",stripes=even,options="header"]

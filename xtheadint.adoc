@@ -6,6 +6,8 @@ The `XTheadInt` extension is `stable`.
 
 The `XTheadInt` ISA extension provides instructions to reduce the code size of ISRs and/or the interrupt latencies that are caused by ISR entry/exit code.
 
+Extension version: 1.0.
+
 The table below gives an overview of the instructions:
 
 [cols="^3,^3,12,18",stripes=even,options="header"]
