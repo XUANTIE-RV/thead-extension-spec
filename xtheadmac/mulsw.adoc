@@ -28,7 +28,7 @@ Operation::
 [source,sail]
 --
 M := sext.w(reg[rs1]) * sext.w(reg[rs2])
-reg[rd] := sext.w(reg[rd] - M)
+reg[rd] := sext.w(reg[rd][31:0] - M)
 --
 
 Permission::
