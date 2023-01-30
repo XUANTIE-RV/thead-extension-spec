@@ -27,6 +27,11 @@ from the address _rs1_ + (zero_extend(_imm2_) << 4).
 
 The encoding of this instruction with equal _rd1_, _rd2_ and _rs1_ is reserved.
 
+Note, that there is no atomicity guarantee for this instruction.
+I.e., an implementation can realize this instruction in form of two
+memory transactions and an exception can be handled in-between, in which
+case the whole instruction will be re-executed.
+
 Operation::
 [source,sail]
 --
