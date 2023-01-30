@@ -25,14 +25,17 @@ Description::
 This instruction loads two 64-bit values into the two GP registers _rd1_ and _rd2_
 from the address _rs1_ + (zero_extend(_imm2_) << 4).
 
-The values of _rd1_, _rd2_ and _rs1_ must not be the same.
+The encoding of this instruction with equal _rd1_, _rd2_ and _rs1_ is reserved.
 
 Operation::
 [source,sail]
 --
-addr := rs1 + (zero_extend(imm2) << 4)
-rd1 := mem[addr+7:addr]
-rd2 := mem[addr+15:addr+8]
+if (rs1 != rd1 && rs != rd2 && rd1 != rd2) {
+    addr := rs1 + (zero_extend(imm2) << 4)
+    tmp1 := mem[addr+7:addr]
+    tmp2 := mem[addr+15:addr+8]
+    (reg[rd1], reg[rd2]) := (tmp1, tmp2)
+}
 --
 
 Permission::

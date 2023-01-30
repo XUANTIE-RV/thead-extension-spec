@@ -25,14 +25,17 @@ Description::
 This instruction loads two signed 32-bit values into the two GP registers _rd1_ and _rd2_
 from the address _rs1_ + (zero_extend(_imm2_) << 3).
 
-The values of _rd1_, _rd2_ and _rs1_ must not be the same.
+The encoding of this instruction with equal _rd1_, _rd2_ and _rs1_ is reserved.
 
 Operation::
 [source,sail]
 --
-addr := rs1 + (zero_extend(imm2) << 3)
-reg[rd1] := sign_extend(mem[addr+3:addr])
-reg[rd2] := sign_extend(mem[addr+7:addr+3])
+if (rs1 != rd1 && rs != rd2 && rd1 != rd2) {
+    addr := rs1 + (zero_extend(imm2) << 3)
+    tmp1 := sign_extend(mem[addr+3:addr])
+    tmp2 := sign_extend(mem[addr+7:addr+3])
+    (reg[rd1], reg[rd2]) := (tmp1, tmp2)
+}
 --
 
 Permission::
