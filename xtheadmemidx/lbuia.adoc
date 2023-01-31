@@ -25,13 +25,15 @@ Description::
 This instruction loads a zero extended 8-bit value into the GP register _rd_ from the address _rs1_.
 After the load, this instruction increments the value in _rs1_ by (sign_extend(_imm5_) << _imm2_) and writes the result back to _rs1_.
 
-The values of _rd_ and _rs1_ must not be the same.
+The encoding of this instruction with equal _rd_ and _rs1_ is reserved.
 
 Operation::
 [source,sail]
 --
-rs := zero_extend(mem[rs1])
-rs1 := rs1 + (sign_extend(imm5) << imm2)
+if (rs1 != rd) {
+    rs := zero_extend(mem[rs1])
+    rs1 := rs1 + (sign_extend(imm5) << imm2)
+}
 --
 
 Permission::
