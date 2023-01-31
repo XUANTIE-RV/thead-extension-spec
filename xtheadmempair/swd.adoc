@@ -25,6 +25,11 @@ Description::
 This instruction loads two 32-bit values into the two GP registers _rd1_ and _rd2_
 from the address _rs1_ + (zero_extend(_imm2_) << 3).
 
+Note, that there is no atomicity guarantee for this instruction.
+I.e., an implementation can realize this instruction in form of two
+memory transactions and an exception can be handled in-between, in which
+case the whole instruction will be re-executed.
+
 Operation::
 [source,sail]
 --

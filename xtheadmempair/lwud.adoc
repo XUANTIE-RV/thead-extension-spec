@@ -25,14 +25,22 @@ Description::
 This instruction loads two unsigned 32-bit values into the two GP registers _rd1_ and _rd2_
 from the address _rs1_ + (zero_extend(_imm2_) << 3).
 
-The values of _rd1_, _rd2_ and _rs1_ must not be the same.
+The encoding of this instruction with equal _rd1_, _rd2_ and _rs1_ is reserved.
+
+Note, that there is no atomicity guarantee for this instruction.
+I.e., an implementation can realize this instruction in form of two
+memory transactions and an exception can be handled in-between, in which
+case the whole instruction will be re-executed.
 
 Operation::
 [source,sail]
 --
-addr := rs1 + (zero_extend(imm2) << 3)
-reg[rd1] := zero_extend(mem[addr+3:addr])
-reg[rd2] := zero_extend(mem[addr+7:addr+3])
+if (rs1 != rd1 && rs != rd2 && rd1 != rd2) {
+    addr := rs1 + (zero_extend(imm2) << 3)
+    tmp1 := zero_extend(mem[addr+3:addr])
+    tmp2 := zero_extend(mem[addr+7:addr+3])
+    (reg[rd1], reg[rd2]) := (tmp1, tmp2)
+}
 --
 
 Permission::
