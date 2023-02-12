@@ -2,7 +2,7 @@
 ==== th.srriw
 
 Synopsis::
-Perform a cyclic right shift on word operand.
+Rotate Right Word (by Immediate)
 
 Mnemonic::
 th.srriw _rd_, _rs1_, _imm5_
@@ -16,18 +16,19 @@ Encoding::
     { bits:  3, name: 0x1, attr: ['Arithmetic'] },
     { bits:  5, name: 'rs1' },
     { bits:  5, name: 'imm5' },
-    { bits:  7, name: 0x0a },
+    { bits:  7, name: 0x0a, attr: ['SRRIW'] },
 ]}
 ....
 
 Description::
-This operation rotates the contents of the 32-bit value in _rs1_ by _imm5_ bits and stores the result in _rd_.
+This operation performs a rotate-right on on the least-significant word of _rs1_ by _imm5_ bits and stores the result in _rd_.
 
-Operation::
+Operation (SAIL)::
 [source,sail]
 --
-data := zext.w(reg[rs1])
-reg[rd] := (data >> imm5) | (data << (32 - imm5))
+let rs1_val = (X(rs1))[31..0];
+let result : xlenbits = EXTS(rs1_val >>> imm5);
+X(rd) = result;
 --
 
 Permission::
