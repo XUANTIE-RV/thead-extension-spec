@@ -5,7 +5,7 @@ Synopsis::
 Load two signed 32-bit values from memory into two GPRs.
 
 Mnemonic::
-th.lwd _rd1_, _rd2_, (_rs1_), _imm2_, 3
+th.lwd _rd1_, _rd2_, (_rs1_), _imm2_
 
 Encoding::
 [wavedrom, , svg]

@@ -5,7 +5,7 @@ Synopsis::
 Store two 32-bit values to memory from two GPRs.
 
 Mnemonic::
-th.swd _rd1_, _rd2_, (_rs1_), _imm2_, 3
+th.swd _rd1_, _rd2_, (_rs1_), _imm2_
 
 Encoding::
 [wavedrom, , svg]
