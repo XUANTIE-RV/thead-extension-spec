@@ -5,7 +5,7 @@ Synopsis::
 Four signed-unsigned 8-bit multiply with 32-bit add.
 
 Mnemonic::
-th.vmaqasu.vx _vd_, _rs1_, _vs2_
+th.vmaqasu.vx _vd_, _vs2_, _rs1_
 
 Encoding::
 [wavedrom, , svg]

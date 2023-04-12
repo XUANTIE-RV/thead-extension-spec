@@ -5,7 +5,7 @@ Synopsis::
 Four signed 8-bit multiply with 32-bit add.
 
 Mnemonic::
-th.vmaqa.vv _vd_, _vs1_, _vs2_
+th.vmaqa.vv _vd_, _vs2_, _vs1_
 
 Encoding::
 [wavedrom, , svg]
