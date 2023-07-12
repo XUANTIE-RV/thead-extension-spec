@@ -34,6 +34,8 @@ The collection consists of the following ISA extensions:
 * `XTheadMemPair` provides two-GP-register memory operations.
 * `XTheadFMemIdx` provides floating-point memory operations.
 * `XTheadMac` provides multiply-accumulate instructions.
+* `XTheadFmv` provides double floating-point high-bit data transmission instructions.
+* `XTheadInt` provides acceleration interruption instructions.
 * `XTheadVdot` provides instructions for vector dot.
 
 === Dependencies to standard extensions
