@@ -2,7 +2,7 @@
 ==== th.srri
 
 Synopsis::
-Perform a cyclic right shift.
+Rotate Right (by Immediate)
 
 Mnemonic::
 th.srri _rd_, _rs1_, _imm6_
@@ -16,20 +16,21 @@ Encoding::
     { bits:  3, name: 0x1, attr: ['Arithmetic'] },
     { bits:  5, name: 'rs1' },
     { bits:  6, name: 'imm6' },
-    { bits:  6, name: 0x04 },
+    { bits:  6, name: 0x04, attr: ['SRRI'] },
 ]}
 ....
 
 Description::
-This operation rotates the contents of _rs1_ by _imm6_ bits and stores the result in _rd_.
+This performs a rotate right of _rs1_ by least significant log2(XLEN) bits of _imm6_ and stores the result in _rd_.
 
-Operation::
+Operation (SAIL)::
 [source,sail]
 --
-if (xlen == 32)
-  imm6 &= 0x1f
-
-reg[rd] := (reg[rs1] >> imm6) | (reg[rs1] << (xlen - imm6))
+let rs1_val = X(rs1);
+let result : xlenbits = if sizeof(xlen) == 32
+                        then rs1_val >>> imm6[4..0]
+                        else rs1_val >>> imm5;
+X(rd) = result;
 --
 
 Permission::
