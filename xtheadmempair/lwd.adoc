@@ -38,7 +38,7 @@ Operation::
 if (rs1 != rd1 && rs != rd2 && rd1 != rd2) {
     addr := rs1 + (zero_extend(imm2) << 3)
     tmp1 := sign_extend(mem[addr+3:addr])
-    tmp2 := sign_extend(mem[addr+7:addr+3])
+    tmp2 := sign_extend(mem[addr+7:addr+4])
     (reg[rd1], reg[rd2]) := (tmp1, tmp2)
 }
 --

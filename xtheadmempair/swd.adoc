@@ -35,7 +35,7 @@ Operation::
 --
 addr := rs1 + (zero_extend(imm2) << 3)
 mem[addr+3:addr] := reg[rd1][31:0]
-mem[addr+7:addr+3] := reg[rd2][31:0]
+mem[addr+7:addr+4] := reg[rd2][31:0]
 --
 
 Permission::
