@@ -47,16 +47,16 @@ The table below gives an overview of the instructions:
 | Y    | Y    | th.srh    _rd_, _rs1_, _rs2_, _imm2_    | <<#xtheadmemidx-insns-srh>>
 | Y    | Y    | th.srw    _rd_, _rs1_, _rs2_, _imm2_    | <<#xtheadmemidx-insns-srw>>
 | N    | Y    | th.srd    _rd_, _rs1_, _rs2_, _imm2_    | <<#xtheadmemidx-insns-srd>>
-| Y    | Y    | th.lurb   _rd_, _rs1_, _rs2_, _imm2_    | <<#xtheadmemidx-insns-lurb>>
-| Y    | Y    | th.lurbu  _rd_, _rs1_, _rs2_, _imm2_    | <<#xtheadmemidx-insns-lurbu>>
-| Y    | Y    | th.lurh   _rd_, _rs1_, _rs2_, _imm2_    | <<#xtheadmemidx-insns-lurh>>
-| Y    | Y    | th.lurhu  _rd_, _rs1_, _rs2_, _imm2_    | <<#xtheadmemidx-insns-lurhu>>
-| Y    | Y    | th.lurw   _rd_, _rs1_, _rs2_, _imm2_    | <<#xtheadmemidx-insns-lurw>>
+| N    | Y    | th.lurb   _rd_, _rs1_, _rs2_, _imm2_    | <<#xtheadmemidx-insns-lurb>>
+| N    | Y    | th.lurbu  _rd_, _rs1_, _rs2_, _imm2_    | <<#xtheadmemidx-insns-lurbu>>
+| N    | Y    | th.lurh   _rd_, _rs1_, _rs2_, _imm2_    | <<#xtheadmemidx-insns-lurh>>
+| N    | Y    | th.lurhu  _rd_, _rs1_, _rs2_, _imm2_    | <<#xtheadmemidx-insns-lurhu>>
+| N    | Y    | th.lurw   _rd_, _rs1_, _rs2_, _imm2_    | <<#xtheadmemidx-insns-lurw>>
 | N    | Y    | th.lurwu  _rd_, _rs1_, _rs2_, _imm2_    | <<#xtheadmemidx-insns-lurwu>>
 | N    | Y    | th.lurd   _rd_, _rs1_, _rs2_, _imm2_    | <<#xtheadmemidx-insns-lurd>>
-| Y    | Y    | th.surb   _rd_, _rs1_, _rs2_, _imm2_    | <<#xtheadmemidx-insns-surb>>
-| Y    | Y    | th.surh   _rd_, _rs1_, _rs2_, _imm2_    | <<#xtheadmemidx-insns-surh>>
-| Y    | Y    | th.surw   _rd_, _rs1_, _rs2_, _imm2_    | <<#xtheadmemidx-insns-surw>>
+| N    | Y    | th.surb   _rd_, _rs1_, _rs2_, _imm2_    | <<#xtheadmemidx-insns-surb>>
+| N    | Y    | th.surh   _rd_, _rs1_, _rs2_, _imm2_    | <<#xtheadmemidx-insns-surh>>
+| N    | Y    | th.surw   _rd_, _rs1_, _rs2_, _imm2_    | <<#xtheadmemidx-insns-surw>>
 | N    | Y    | th.surd   _rd_, _rs1_, _rs2_, _imm2_    | <<#xtheadmemidx-insns-surd>>
 |===
 
