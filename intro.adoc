@@ -37,6 +37,7 @@ The collection consists of the following ISA extensions:
 * `XTheadFmv` provides double floating-point high-bit data transmission instructions.
 * `XTheadInt` provides acceleration interruption instructions.
 * `XTheadVdot` provides instructions for vector dot.
+* `XTheadVector` provides instructions for thead vector.
 
 === Dependencies to standard extensions
 
