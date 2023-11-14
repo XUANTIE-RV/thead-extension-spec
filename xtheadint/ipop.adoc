@@ -5,7 +5,7 @@ Synopsis::
 Pop register context from the interrupt stack
 
 Mnemonic::
-ipop
+th.ipop
 
 Encoding::
 [wavedrom, , svg]

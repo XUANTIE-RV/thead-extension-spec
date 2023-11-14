@@ -5,7 +5,7 @@ Synopsis::
 Pushes register context on the interrupt stack
 
 Mnemonic::
-ipush
+th.ipush
 
 Encoding::
 [wavedrom, , svg]
