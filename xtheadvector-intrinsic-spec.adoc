@@ -17,7 +17,7 @@ For example, the v1.0 version should define the macro with value `1000000`.
 
 === Availability
 
-With `<riscv_th_vector.h>` included, availability of intrinsic variants depends on the required architecture of their corresponding xtheadvector instructions. The supported architecture is specified to the compiler using the `-march` option ^2,3^.
+With `<riscv_th_vector.h>` included, availability of intrinsic variants depends on the required architecture of their corresponding xtheadvector instructions. The supported architecture is specified to the compiler using the `-march` option.
 
 We suggest guarding the inclusion with the test macro.
 
