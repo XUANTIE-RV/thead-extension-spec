@@ -21,7 +21,7 @@ Encoding::
 ....
 
 Description::
-This instruction stores the contents of the specified 32-bit GP register _fd_ in the upper 32-bit of the specified double-precision FP register _rs1_.
+This instruction stores the contents of the specified 32-bit GP register _rs1_ in the upper 32-bit of the specified double-precision FP register _fd_.
 
 Operation::
 [source,sail]
