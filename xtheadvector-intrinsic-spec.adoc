@@ -1,7 +1,8 @@
 == Vendor extension support
 === Introduction
-The RISC-V XTheadVector C intrinsics provide users interfaces in the C language level to directly leverage https://github.com/T-head-Semi/thead-extension-spec/[XTheadVector specification], with assistance from the compiler in handling instruction scheduling and register allocation. The intrinsics also aim to free users from responsibility of maintaining the correct configuration settings ^18^ for the xtheadvector instruction executions.
-The XTheadVector intrinsics support all RVV intrinsic functions with the restriction of missing support for fractional LMUL values (https://github.com/riscv-non-isa/rvv-intrinsic-doc). Additionally, the XTheadVector extension intrinsics API extends the RVV intrinsics API by new load/store functions and integer extract functions (https://github.com/T-head-Semi/thead-extension-spec/blob/master/additional_intrinsic_functions_for_xtheadvector.adoc).
+The RISC-V XTheadVector C intrinsics provide users interfaces in the C language level to directly leverage https://github.com/T-head-Semi/thead-extension-spec/[XTheadVector specification], with assistance from the compiler in handling instruction scheduling and register allocation.
+
+The XTheadVector intrinsics support all RVV intrinsic functions with the restriction of missing support for fractional LMUL values (https://github.com/riscv-non-isa/rvv-intrinsic-doc). Additionally, the XTheadVector extension intrinsics API extends the RVV intrinsics API by new load/store functions and integer extract functions (https://github.com/T-head-Semi/thead-extension-spec/blob/master/[additional_intrinsic_functions_for_xtheadvector.adoc]).
 
 === Test macro
 The `__riscv_th_v_intrinsic` macro is the C macro to test the compiler's support for the RISC-V "XTheadVector" extension intrinsics. The API extension is optional and targeting the vendor extension XTheadVector.
