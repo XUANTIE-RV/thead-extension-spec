@@ -19,7 +19,7 @@ The `XTheadVector` extension is only available if and only if all of the followi
 These conditions not only reliably identify existing CPUs with XTheadVector (C906V, C920, and R920),
 but also ensure that future T-Head CPUs without XTheadVector won't be falsely detected (in this case `mimpid` won't be `0`).
 
-The instructions set of `XTheadVector` overlaps with the Vector Extension, v0.7.1(https://github.com/riscv/riscv-v-spec/releases/tag/0.7.1). But here are some changes:
+The instructions set of `XTheadVector` overlaps with the `V` Extension v0.7.1(https://github.com/riscv/riscv-v-spec/releases/tag/0.7.1). But here are some changes:
 
 * In order to facilitate VLEN calculation, The `XTheadVector` extension adopts the definition of the `V` extension to add VLENB unprivileged register `th.vlenb`.
 * The five unprivileged CSRs `vstart`, `vxsat`, `vxrm`, `vl` and `vtype` are prefixed with `th.`, for example, `vstart` is changed to `th.vstart`.
@@ -27,3 +27,20 @@ The instructions set of `XTheadVector` overlaps with the Vector Extension, v0.7.
 * The extension `Zvamo` is renamed to `XTheadZvamo`.
 * The extension `Zvlsseg` (chapter 7.8) is not a subextension but a mandatory part of XTheadVector.
 * The Chapter `19. Divided Element Extension ('Zvediv')` is not part of XTheadVector.
+
+While similar to the `V` Extension v0.7.1, `XTheadVector` still exhibits some distinctions when compared to the `V` Extension v1.0 (available at github.com/riscv/riscv-v-spec/releases/tag/v1.0). Here is a comprehensive list of the differences:
+
+* Different encoding of vsetvl/th.vsetvl.
+* No vsetivli instruction.
+* Cannot configure vta and vma vsetvl instruction, the fixed value is TAMU.
+* No whole register move instructions.
+* No fractional lmul.
+* Different load/store instructions.
+* Different name of vector indexed instructions.
+* Destination vector register cannot overlap source vector register group for vmadc/vmsbc/widen arithmetic/narrow arithmetic.
+* No vlm/vsm instructions.
+* Different vnsrl/vnsra/vfncvt suffix (vv/vx/vi vs wv/wx/wi).
+* No pseudo instruction vneg/vfneg.
+* Different size of mask mode (1.0 is vl and xtheadvector is vlen).
+
+The list of intrinsic functions for `XTheadVector` can be found in <<#intrinsics>>.
