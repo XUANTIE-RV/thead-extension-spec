@@ -27,6 +27,13 @@ The instructions set of `XTheadVector` overlaps with the `V` Extension v0.7.1(ht
 * The extension `Zvamo` is renamed to `XTheadZvamo`.
 * The extension `Zvlsseg` (chapter 7.8) is not a subextension but a mandatory part of XTheadVector.
 * The Chapter `19. Divided Element Extension ('Zvediv')` is not part of XTheadVector.
+* Beyond the instructions and pseudo instructions in the referenced specification, the following additional pseudo instructions are defined in order to improve compatibility with RVV 1.0:
+
+	th.vmmv.m vd,v          => th.vmand.mm vd,vs,vs
+	th.vneg.v vd,vs         => th.vrsub.vx vd,vs,x0
+	th.vncvt.x.x.v vd,vs,vm => th.vnsrl.vx vd,vs,x0,vm
+	th.vfneg.v vd,vs        => th.vfsgnjn.vv vd,vs,vs
+	th.vfabs.v vd,vs        => th.vfsgnjx.vv vd,vs,vs
 
 While similar to the `V` Extension v0.7.1, `XTheadVector` still exhibits some distinctions when compared to the `V` Extension v1.0 (available at github.com/riscv/riscv-v-spec/releases/tag/v1.0). Here is a comprehensive list of the differences:
 
@@ -40,7 +47,6 @@ While similar to the `V` Extension v0.7.1, `XTheadVector` still exhibits some di
 * Destination vector register cannot overlap source vector register group for vmadc/vmsbc/widen arithmetic/narrow arithmetic.
 * No vlm/vsm instructions.
 * Different vnsrl/vnsra/vfncvt suffix (vv/vx/vi vs wv/wx/wi).
-* No pseudo instruction vneg/vfneg.
 * Different size of mask mode (1.0 is vl and xtheadvector is vlen).
 
 The list of intrinsic functions for `XTheadVector` can be found in <<#intrinsics>>.
