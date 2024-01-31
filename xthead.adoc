@@ -50,3 +50,5 @@ include::xtheadvdot.adoc[]
 include::xtheadvector.adoc[]
 
 include::intrinsic.adoc[]
+
+include::xtheadmaee.adoc[]
