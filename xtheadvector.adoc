@@ -29,7 +29,7 @@ The instructions set of `XTheadVector` overlaps with the `V` Extension v0.7.1(ht
 * The Chapter `19. Divided Element Extension ('Zvediv')` is not part of XTheadVector.
 * Beyond the instructions and pseudo instructions in the referenced specification, the following additional pseudo instructions are defined in order to improve compatibility with RVV 1.0:
 
-	th.vmmv.m vd,v          => th.vmand.mm vd,vs,vs
+	th.vmmv.m vd,vs         => th.vmand.mm vd,vs,vs
 	th.vneg.v vd,vs         => th.vrsub.vx vd,vs,x0
 	th.vncvt.x.x.v vd,vs,vm => th.vnsrl.vx vd,vs,x0,vm
 	th.vfneg.v vd,vs        => th.vfsgnjn.vv vd,vs,vs
