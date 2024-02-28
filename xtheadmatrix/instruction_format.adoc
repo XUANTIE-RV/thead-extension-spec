@@ -1,0 +1,297 @@
+[#xtheadmatrix-instruction-format]
+=== Instruction Format
+
+Matrix instructions use custom-1 (0101011) as major opcode and the func3 is 3'b000.
+bit[26:25] is uop filed, indicating the operation type.
+
+[width="100%",cols="1,2,5",options="header",]
+|===
+|uop[1:0] |type |meaning
+|00 |Matrix-Matrix(mm)   |matrix computation, source and destination operands are matrix
+|01 |Matrix-Vector(mv.i) |matrix computation, one source operand is vector, row index provided by uimm3
+|10 |Matrix memory access |normal, streaming and whole regsiter loads/stores
+|11 |Matrix MISC   |special instructions and configuration instructions
+
+|===
+
+The instruction formats are:
+
+[width="100%",cols="2,2,2,1,2,1,1,1,2,2,2,2,6",options="header",]
+|===
+||31 27|26 25 |24 |23  21|20|19|18|17  15 |14 12 |11 10 |9 7 |6     0
+^|Calc|func |01/00|size| ms2 3+|ms1 | md/ms3 |func3 |size |uimm3 |major opcode
+^|Load/Store|func |10 3+|rs2 3+|rs1 |func3 |size |md/ms3 |major opcode
+.4+^|MISC
+|func |11 5+|uimm7 |0|func3 2+|rd|major opcode
+|func |11 3+|0 3+|rs1| func3 2+|rd|major opcode
+|func |11 5+|0 |md | func3 2+|0 |major opcode
+|func |11 3+|rs2 3+|rs1 |func3 |size |md/ms3 |major opcode
+|===
+
+
+==== Arithmetic Instructions
+
+The arithmetic instructions format:
+
+[width="99%",cols="1,1,1,1,1,1,1,1,1,2",options="header",]
+|===
+|31 28 |27 25 |24 |23 21 |20 18 |17 15 |14 12 |11 10 |9 7 |6 0
+|func |uop |size |ms2 |ms1 |md/ms3 |func3 |size |uimm3 |major opcode
+|===
+
+
+Size field indicates the element, set to 0 if not needed.
+
+[width="80%",cols=",",align="center",options="header",]
+|===
+|size[1:0] |element data width
+|00 |8-bit
+|01 |16-bit
+|10 |32-bit
+|11 |64-bit
+|===
+
+The instruction encoding list is in following tables.
+
+===== Matrix Move
+
+Move between matrix instructions and mzero(section 4.3.2) reuse arithmetic instruction format.
+|===
+|31 27 | 26 25 | 24 | 23 21 | 20 18 | 17 15 | 14 12 | 11 10 | 9 7 | 6 0 |
+| 00000 | 00 | 0 | 000 | ms1 | md | func3 | 00 | 001 | major opcode | th.mmov.mm
+| 00000 | 01 | 0 | 000 | ms1 | md | func3 | 00 | uimm3 | major opcode | th.mmov.mv.i
+|===
+
+===== Matrix Multiplication
+Matrix multiplication instructions use arithmetic instruction format where the func domain are 00001/00010.
+
+|===
+|31 27 | 26 25 | 24 | 23 21 | 20 18 | 17 15 | 14 12 | 11 10 | 9 7 | 6 0 |
+| 00001 | 00 | 0 | ms2 | ms1 | md/ms3 | func3 | 01 | 000 | major opcode | th.fmmacc.h
+| 00001 | 00 | 0 | ms2 | ms1 | md/ms3 | func3 | 10 | 000 | major opcode | th.fmmacc.s
+| 00001 | 00 | 0 | ms2 | ms1 | md/ms3 | func3 | 11 | 000 | major opcode | th.fmmacc.d
+| 00001 | 00 | 1 | ms2 | ms1 | md/ms3 | func3 | 01 | 000 | major opcode | th.fwmmacc.h
+| 00001 | 00 | 1 | ms2 | ms1 | md/ms3 | func3 | 10 | 000 | major opcode | th.fwmmacc.s
+| 00010 | 00 | 0 | ms2 | ms1 | md/ms3 | func3 | 00 | 000 | major opcode | th.mmaqa.b
+| 00010 | 00 | 0 | ms2 | ms1 | md/ms3 | func3 | 00 | 001 | major opcode | th.mmaqau.b
+| 00010 | 00 | 0 | ms2 | ms1 | md/ms3 | func3 | 00 | 010 | major opcode | th.mmaqaus.b
+| 00010 | 00 | 0 | ms2 | ms1 | md/ms3 | func3 | 00 | 011 | major opcode | th.mmaqasu.b
+| 00010 | 00 | 0 | ms2 | ms1 | md/ms3 | func3 | 01 | 000 | major opcode | th.mmaqa.h
+| 00010 | 00 | 0 | ms2 | ms1 | md/ms3 | func3 | 01 | 001 | major opcode | th.mmaqau.h
+| 00010 | 00 | 0 | ms2 | ms1 | md/ms3 | func3 | 01 | 010 | major opcode | th.mmaqaus.h
+| 00010 | 00 | 0 | ms2 | ms1 | md/ms3 | func3 | 01 | 011 | major opcode | th.mmaqasu.h
+|===
+
+===== Integer Pointwise
+
+Integer pointwise instructions use arithmetic instruction format where the func domains are 00011/00100/00101/00110/00111/01000/01001/01010/01011/01100/01101/01110/01111.
+
+|===
+|31 27 | 26 25 | 24 | 23 21 | 20 18 | 17 15 | 14 12 | 11 10 | 9 7 | 6 0 |
+|00011	|00 |0|	ms2|ms1|md|func3|10|	000	|major opcode|	th.madd.s.mm
+|00011	|01 |0|	ms2|ms1|md|func3|10|	uimm3	|major opcode|	th.madd.s.mv.i
+|00100	|00 |0|	ms2|ms1|md|func3|10|	000	|major opcode|	th.msub.s.mm
+|00100	|01 |0|	ms2|ms1|md|func3|10|	uimm3	|major opcode|	th.msub.s.mv.i
+|00101	|00 |0|	ms2|ms1|md|func3|10|	000	|major opcode|	th.msra.s.mm
+|00101	|01 |0|	ms2|ms1|md|func3|10|	uimm3	|major opcode|	th.msra.s.mv.i
+|00110	|00 |0|	ms2|ms1|md|func3|10|	000	|major opcode|	th.msrl.s.mm
+|00110	|01 |0|	ms2|ms1|md|func3|10|	uimm3	|major opcode|	th.msrl.s.mv.i
+|00111	|00 |0|	ms2|ms1|md|func3|10|	000	|major opcode|	th.msll.s.mm
+|00111	|01 |0|	ms2|ms1|md|func3|10|	uimm3	|major opcode|	th.msll.s.mv.i
+|01000	|00 |0|	ms2|ms1|md|func3|10|	000	|major opcode|	th.mn4clip.s.mm
+|01000	|01 |0|	ms2|ms1|md|func3|10|	uimm3	|major opcode|	th.mn4clip.s.mv.i
+|01001	|00 |0|	ms2|ms1|md|func3|10|	000	|major opcode|	th.mn4clipu.s.mm
+|01001	|01 |0|	ms2|ms1|md|func3|10|	uimm3	|major opcode|	th.mn4clipu.s.mv.i
+|01010	|00 |0|	ms2|ms1|md|func3|10|	000	|major opcode|	th.mmul.s.mm
+|01010	|10 |0|	ms2|ms1|md|func3|10|	uimm3	|major opcode|	th.mmul.s.mv.i
+|01011	|00 |0|	ms2|ms1|md|func3|10|	000	|major opcode|	th.mmulh.s.mm
+|01011	|01 |0|	ms2|ms1|md|func3|10|	uimm3	|major opcode|	th.mmulh.s.mv.i
+|01100	|00 |0|	ms2|ms1|md|func3|10|	000	|major opcode|	th.mmax.s.mm
+|01100	|01 |0|	ms2|ms1|md|func3|10|	uimm3	|major opcode|	th.mmax.s.mv.i
+|01101	|00 |0|	ms2|ms1|md|func3|10|	000	|major opcode|	th.mumax.s.mm
+|01101	|01 |0|	ms2|ms1|md|func3|10|	uimm3	|major opcode|	th.mumax.s.mv.i
+|01110	|00 |0|	ms2|ms1|md|func3|10|	000	|major opcode|	th.mmin.s.mm
+|01110	|01 |0|	ms2|ms1|md|func3|10|	uimm3	|major opcode|	th.mmin.s.mv.i
+|01111	|00 |0|	ms2|ms1|md|func3|10|	000	|major opcode|	th.mumin.s.mm
+|01111	|01 |0|	ms2|ms1|md|func3|10|	uimm3	|major opcode|	th.mumin.s.mv.i
+|00011	|00 |0|	ms2|ms1|md|func3|11|	000	|major opcode|	th.madd.d.mm
+|00011	|01 |0|	ms2|ms1|md|func3|11|	uimm3	|major opcode|	th.madd.d.mv.i
+|00100	|00 |0|	ms2|ms1|md|func3|11|	000	|major opcode|	th.msub.d.mm
+|00100	|01 |0|	ms2|ms1|md|func3|11|	uimm3	|major opcode|	th.msub.d.mv.i
+|00101	|00 |0|	ms2|ms1|md|func3|11|	000	|major opcode|	th.msra.d.mm
+|00101	|01 |0|	ms2|ms1|md|func3|11|	uimm3	|major opcode|	th.msra.d.mv.i
+|00110	|00 |0|	ms2|ms1|md|func3|11|	000	|major opcode|	th.msrl
+|00110	|01 |0|	ms2|ms1|md|func3|11|	uimm3	|major opcode|	th.msrl
+|00111	|00 |0|	ms2|ms1|md|func3|11|	000	|major opcode|	th.msll
+|00111	|01 |0|	ms2|ms1|md|func3|11|	uimm3	|major opcode|	th.msll
+|01000	|00 |0|	ms2|ms1|md|func3|11|	000	|major opcode|	th.mn4clip.d.mm
+|01000	|01 |0|	ms2|ms1|md|func3|11|	uimm3	|major opcode|	th.mn4clip.d.mv.i
+|01001	|00 |0|	ms2|ms1|md|func3|11|	000	|major opcode|	th.mn4clipu.d.mm
+|01001	|01 |0|	ms2|ms1|md|func3|11|	uimm3	|major opcode|	th.mn4clipu.d.mv.i
+|01010	|00 |0|	ms2|ms1|md|func3|11|	000	|major opcode|	th.mmul.d.mm
+|01010	|01 |0|	ms2|ms1|md|func3|11|	uimm3	|major opcode|	th.mmul.d.mv.i
+|01011	|00 |0|	ms2|ms1|md|func3|11|	000	|major opcode|	th.mmulh.d.mm
+|01011	|01 |0|	ms2|ms1|md|func3|11|	uimm3	|major opcode|	th.mmulh.d.mv.i
+|01100	|00 |0|	ms2|ms1|md|func3|11|	000	|major opcode|	th.mmax.d.mm
+|01100	|01 |0|	ms2|ms1|md|func3|11|	uimm3	|major opcode|	th.mmax.d.mv.i
+|01101	|00 |0|	ms2|ms1|md|func3|11|	000	|major opcode|	th.mumax.d.mm
+|01101	|01 |0|	ms2|ms1|md|func3|11|	uimm3	|major opcode|	th.mumax.d.mv.i
+|01110	|00 |0|	ms2|ms1|md|func3|11|	000	|major opcode|	th.mmin.d.mm
+|01110	|01 |0|	ms2|ms1|md|func3|11|	uimm3	|major opcode|	th.mmin.d.mv.i
+|01111	|00 |0|	ms2|ms1|md|func3|11|	000	|major opcode|	th.mumin.d.mm
+|01111	|01 |0|	ms2|ms1|md|func3|11|	uimm3	|major opcode|	th.mumin.d.mv.i
+|===
+
+===== Float Pointwise
+
+Float pointwise instructions use arithmetic instruction format where the func domains are 10000/10001/10010/10011/10100/10101.
+
+|===
+|31 27 | 26 25 | 24 | 23 21 | 20 18 | 17 15 | 14 12 | 11 10 | 9 7 | 6 0 |
+|10000|	00|	0|	ms2|	ms1|	md|	func3|	01|	000	|major opcode	|th.mfadd.h.mm
+|10000|	01|	0|	ms2|	ms1|	md|	func3|	01|	uimm3	|major opcode	|th.mfadd.h.mv.i
+|10000|	00|	1|	ms2|	ms1|	md|	func3|	01|	000	|major opcode	|th.mfwadd.h.mm
+|10000|	01|	1|	ms2|	ms1|	md|	func3|	01|	uimm3	|major opcode	|th.mfwadd.h.mv.i
+|10001|	00|	0|	ms2|	ms1|	md|	func3|	01|	000	|major opcode	|th.mfsub.h.mm
+|10001|	01|	0|	ms2|	ms1|	md|	func3|	01|	uimm3	|major opcode	|th.mfsub.h.mv.i
+|10001|	00|	1|	ms2|	ms1|	md|	func3|	01|	000	|major opcode	|th.mfwsub.h.mm
+|10001|	01|	1|	ms2|	ms1|	md|	func3|	01|	uimm3	|major opcode	|th.mfwsub.h.mv.i
+|10010|	00|	0|	ms2|	ms1|	md|	func3|	01|	000	|major opcode	|th.mfmul.h.mm
+|10010|	01|	0|	ms2|	ms1|	md|	func3|	01|	uimm3	|major opcode	|th.mfmul.h.mv.i
+|10010|	00|	1|	ms2|	ms1|	md|	func3|	01|	000	|major opcode	|th.mfwmul.h.mm
+|10010|	01|	1|	ms2|	ms1|	md|	func3|	01|	uimm3	|major opcode	|th.mfwmul.h.mv.i
+|10011|	00|	0|	ms2|	ms1|	md|	func3|	01|	000	|major opcode	|th.mfmax.h.mm
+|10011|	01|	0|	ms2|	ms1|	md|	func3|	01|	uimm3	|major opcode	|th.mfmax.h.mv.i
+|10100|	00|	0|	ms2|	ms1|	md|	func3|	01|	000	|major opcode	|th.mfmin.h.mm
+|10100|	01|	0|	ms2|	ms1|	md|	func3|	01|	uimm3	|major opcode	|th.mfmin.h.mv.i
+|10000|	00|	0|	ms2|	ms1|	md|	func3|	10|	000	|major opcode	|th.mfadd.s.mm
+|10000|	01|	0|	ms2|	ms1|	md|	func3|	10|	uimm3	|major opcode	|th.mfadd.s.mv.i
+|10000|	00|	1|	ms2|	ms1|	md|	func3|	10|	000	|major opcode	|th.mfwadd.s.mm
+|10000|	01|	1|	ms2|	ms1|	md|	func3|	10|	uimm3	|major opcode	|th.mfwadd.s.mv.i
+|10001|	00|	0|	ms2|	ms1|	md|	func3|	10|	000	|major opcode	|th.mfsub.s.mm
+|10001|	01|	0|	ms2|	ms1|	md|	func3|	10|	uimm3	|major opcode	|th.mfsub.s.mv.i
+|10001|	00|	1|	ms2|	ms1|	md|	func3|	10|	000	|major opcode	|th.mfwsub.s.mm
+|10001|	01|	1|	ms2|	ms1|	md|	func3|	10|	uimm3	|major opcode	|th.mfwsub.s.mv.i
+|10010|	00|	0|	ms2|	ms1|	md|	func3|	10|	000	|major opcode	|th.mfmul.s.mm
+|10010|	01|	0|	ms2|	ms1|	md|	func3|	10|	uimm3	|major opcode	|th.mfmul.s.mv.i
+|10010|	00|	1|	ms2|	ms1|	md|	func3|	10|	000	|major opcode	|th.mfwmul.s.mm
+|10010|	01|	1|	ms2|	ms1|	md|	func3|	10|	uimm3	|major opcode	|th.mfwmul.s.mv.i
+|10011|	00|	0|	ms2|	ms1|	md|	func3|	10|	000	|major opcode	|th.mfmax.s.mm
+|10011|	01|	0|	ms2|	ms1|	md|	func3|	10|	uimm3	|major opcode	|th.mfmax.s.mv.i
+|10100|	00|	0|	ms2|	ms1|	md|	func3|	10|	000	|major opcode	|th.mfmin.s.mm
+|10100|	01|	0|	ms2|	ms1|	md|	func3|	10|	uimm3	|major opcode	|th.mfmin.s.mv.i
+|10000|	00|	0|	ms2|	ms1|	md|	func3|	11|	000	|major opcode	|th.mfadd.d.mm
+|10000|	01|	0|	ms2|	ms1|	md|	func3|	11|	uimm3	|major opcode	|th.mfadd.d.mv.i
+|10001|	00|	0|	ms2|	ms1|	md|	func3|	11|	000	|major opcode	|th.mfsub.d.mm
+|10001|	01|	0|	ms2|	ms1|	md|	func3|	11|	uimm3	|major opcode	|th.mfsub.d.mv.i
+|10010|	00|	0|	ms2|	ms1|	md|	func3|	11|	000	|major opcode	|th.mfmul.d.mm
+|10010|	01|	0|	ms2|	ms1|	md|	func3|	11|	uimm3	|major opcode	|th.mfmul.d.mv.i
+|10011|	00|	0|	ms2|	ms1|	md|	func3|	11|	000	|major opcode	|th.mfmax.d.mm
+|10011|	01|	0|	ms2|	ms1|	md|	func3|	11|	uimm3	|major opcode	|th.mfmax.d.mv.i
+|10100|	00|	0|	ms2|	ms1|	md|	func3|	11|	000	|major opcode	|th.mfmin.d.mm
+|10100|	01|	0|	ms2|	ms1|	md|	func3|	11|	uimm3	|major opcode	|th.mfmin.d.mv.i
+|10101|	00|	0|	000|	ms1|	md|	func3|	10|	000	|major opcode	|th.mfncvt.s.mm
+|10101|	00|	0|	000|	ms1|	md|	func3|	11|	000	|major opcode	|th.mfncvt.d.mm
+|10101|	00|	0|	000|	ms1|	md|	func3|	01|	001	|major opcode	|th.mfwcvt.h.mm
+|10101|	00|	0|	000|	ms1|	md|	func3|	10|	001	|major opcode	|th.mfwcvt.s.mm
+|===
+
+=====  Float Integer Conversion
+
+Float integer conversion instructions use arithmetic instruction format where the func domains are 10110.
+
+|===
+|31 27 | 26 25 | 24 | 23 21 | 20 18 | 17 15 | 14 12 | 11 10 | 9 7 | 6 0 |
+|10110	|00	|0	|000	|ms1	|md	|func3	|10	|000	|major opcode	|th.mufcvt.w.mm
+|10110	|00	|0	|000	|ms1	|md	|func3	|00	|001	|major opcode	|th.mufwcvt.b.mm
+|10110	|00	|0	|000	|ms1	|md	|func3	|10	|100	|major opcode	|th.msfcvt.w.mm
+|10110	|00	|0	|000	|ms1	|md	|func3	|00	|101	|major opcode	|th.msfwcvt.b.mm
+|10110	|00	|0	|001	|ms1	|md	|func3	|10	|000	|major opcode	|th.mfucvt.s.mm
+|10110	|00	|0	|001	|ms1	|md	|func3	|01	|001	|major opcode	|th.mfuncvt.h.mm
+|10110	|00	|0	|001	|ms1	|md	|func3	|10	|100	|major opcode	|th.mfscvt.s.mm
+|10110	|00	|0	|001	|ms1	|md	|func3	|01	|101	|major opcode	|th.mfsncvt.h.mm
+|===
+
+==== Matrix Load/Store Instructions
+
+The matrix load/store instruction format:
+
+[width="100%",cols="1,1,1,1,1,1,1,2",options="header",]
+|===
+|31 27 |26 25 |24 20 |19 15 |14 12 |11 10 |9 7 |6  0
+|func |10 |rs2 |rs1 |func3 |size |md/ms3 |major opcode
+|===
+bit[27] = 1 indicates store operations, while bit[27] = 0 indicates load operations. bit[28] = 1 indicates streaming memory access and bit[29]=1 indicates whole register memory access.
+
+
+[width="99%",cols="1,1,1,1,1,1,1,2,3",options="header",]
+|===
+|31 27 |26 25 |24 20 |19 15 |14 12 |11 10 |9 7 |6 0 |
+|00000	|10|	rs2	|rs1	|func3	|size	|md	|major opcode	|th.mld<b/h/w/d>
+|00001	|10|	rs2	|rs1	|func3	|size	|ms3	|major opcode	|th.mst<b/h/w/d>
+|00010	|10|	rs2	|rs1	|func3	|size	|md	|major opcode	|th.mld.<b/h/w/d>.s
+|00011	|10|	rs2	|rs1	|func3	|size	|ms3	|major opcode	|th.mst.<b/h/w/d>.s
+|00100	|10|	{00,nf}	|rs1	|func3	|size	|md	|major opcode	|th.mld<1/2/4/8>m<b/h/w/d>
+|00101	|10|	{00,nf}	|rs1	|func3	|size	|md	|major opcode	|th.mst<1/2/4/8>m <b/h/w/d>
+|===
+
+==== Other Instructions
+
+===== configuration
+
+The uop of configuration instructions is 2'b11.
+
+[width="99%",cols="1,1,1,1,1,1,1,2,2",options="header",]
+|===
+|31 |30 27 |26 25 |24 20 |19 15 |14 12 |11 7 |6 0 |
+| 0 | 0001 | 11 2+| {uimm7,000} | func3 | rd | major opcode | th.mcfgki
+| 0 | 0011 | 11 2+| {uimm7,000} | func3 | rd | major opcode | th.mcfgmi
+| 0 | 0101 | 11 2+| {uimm7,000} | func3 | rd | major opcode | th.mcfgni
+| 1 | 0001 | 1 | 00000 | rs1 | func3 | rd | major opcode | th.mcfgk
+| 1 | 0011 | 11 | 00000 | rs1 | func3 | rd | major opcode | th.mcfgm
+| 1 | 0101 | 11 | 00000 | rs1 | func3 | rd | major opcode | th.mcfgn
+| 1 | 1111 | 11 | 00000 | rs1 | func3 | rd | major opcode | th.mcfg
+|===
+
+===== mzero
+The mzero instruction shares the 2'b00 uop with the arithmetic instructions.
+[width="99%",cols="1,1,1,1,1,1,1,1,1,2,2",options="header",]
+|===
+|31 27 |26 25 |24 |23 21 |20 18 |17 15 |14 12 |11 10 |9 7 |6 0|
+|11111 |00 |0 |000 |000 |md |func3 |00 |000 |major code |th.mzero
+|===
+
+===== mrelease
+
+The mrelease instruction uses the configuration 2'b11 uop.
+
+[width="99%",cols="1,1,1,1,1,1,1,2,2",options="header",]
+|===
+|31 |30 27 |26 25 |24 20 |19 15 |14 12 |11 7 |6 0 |
+| 0 | 1111 | 11 | 00000 | 00000 | func3 | 00000 | major opcode | th.mrelease
+|===
+
+===== move from matrix
+[width="99%",cols="1,1,1,1,1,1,1,1,2,2",options="header",]
+|===
+|31 27 |26 25 |24 |23 21 |20 |19 15 |14 12 |11 7 |6 0 |
+| 00000 | 11 | 0 | ms2 | 0 | rs1 | func3 | rd | major opcode | th.mmovb.x.m
+| 00000 | 11 | 0 | ms2 | 1 | rs1 | func3 | rd | major opcode | th.mmovh.x.m
+| 00000 | 11 | 1 | ms2 | 0 | rs1 | func3 | rd | major opcode | th.mmovw.x.m
+| 00000 | 11 | 1 | ms2 | 1 | rs1 | func3 | rd | major opcode | th.mmovd.x.m
+|===
+
+===== move GPR to matrix
+[width="99%",cols="1,1,1,1,1,1,1,2,2",options="header",]
+|===
+|31 28 |27 25 |24 20 |19 15 |14 12 |11 10 |9 7 |6 0 |
+| 00010 | 11 | rs2 | 0000 | func3 | 00 | md | major opcode | th.mdupb.m.x
+| 00010 | 11 | rs2 | 0000 | func3 | 01 | md | major opcode | th.mduph.m.x
+| 00010 | 11 | rs2 | 0000 | func3 | 10 | md | major opcode | th.mdupw.m.x
+| 00010 | 11 | rs2 | 0000 | func3 | 11 | md | major opcode | th.mdupd.m.x
+| 00100 | 11 | rs2 | rs1 | func3 | 00 | md | major opcode | th.mmovb.m.x
+| 00100 | 11 | rs2 | rs1 | func3 | 01 | md | major opcode | th.mmovh.m.x
+| 00100 | 11 | rs2 | rs1 | func3 | 10 | md | major opcode | th.mmovw.m.x
+| 00100 | 11 | rs2 | rs1 | func3 | 11 | md | major opcode | th.mmovd.m.x
+|===
+

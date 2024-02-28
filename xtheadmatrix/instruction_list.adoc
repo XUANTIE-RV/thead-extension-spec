@@ -1,0 +1,62 @@
+[#xtheadmatrix-instruction-list]
+=== Instruction List
+
+There are 39 instructions extended for matrix, some are optional for hardware implementations.
+
+[width="100%",cols="1,2,4",options="header",]
+|===
+|catagory |instructions |
+.10+^|matrix multiplication(10)
+|th.fmmacc. |float matrix multiplication
+|th.fwmmacc. |float widen matrix multiplication
+|th.mmaqa. |signed integer 4x matrix multiplication
+|th.mmaqau. |unsigned integer 4x matrix multiplication
+|th.mmaqasu. |signed-unsigned integer 4x matrix multiplication
+|th.mmaqaus. |unsigned-signed integer 4x matrix multiplication
+|th.pmmaqa. |int4 signed integer matrix multiplication
+|th.pmmaqau. |int4 unsigned integer matrix multiplication
+|th.pmmaqasu. |int4 signed -unsigned integer matrix multiplication
+|th.pmmaqaus. |int4 unsigned -signed integer matrix multiplication
+.6+^|matrix load/store(6)
+|th.mld.<b/h/w/d> |matrix load to matrix registers
+|th.mst.<b/h/w/d> |matrix store from matrix registers
+|th.mld.<b/h/w/d>.s|stream load to matrix registers
+|th.mst.<b/h/w/d>.s|stream matrix store from matrix registers
+|th.mld<1/2/4/8>m.<b/h/w/d> |load to whole matrix register
+|th.mst<1/2/4/8>m.<b/h/w/d> |store to whole matrix register
+^|matrix movement(1)
+|th.mmov.mm/th.mmov.mv.x
+th.mmov.mv.i/
+th.mmov.<b/h/w/d>.m.x/
+th.mdup.<b/h/w/d>.m.x/
+th.mmov.<b/h/w/d>.x.m
+|move from/to matrix registers
+ .7+^|matrix integer pointwise arithmetic (7)
+|th.madd/msub.<s/d>.<mm/mv>.<i> |
+|th.mshift.<s/d>.<mm/mv>.<i> |
+|th.mn4clip.<s/d>.<mm/mv>.<i> |
+|th.mn4clipu.<s/d>.<mm/mv>.<i> |
+|th.mmul.<s/d>.<mm/mv>.<i> |
+|th.mmulh.<s/d>.<mm/mv>.<i> |
+|th.mmax/mmin/mumax/mumin/<s/d>.<mm/mv>.<i> |
+ .7+^|matrix float pointwise arithmetic (7)
+|th.mfadd/mfsub.<h/s/d>.<mm/mv>.<i> |
+|th.mfwadd/mfwsub.<h/s>.<mm/mv>.<i> |
+|th.mfmul.<h/s/d>.<mm/mv>.<i> |
+|th.mfwmul.<h/s>.<mm/mv>.<i> |
+|th.mfmax/mfmin.<h/s/d>.<mm/mv>.<i>|
+|th.mfncvt.<s/d>.mm |
+|th.mfwcvt.<h/s>.mm|
+ .4+^|matrix float integer conversion (4)
+|th.mufcvt/msfcvt.s.mm|
+|th.mufwcvt/msfwcvt.b.mm |
+|th.mfucvt/mfscvt.s.mm |
+|th.mfuncvt/mfsncvt.b.mm |
+.2+^|configuration(2)
+|th.mcfgi |
+|th.mcfg |
+.2+^|others(2)
+|th.mrelease |clear ms to CLEAN
+|th.mzero|
+|===
+
