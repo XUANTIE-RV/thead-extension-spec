@@ -17,6 +17,13 @@ The table below gives an overview of the instructions:
 | Y    | Y    | th.addsl _rd_, _rs1_, _rs2_, _imm2_ | <<#xtheadba-insns-addsl>>
 |===
 
+=== Availability
+
+The `XTheadBa` extension's availability can be probed via the
+`th.sxstatus`.THEADISAEE bit (bit 22).
+The `XTheadBa` extension is available if and only if this bit is `1`.
+Refer to <<#xtheadsxstatus>> for more information about the `th.sxstatus` CSR.
+
 [#xtheadba-insns,reftext="Instructions"]
 === Instructions
 include::xtheadba/addsl.adoc[]

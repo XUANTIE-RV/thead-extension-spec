@@ -20,6 +20,13 @@ The table below gives an overview of the instructions:
 | Y    | Y    | th.swd  _rd1_, _rd2_, (_rs1_), _imm2_, 3 | <<#xtheadmempair-insns-swd>>
 |===
 
+=== Availability
+
+The `XTheadMemPair` extension's availability can be probed via the
+`th.sxstatus`.THEADISAEE bit (bit 22).
+The `XTheadMemPair` extension is available if and only if this bit is `1`.
+Refer to <<#xtheadsxstatus>> for more information about the `th.sxstatus` CSR.
+
 [#xtheadmempair-insns,reftext="Instructions"]
 === Instructions
 include::xtheadmempair/ldd.adoc[]

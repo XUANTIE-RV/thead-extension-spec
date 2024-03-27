@@ -21,6 +21,13 @@ The table below gives an overview of the instructions:
 | Y    | Y    | th.mulsw _rd_, _rs1_, _rs2_ | <<#xtheadmac-insns-mulsw>>
 |===
 
+=== Availability
+
+The `XTheadMac` extension's availability can be probed via the
+`th.sxstatus`.THEADISAEE bit (bit 22).
+The `XTheadMac` extension is available if and only if this bit is `1`.
+Refer to <<#xtheadsxstatus>> for more information about the `th.sxstatus` CSR.
+
 [#xtheadmac-insns,reftext="Instructions"]
 === Instructions
 include::xtheadmac/mula.adoc[]

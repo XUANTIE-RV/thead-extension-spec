@@ -1,0 +1,53 @@
+[#xtheadsxstatus]
+== T-Head extension status register for S-mode (XTheadSxStatus)
+
+[NOTE,caption=Frozen]
+The `XTheadSxStatus` extension is `stable`.
+
+The `XTheadSxStatus` ISA extension provides the `th.sxstatus` CSR that holds
+status information and allows to control T-Head custom extensions.
+
+Extension version: 1.0.
+
+The `th.sxstatus` CSR is 64 bits wide, has the address `0x5C0` and is readable
+and writable in S-mode or lower modes.
+Accesses from U-mode will trigger an illegal instruction exception.
+
+The bit assignment of this CSR are:
+
+* Bit 0-7: 0
+* Bit 0-21: reserved (*WPRI*)
+* Bit 22: THEADISAEE
+* Bit 23-63: reserved (*WPRI*)
+
+The `th.sxstatus`.THEADISAEE bit controls the availability of a range of XThead*
+extensions. If the bit is set, these extensions are available, otherwise not
+(implying that custom instructions will raise an illegal instruction exception).
+The following XThead* extensions are enabled with this bit:
+
+* `XTheadCmo`
+* `XTheadSync`
+* `XTheadBa`
+* `XTheadBb`
+* `XTheadBs`
+* `XTheadCondMov`
+* `XTheadMemIdx`
+* `XTheadMemPair`
+* `XTheadFMemIdx`
+* `XTheadMac`
+* `XTheadFmv` (only available if `XLEN` is 32)
+* `XTheadInt` (only available if `XLEN` is 32)
+
+[NOTE]
+The `th.sxstatus`.THEADISAEE bit is not expected to be cleared.
+The behaviour of clearing this bit is undefined.
+Its main purpose is to be read by software for the purpose
+of discovering available extensions.
+
+The reserved bits of the `th.sxstatus` CSR may be defined
+in other XThead* extensions.
+
+=== Availability
+
+The `th.sxstatus` CSR is available on all systems whose `mvendorid` CSR
+holds a value of `0x5B7`.
