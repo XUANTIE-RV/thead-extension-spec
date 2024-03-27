@@ -31,6 +31,9 @@ The table below describes extend page attributes in PTE:
 | T       | 60  | Trustable
 |===
 
-XTheadMaee depends on the value of the MAEE field in extended custom register TH_MXSTATUS. If the MAEE field is 1, page attributes of addresses are determined by extended page attributes in corresponding PTEs. If the MAEE field is 0, page attributes of addresses are determined by the sysmap.h file.
+=== Availability
 
-TH_MXSTATUS register is 64 bits wide and is readable and writable in M-mode. Accesses in non-M-mode will cause an illegal instruction exception. MAEE is in the 21 bit of TH_MXSTATUS. If MVENDORID is 0x5B7, OS kernel should refer to TH_MXSTATUS MAEE as the enable status of XTheadMaee.
+The `XTheadMaee` extension's availability can be probed via the
+`th.mxstatus`.MAEE bit (bit 21).
+The `XTheadMaee` extension is available if and only if this bit is `1`.
+Refer to <<#xtheadmxstatus>> for more information about the `th.mxstatus` CSR.

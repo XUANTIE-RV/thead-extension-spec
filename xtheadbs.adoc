@@ -16,6 +16,13 @@ The table below gives an overview of the instructions:
 | Y    | Y    | th.tst _rd_, _rs1_, _imm6_ | <<#xtheadbs-insns-tst>>
 |===
 
+=== Availability
+
+The `XTheadBs` extension's availability can be probed via the
+`th.mxstatus`.THEADISAEE bit (bit 22).
+The `XTheadBs` extension is available if and only if this bit is `1`.
+Refer to <<#xtheadmxstatus>> for more information about the `th.mxstatus` CSR.
+
 [#xtheadbs-insns,reftext="Instructions"]
 === Instructions
 include::xtheadbs/tst.adoc[]

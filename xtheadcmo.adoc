@@ -43,6 +43,17 @@ Instructions that are executed without the required HW requirements available
 visible state, except for advancing the program counter and incrementing any applicable
 performance counters (i.e. it behaves like executing a `NOP` instruction).
 
+=== Availability
+
+The `XTheadCmo` extension's availability can be probed via the
+`th.mxstatus`.THEADISAEE bit (bit 22).
+The `XTheadCmo` extension is available if and only if this bit is `1`.
+Refer to <<#xtheadmxstatus>> for more information about the `th.mxstatus` CSR.
+
+The execution of U-mode instructions (i.e., instructions that are documented
+to be executed in U-mode) is only permitted if and only if
+the `th.mxstatus`.UCME bit (bit 16) is `1`.
+
 [#insns,reftext="Instructions"]
 === Instructions
 include::xtheadcmo/dcache_call.adoc[]

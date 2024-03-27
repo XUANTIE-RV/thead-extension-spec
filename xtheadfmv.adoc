@@ -19,6 +19,13 @@ The table below gives an overview of the instructions:
 | Y    | N    | th.fmv.x.hw  _rd_, _fs1_ | <<#xtheadfmv-insns-fmv_x_hw>>
 |===
 
+=== Availability
+
+The `XTheadFmv` extension's availability can be probed via the
+`th.mxstatus`.THEADISAEE bit (bit 22).
+The `XTheadFmv` extension is available if and only if this bit is `1`.
+Refer to <<#xtheadmxstatus>> for more information about the `th.mxstatus` CSR.
+
 [#xtheadfmv-insns,reftext="Instructions"]
 === Instructions
 include::xtheadfmv/fmv_x_hw.adoc[]

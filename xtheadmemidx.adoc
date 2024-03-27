@@ -60,6 +60,13 @@ The table below gives an overview of the instructions:
 | N    | Y    | th.surd   _rd_, _rs1_, _rs2_, _imm2_    | <<#xtheadmemidx-insns-surd>>
 |===
 
+=== Availability
+
+The `XTheadMemIdx` extension's availability can be probed via the
+`th.mxstatus`.THEADISAEE bit (bit 22).
+The `XTheadMemIdx` extension is available if and only if this bit is `1`.
+Refer to <<#xtheadmxstatus>> for more information about the `th.mxstatus` CSR.
+
 [#xtheadmemidx-insns,reftext="Instructions"]
 === Instructions
 include::xtheadmemidx/lbia.adoc[]

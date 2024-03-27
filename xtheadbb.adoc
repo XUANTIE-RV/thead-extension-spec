@@ -24,6 +24,13 @@ The table below gives an overview of the instructions:
 | Y    | Y    | th.tstnbz _rd_, _rs1_ | <<#xtheadbb-insns-tstnbz>>
 |===
 
+=== Availability
+
+The `XTheadBb` extension's availability can be probed via the
+`th.mxstatus`.THEADISAEE bit (bit 22).
+The `XTheadBb` extension is available if and only if this bit is `1`.
+Refer to <<#xtheadmxstatus>> for more information about the `th.mxstatus` CSR.
+
 [#xtheadbb-insns,reftext="Instructions"]
 === Instructions
 include::xtheadbb/srri.adoc[]

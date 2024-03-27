@@ -20,6 +20,13 @@ The table below gives an overview of the instructions:
 | Y    | Y    | th.sync.is                  | <<#xtheadsync-insns-sync-is>>
 |===
 
+=== Availability
+
+The `XTheadSync` extension's availability can be probed via the
+`th.mxstatus`.THEADISAEE bit (bit 22).
+The `XTheadSync` extension is available if and only if this bit is `1`.
+Refer to <<#xtheadmxstatus>> for more information about the `th.mxstatus` CSR.
+
 [#xtheadsync-insns,reftext="Instructions"]
 === Instructions
 include::xtheadsync/sfence_vmas.adoc[]

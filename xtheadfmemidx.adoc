@@ -29,6 +29,13 @@ Additionally at least the `F` extension needs to be available.
 In order to have all instructions available, the `D` extensions
 needs to be implemented.
 
+=== Availability
+
+The `XTheadFMemIdx` extension's availability can be probed via the
+`th.mxstatus`.THEADISAEE bit (bit 22).
+The `XTheadFMemIdx` extension is available if and only if this bit is `1`.
+Refer to <<#xtheadmxstatus>> for more information about the `th.mxstatus` CSR.
+
 [#xtheadfmemidx-insns,reftext="Instructions"]
 === Instructions
 include::xtheadfmemidx/flrd.adoc[]
