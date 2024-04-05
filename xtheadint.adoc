@@ -17,6 +17,13 @@ The table below gives an overview of the instructions:
 | Y    | Y    | th.ipop  | <<#xtheadint-insns-ipop>>
 |===
 
+=== Availability
+
+The `XTheadInt` extension's availability can be probed via the
+`th.sxstatus`.THEADISAEE bit (bit 22).
+The `XTheadInt` extension is available if and only if this bit is `1`.
+Refer to <<#xtheadsxstatus>> for more information about the `th.sxstatus` CSR.
+
 [#xtheadint-insns,reftext="Instructions"]
 === Instructions
 include::xtheadint/ipush.adoc[]

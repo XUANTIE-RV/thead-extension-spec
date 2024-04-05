@@ -34,6 +34,7 @@ include::docinfo.adoc[]
 
 include::intro.adoc[]
 
+include::xtheadsxstatus.adoc[]
 include::xtheadcmo.adoc[]
 include::xtheadsync.adoc[]
 include::xtheadba.adoc[]

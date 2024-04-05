@@ -24,6 +24,7 @@ in many T-Head processors.
 The T-Head extension collection follows the principles of the RISC-V ISA.
 The collection consists of the following ISA extensions:
 
+* `XTheadSxStatus` provides a CSR to probe the availability of XThead* extensions.
 * `XTheadCmo` provides instructions for cache management.
 * `XTheadSync` provides instructions for multi-processor synchronization.
 * `XTheadBa` provides instructions for address calculations.
@@ -57,19 +58,9 @@ Some instruction are only available if the system implements
 the `D` extension. To highlight the availability, each
 floating-point extension document this for each instruction.
 
-=== Enablement of extensions and instructions
-
-All extensions and instructions are expected to be enabled at all times.
-The instructions can be used at any time when executing in the documented
-privilege levels, that permit the execution of the instruction.
-
-However, there might be SoC-specific mechanisms to ensure this behaviour.
-E.g. the T-Head C906 requires the CSR field `mxstatus.theadisaee` to
-be set to `1` to enable the ISA extensions.
-Another example is the CSR field `mxstatus.ucme` of the T-Head C906,
-that is required to be set to `1` in order to execute cache management
-instructions in `U` mode (if the instruction is documented that this
-is permitted).
+For probing of the extension's availability the extension
+`Zicsr` is required to read out the `th.sxstatus` CSR.
+Refer to <<#xtheadsxstatus>> for more information about the `th.sxstatus` CSR.
 
 === Lifecycle
 
