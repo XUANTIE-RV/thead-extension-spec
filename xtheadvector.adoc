@@ -53,4 +53,4 @@ but also ensure that future T-Head CPUs without `XTheadVector` won't be falsely 
 
 === Intrinsics
 
-The list of intrinsic functions for `XTheadVector` can be found in <<#intrinsics>>.
+include::xtheadvector/intrinsics.adoc[]
