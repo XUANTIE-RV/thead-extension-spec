@@ -1,0 +1,47 @@
+[#xtheadmae]
+== Memory Attribute Extension (XTheadMae)
+
+[NOTE,caption=Frozen]
+The `XTheadMae` extension is `stable`.
+
+Extension version: 1.0.
+
+The `XTheadMae` ISA extension provides a way to configure memory page attributes.
+These attributes are set in the page tabale entries (PTEs).
+
+The `XTheadMae` extension is a non-standard non-conforming extension.
+`XTheadMae` uses preserved [60:63] bits of the PTE, which have later been
+allocted to the `Svpbmt` and `Svnapot` standard extensions.
+This conflict is not on purpose, but the result of issues in the past that have been resolved since.
+Therefore, the `XTheadMae` extension and the `Svpbmt` or `Svnapot` are in conflict.
+In other words, tools should not allow to enable the `XTheadMae` extension and
+the `Svpbmt` or `Svnapot` extensions at the same time and should report an error
+if both are enabled by the user.
+
+The table below describes the page attributes corresponding to each memory type:
+
+[cols="^12,3,3,3",stripes=even,options="header"]
+|===
+| Memory type            | SO | C | B
+| Cacheable memory       | 0  | 1 | 1
+| Non-cacheable memory   | 0  | 0 | 1
+| Bufferable device      | 1  | 0 | 1
+| Non-bufferable device  | 1  | 0 | 0
+|===
+
+The table below describes extend page attributes in PTE:
+[cols="^3,^3,12",stripes=even,options="header"]
+|===
+| Fields  | Bit | Meaning
+| SO      | 63  | Strong order
+| C       | 62  | Cacheable
+| B       | 61  | Bufferable
+| T       | 60  | Trustable
+|===
+
+=== Availability
+
+The `XTheadMae` extension's availability can be probed via the
+`th.sxstatus`.MAEE bit (bit 21).
+The `XTheadMae` extension is available if and only if this bit is `1`.
+Refer to <<#xtheadsxstatus>> for more information about the `th.sxstatus` CSR.

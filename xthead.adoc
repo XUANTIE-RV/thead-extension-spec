@@ -50,4 +50,4 @@ include::xtheadint.adoc[]
 include::xtheadvdot.adoc[]
 include::xtheadvector.adoc[]
 
-include::xtheadmaee.adoc[]
+include::xtheadmae.adoc[]
