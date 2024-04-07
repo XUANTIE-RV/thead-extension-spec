@@ -53,3 +53,4 @@ include::xtheadvector.adoc[]
 include::intrinsic.adoc[]
 
 include::xtheadmaee.adoc[]
+include::xtheadmatrix.adoc[]

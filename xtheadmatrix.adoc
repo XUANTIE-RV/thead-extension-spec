@@ -1,0 +1,50 @@
+[#xtheadmatrix]
+== Matrix extension
+
+[NOTE,caption=Frozen]
+The `XTheadMatrx` extension is a `draft`.
+
+[WARNING]
+.This document is in the link:http://riscv.org/spec-state[Development state]
+====
+Assume everything can change. This draft specification will change before
+being accepted as standard, so implementations made to this draft
+specification will likely not conform to the future standard.
+====
+
+The `XTheadMatrix` ISA extension provides an attached matrix facility.
+
+Extension version: 0.4.1.
+
+The `XTheadMatrix` extension represents a decoupled architecture from the vector
+extension to achieve more flexibility and reduce implementation dependencies.
+Each hart that implements `XTheadMatrix` defines an `RLEN` constant, which is the
+number of bits in a row of a matrix register.
+The programmer's model is designed to achieve binary portability on harts
+with different RLEN values.
+The extension is strongly inspired by the RISC-V Vector extension.
+
+include::xtheadmatrix/programmers_model.adoc[]
+include::xtheadmatrix/instructions.adoc[]
+include::xtheadmatrix/instruction_format.adoc[]
+include::xtheadmatrix/subextensions.adoc[]
+include::xtheadmatrix/instruction_list.adoc[]
+include::xtheadmatrix/memory_model.adoc[]
+
+=== Availability
+
+The `XTheadVector` extension is only available if and only if all of the following conditions are met:
+
+* The value of the `mvendor` CSR is `0x5b7` ('T-Head')
+* TBD.
+
+These conditions not only reliably identify existing CPUs with XTheadVector (C906V, C920, and R920),
+but also ensure that future T-Head CPUs without XTheadVector won't be falsely detected (in this case `mimpid` won't be `0`).
+
+=== XTheadMatrix ABIs
+
+include::xtheadmatrix/cc.adoc[]
+include::xtheadmatrix/dwarf.adoc[]
+
+include::xtheadmatrix/intrinsics.adoc[]
+

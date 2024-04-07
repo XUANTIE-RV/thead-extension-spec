@@ -15,9 +15,17 @@ The list below includes all contributors to this document in alphabetical order:
 
 [%hardbreaks]
 * Christoph Müllner <christoph.muellner@vrull.eu>
+* Chen Chen
 * Cooper Qu <cooper.qu@linux.alibaba.com>
-* Lifang Xia <lifang_xia@linux.alibaba.com>
-* Philipp Tomsich <philipp.tomsich@vrull.eu>
-* Yunhai Shang < yunhai@linux.alibaba.com>
-* Zhiwei Liu <zhiwei_liu@linux.alibaba.com>
 * Jin Ma <jinma@linux.alibaba.com>
+* JingQiu
+* Lifang Xia <lifang_xia@linux.alibaba.com>
+* Mingxin Zhao
+* Philipp Tomsich <philipp.tomsich@vrull.eu>
+* Wengan Shao
+* Wenmeng Zhang
+* Xianmiao Qu
+* Xiaoyan Xiang
+* Yunhai Shang < yunhai@linux.alibaba.com>
+* Zhao Jiang
+* Zhiwei Liu <zhiwei_liu@linux.alibaba.com>
