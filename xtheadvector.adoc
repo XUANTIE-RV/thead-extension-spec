@@ -1,23 +1,14 @@
 [#xtheadvector]
-== Vector implementation of THEAD.
+== T-Head's vector extension (XTheadVector)
 
 [NOTE,caption=Frozen]
 The `XTheadVector` extension is `stable`.
 
 Extension version: 1.0.
 
-The `XTheadVector` extension is not a custom-extension, but a non-standard non-conforming extension. The encoding space of the `TheadVector` instructions overlaps with those of the `V` extension. This encoding space conflict is not on purpose, but the result of issues in the past that have been resolved since. Therefore, the `XTheadVector` extension and the `V` extension are in conflict. In other words, tools should not allow to enable the `TheadVector` extension and the `V` extension at the same time and should report an error if both are enabled by the user.
+The `XTheadVector` extension is not a custom-extension, but a non-standard non-conforming extension. The encoding space of the `XTheadVector` instructions overlaps with those of the `V` extension. This encoding space conflict is not on purpose, but the result of issues in the past that have been resolved since. Therefore, the `XTheadVector` extension and the `V` extension are in conflict. In other words, tools should not allow to enable the `XTheadVector` extension and the `V` extension at the same time and should report an error if both are enabled by the user.
 
-The `XTheadVector` extension adds 32 vector registers, and six unprivileged CSRs (`th.vstart`, `th.vxsat`, `th.vxrm`, `th.vl`, `th.vtype` and `th.vlenb`) , which also overlap with those of the `V` extension (`vstart`, `vxsat`, `vxrm`, `vl`, `vtype` and `vlenb`).
-
-The `XTheadVector` extension is only available if and only if all of the following conditions are met:
-
-* The value of the `mvendor` CSR is `0x5b7` ('T-Head')
-* Bit 21 of the `misa` CSR is `1` ('V')
-* The value of the `mimpid` CSR is `0`
-
-These conditions not only reliably identify existing CPUs with XTheadVector (C906V, C920, and R920),
-but also ensure that future T-Head CPUs without XTheadVector won't be falsely detected (in this case `mimpid` won't be `0`).
+The `XTheadVector` extension adds 32 vector registers, and six unprivileged CSRs (`th.vstart`, `th.vxsat`, `th.vxrm`, `th.vl`, `th.vtype` and `th.vlenb`) , which also overlap with those of the `V` extension (`vstart`, `vxsat`, `vxrm`, `vl`, `vtype` and `vlenb`). Similar to the `V` extension, the `XTheadVector` extension defines two vector status bits `VS` (`[24:23]`) in the `mstatus` and `sstatus` CSRs.
 
 The instructions set of `XTheadVector` overlaps with the `V` Extension v0.7.1(https://github.com/riscv/riscv-v-spec/releases/tag/0.7.1). But here are some changes:
 
@@ -25,8 +16,8 @@ The instructions set of `XTheadVector` overlaps with the `V` Extension v0.7.1(ht
 * The five unprivileged CSRs `vstart`, `vxsat`, `vxrm`, `vl` and `vtype` are prefixed with `th.`, for example, `vstart` is changed to `th.vstart`.
 * All instructions are prefixed with `th.`, for example, `vmv.v.v` is changed to `th.vmv.v.v`.
 * The extension `Zvamo` is renamed to `XTheadZvamo`.
-* The extension `Zvlsseg` (chapter 7.8) is not a subextension but a mandatory part of XTheadVector.
-* The Chapter `19. Divided Element Extension ('Zvediv')` is not part of XTheadVector.
+* The extension `Zvlsseg` (chapter 7.8) is not a subextension but a mandatory part of `XTheadVector`.
+* The Chapter `19. Divided Element Extension ('Zvediv')` is not part of `XTheadVector`.
 * Beyond the instructions and pseudo instructions in the referenced specification, the following additional pseudo instructions are defined in order to improve compatibility with RVV 1.0:
 
 	th.vmmv.m vd,vs         => th.vmand.mm vd,vs,vs
@@ -48,5 +39,18 @@ While similar to the `V` Extension v0.7.1, `XTheadVector` still exhibits some di
 * No vlm/vsm instructions.
 * Different vnsrl/vnsra/vfncvt suffix (vv/vx/vi vs wv/wx/wi).
 * Different size of mask mode (1.0 is vl and xtheadvector is vlen).
+
+=== Availability
+
+The `XTheadVector` extension is available if and only if all of the following conditions are met:
+
+* The value of the `mvendor` CSR is `0x5b7` ('T-Head')
+* Bit 21 of the `misa` CSR is `1` ('V')
+* The value of the `mimpid` CSR is `0`
+
+These conditions not only reliably identify existing CPUs with `XTheadVector` (C906V, C920, and R920),
+but also ensure that future T-Head CPUs without `XTheadVector` won't be falsely detected (in this case `mimpid` won't be `0`).
+
+=== Intrinsics
 
 The list of intrinsic functions for `XTheadVector` can be found in <<#intrinsics>>.
