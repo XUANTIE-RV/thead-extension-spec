@@ -5,7 +5,7 @@ Synopsis::
 Load indexed double-word, increment address before loading.
 
 Mnemonic::
-th.lwib _rd_, (_rs1_), _imm5_, _imm2_
+th.ldib _rd_, (_rs1_), _imm5_, _imm2_
 
 Encoding::
 [wavedrom, , svg]
