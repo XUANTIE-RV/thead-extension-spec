@@ -1,6 +1,6 @@
 == Introduction
 
-The T-Head extension collection was created to augment
+The Alibaba Damo Academy Xuantie extension collection was created to augment
 the RISC-V ISA by adding additional functionality
 to enable faster and more energy-efficient solutions.
 
@@ -15,13 +15,13 @@ The RISC-V ISA and its authors strongly advertise the ability
 to create vendor extensions. Dedicated encoding spaces ensure,
 that there are not conflicts with standard extensions.
 
-This document specifies the T-Head extension collection,
+This document specifies the XuanTie extension collection,
 a collection of vendor extensions that are implemented
-in many T-Head processors.
+in many XuanTie processors.
 
 === Overview
 
-The T-Head extension collection follows the principles of the RISC-V ISA.
+The XuanTie extension collection follows the principles of the RISC-V ISA.
 The collection consists of the following ISA extensions:
 
 * `XTheadSxStatus` provides a CSR to probe the availability of XThead* extensions.
@@ -42,7 +42,7 @@ The collection consists of the following ISA extensions:
 
 === Dependencies to standard extensions
 
-The T-Head extension collection is designed to be compatible
+The XuanTie extension collection is designed to be compatible
 with RISC-V's base integer instruction sets RV32I and RV64I.
 
 Some instructions are only available if the system's

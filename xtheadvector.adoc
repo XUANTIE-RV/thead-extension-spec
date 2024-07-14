@@ -1,5 +1,5 @@
 [#xtheadvector]
-== T-Head's vector extension (XTheadVector)
+== XuanTie's vector extension (XTheadVector)
 
 [NOTE,caption=Frozen]
 The `XTheadVector` extension is `stable`.
@@ -44,12 +44,12 @@ While similar to the `V` Extension v0.7.1, `XTheadVector` still exhibits some di
 
 The `XTheadVector` extension is available if and only if all of the following conditions are met:
 
-* The value of the `mvendor` CSR is `0x5b7` ('T-Head')
+* The value of the `mvendor` CSR is `0x5b7` ('XuanTie')
 * Bit 21 of the `misa` CSR is `1` ('V')
 * The value of the `mimpid` CSR is `0`
 
 These conditions not only reliably identify existing CPUs with `XTheadVector` (C906V, C920, and R920),
-but also ensure that future T-Head CPUs without `XTheadVector` won't be falsely detected (in this case `mimpid` won't be `0`).
+but also ensure that future XuanTie CPUs without `XTheadVector` won't be falsely detected (in this case `mimpid` won't be `0`).
 
 === Intrinsics
 

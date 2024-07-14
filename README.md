@@ -1,6 +1,6 @@
-# T-Head ISA extensions (Xthead*)
+# XuanTie ISA extensions (Xthead*)
 
-This repository contains the T-Head RISC-V ISA extensions (Xthead*) specifications.
+This repository contains the XuanTie RISC-V ISA extensions (Xthead*) specifications.
 
 ## Build instructions
 

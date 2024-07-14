@@ -1,11 +1,11 @@
 [#xtheadsxstatus]
-== T-Head extension status register for S-mode (XTheadSxStatus)
+== XuanTie extension status register for S-mode (XTheadSxStatus)
 
 [NOTE,caption=Frozen]
 The `XTheadSxStatus` extension is `stable`.
 
 The `XTheadSxStatus` ISA extension provides the `th.sxstatus` CSR that holds
-status information and allows to control T-Head custom extensions.
+status information and allows to control XuanTie custom extensions.
 
 Extension version: 1.0.
 

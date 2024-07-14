@@ -1,8 +1,8 @@
 [[header]]
-:description: T-Head ISA extensions (Xthead*)
-:company: T-Head Semiconductor Co., Ltd
+:description: XuanTie ISA extensions (Xthead*)
+:company: Alibaba Damo Academy(Xuantie Team)
 include::revision.adoc-snippet[]
-:url-thead: https://www.t-head.cn
+:url-thead: https://www.xrvm.cn
 :doctype: book
 :preface-title: Preamble
 :colophon:
@@ -28,7 +28,7 @@ endif::[]
 :footnote:
 :xrefstyle: short
 
-= T-Head ISA extension specification (Xthead*)
+= XuanTie ISA extension specification (Xthead*)
 
 include::docinfo.adoc[]
 

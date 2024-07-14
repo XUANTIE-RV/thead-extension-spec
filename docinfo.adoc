@@ -5,7 +5,7 @@ This specification is licensed under the Apache License, Version 2.0
 (Apache-2.0). The full license text is available at
 https://www.apache.org/licenses/LICENSE-2.0.
 
-Copyright 2022 T-Head Semiconductor Co., Ltd.
+Copyright 2024 Hangzhou C-SKY MicroSystems Co., Ltd.
 
 Copyright 2022 VRULL GmbH
 
