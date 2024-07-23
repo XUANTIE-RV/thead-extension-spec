@@ -2,7 +2,7 @@
 ==== th.sync.is
 
 Synopsis::
-Ensures that all preceding instructions retire earlier than this instruction and all subsequent instructions retire later than this instruction and clears the pipeline when this instruction.
+Ensures that all preceding instructions retire earlier than this instruction and all subsequent instructions retire later than this instruction and clears the pipeline when this instruction retires.
 
 Mnemonic::
 th.sync.is
