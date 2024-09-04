@@ -29,7 +29,7 @@ Operation (SAIL)::
 let rs1_val = X(rs1);
 let result : xlenbits = if sizeof(xlen) == 32
                         then rs1_val >>> imm6[4..0]
-                        else rs1_val >>> imm5;
+                        else rs1_val >>> imm6;
 X(rd) = result;
 --
 
