@@ -35,7 +35,7 @@ case the whole instruction will be re-executed.
 Operation::
 [source,sail]
 --
-if (rs1 != rd1 && rs != rd2 && rd1 != rd2) {
+if (rs1 != rd1 && rs1 != rd2 && rd1 != rd2) {
     addr := rs1 + (zero_extend(imm2) << 4)
     tmp1 := mem[addr+7:addr]
     tmp2 := mem[addr+15:addr+8]
