@@ -31,7 +31,7 @@ Operation::
 [source,sail]
 --
 if (rs1 != rd) {
-    rs := zero_extend(mem[rs1])
+    rd := zero_extend(mem[rs1])
     rs1 := rs1 + (sign_extend(imm5) << imm2)
 }
 --
