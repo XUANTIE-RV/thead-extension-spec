@@ -27,7 +27,6 @@ jobs:
         sudo gem install asciidoctor-bibtex
         sudo gem install asciidoctor-mathematical
         sudo gem install coderay
-        sudo npm i npm@latest -g
         sudo npm install -g bytefield-svg
         sudo npm install -g wavedrom-cli --unsafe
         export PATH="$PATH:node_modules/.bin/"
