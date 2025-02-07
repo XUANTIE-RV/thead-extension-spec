@@ -20,4 +20,5 @@ The list below includes all contributors to this document in alphabetical order:
 * Lifang Xia <lifang_xia@linux.alibaba.com>
 * Philipp Tomsich <philipp.tomsich@vrull.eu>
 * Yunhai Shang < yunhai@linux.alibaba.com>
+* Yunze Zhu <yunzezhu@linux.alibaba.com>
 * Zhiwei Liu <zhiwei_liu@linux.alibaba.com>
