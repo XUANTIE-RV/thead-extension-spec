@@ -21,7 +21,7 @@ Encoding::
 ....
 
 Description::
-This operation performs a rotate-right on on the least-significant word of _rs1_ by _imm5_ bits and stores the result in _rd_.
+This operation performs a rotate-right on the least-significant word of _rs1_ by _imm5_ bits and stores the result in _rd_.
 
 Operation (SAIL)::
 [source,sail]

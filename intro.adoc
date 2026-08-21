@@ -81,5 +81,5 @@ Possible states are:
 * `Stable`: No feature additions/removals/changes. Only clarifications.
 
 A `draft` specification is expected to become `stable` in the future
-(with exepcted changes until then). A `stable` extension remains in that
+(with expected changes until then). A `stable` extension remains in that
 state for ever.

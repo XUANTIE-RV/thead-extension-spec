@@ -21,7 +21,7 @@ Encoding::
 ....
 
 Description::
-Besides the synopsis of th.sync, this instruction flushes the pipeline of current hart which means all subsequent instructions should be re-fectched after this instruction retires. This instruction is the only mechanism to ensure that all explicit memory accesses or cache operations visible to a hart will also be visible to its instruction fetches.
+Besides the synopsis of th.sync, this instruction flushes the pipeline of current hart which means all subsequent instructions should be re-fetched after this instruction retires. This instruction is the only mechanism to ensure that all explicit memory accesses or cache operations visible to a hart will also be visible to its instruction fetches.
 
 Operation::
 [source,sail]

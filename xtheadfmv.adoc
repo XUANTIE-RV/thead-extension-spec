@@ -4,7 +4,7 @@
 [NOTE,caption=Frozen]
 The `XTheadFmv` extension is `stable`.
 
-The `XTheadFmv` ISA extension provides double-precision floating-point high-bit data transmission intructions for RV32.
+The `XTheadFmv` ISA extension provides double-precision floating-point high-bit data transmission instructions for RV32.
 
 This extension depends on the availability of the `D` (double-precision floating-point) ISA extension.
 

@@ -4,7 +4,7 @@
 [NOTE,caption=Frozen]
 The `XTheadVdot` extension is `stable`.
 
-The `XTheadVdot` ISA extension provides vector integer four 8-bit multiply and add with 32-bit element intructions.
+The `XTheadVdot` ISA extension provides vector integer four 8-bit multiply and add with 32-bit element instructions.
 
 This extension depends on the availability of the `V` (vector) ISA extension.
 

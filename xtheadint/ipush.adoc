@@ -41,7 +41,7 @@ This instruction can be executed in `M` mode only.
 Attempts to execute this instruction in other modes will raise an illegal instruction exception.
 
 Exceptions::
-This isntruction may trigger an unaligned access exception or
+This instruction may trigger an unaligned access exception or
 an access error exception.
 
 Included in::
