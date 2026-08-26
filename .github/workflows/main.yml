@@ -29,7 +29,7 @@ jobs:
         sudo gem install coderay
         sudo npm i npm@latest -g
         sudo npm install -g bytefield-svg
-        sudo npm install -g wavedrom-cli --unsafe
+        sudo npm install -g wavedrom-cli
         export PATH="$PATH:node_modules/.bin/"
 
     - name: Build
