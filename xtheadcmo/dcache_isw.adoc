@@ -1,8 +1,8 @@
-[#insns-xtheadcmo-dcache_isw,reftext=Invalidate D-cache by set/way]
+[#insns-xtheadcmo-dcache_isw,reftext=Invalidate L1 D-cache by set/way]
 ==== th.dcache.isw
 
 Synopsis::
-Invalidate D-cache by set/way
+Invalidate L1 D-cache by set/way
 
 Mnemonic::
 th.dcache.isw _rs1_
@@ -26,12 +26,10 @@ The register content of `rs1` defines the set/way and has the following bit assi
 * rs1[31:32-w]...number of the way to operate on
 * rs1[w-1:l+s]...reserved (write `0`)
 * rs1[l+s-1:l]...number of the set to operate on
-* rs1[l-1:4]...reserved (write `0`)
-* rs1[3:1]...cache level to operate on (`0` for L1 cache, `1` for L2 cache, etc.)
-* rs1[0]...reserved (write `0`)
+* rs1[l-1:0]...reserved (write `0`)
 
-The bit positions to specify the set and the way to operate on depend on the actual cache implementation.
-There are three cache properties that need to be considered:
+The bit positions to specify the set and the way to operate on depend on the actual L1 D-cache implementation.
+There are three L1 D-cache properties that need to be considered:
 
 * `nways` (number of ways)
 * `nsets` (number of sets)
@@ -43,7 +41,7 @@ Derived from these numbers the following constants are defined:
 * `s := log2(nsets)`
 * `l := log2(linesize)`
 
-E.g. a 64 KiB, 2-way set-associative cache (`w = 1`) with a cacheline size of 64 bytes (`l = 6`)
+E.g. a 64 KiB, 2-way set-associative L1 D-cache (`w = 1`) with a cacheline size of 64 bytes (`l = 6`)
 has 512 sets (`s = 9`) and needs to use the following bits to set the set and the way to operate on:
 
 * [31]...number of the way (`0` or `1`)
@@ -52,7 +50,7 @@ has 512 sets (`s = 9`) and needs to use the following bits to set the set and th
 //-
 
 Description::
-This instruction invalidates the cache line that matches the specified set/way in the D-cache.
+This instruction invalidates the cache line that matches the specified set/way in the L1 D-cache.
 Dirty cache lines will not be written back to the next-level storage.
 
 Operation::
@@ -63,7 +61,7 @@ if (priv_level == U)
   <raise illegal instruction exception>
 }
 
-<invalidate data cache line matching the set/way>
+<invalidate L1 data cache line matching the set/way>
 --
 
 Permission::
