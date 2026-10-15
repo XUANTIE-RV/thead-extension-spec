@@ -18,7 +18,7 @@ The table below gives an overview of the instructions:
 | N    | Y    | th.mulaw _rd_, _rs1_, _rs2_ | <<#xtheadmac-insns-mulaw>>
 | Y    | Y    | th.muls  _rd_, _rs1_, _rs2_ | <<#xtheadmac-insns-muls>>
 | Y    | Y    | th.mulsh _rd_, _rs1_, _rs2_ | <<#xtheadmac-insns-mulsh>>
-| Y    | Y    | th.mulsw _rd_, _rs1_, _rs2_ | <<#xtheadmac-insns-mulsw>>
+| N    | Y    | th.mulsw _rd_, _rs1_, _rs2_ | <<#xtheadmac-insns-mulsw>>
 |===
 
 === Availability
