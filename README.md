@@ -11,3 +11,7 @@ all specifications:
 ```
 make
 ```
+
+## Related Resources
+
+- Explore software resources, development tools, and technical documentation for XuanTie RISC-V processors: [XuanTie Developer Resources](https://www.xrvm.cn/community/download)
